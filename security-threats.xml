@@ -207,7 +207,8 @@
     <!-- Keywords will be incorporated into HTML output files in a meta tag but they have no effect on text or nroff output. If you submit your draft to the RFC Editor, the keywords will be used for the search engine. -->
 
     <abstract>
-      <t>This document presents a security threat analysis for routing over
+      <t>Testing One two three.
+      This document presents a security threat analysis for routing over
       low-power and lossy networks (LLN). The development builds upon previous
       work on routing security and adapts the assessments to the issues and
       constraints specific to low-power and lossy networks. A systematic
