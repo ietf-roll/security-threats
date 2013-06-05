@@ -2126,6 +2126,7 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
 
       &I-D.alexander-roll-mikey-lln-key-mgmt;
 
+      <?rfc include="reference.iso7498.xml" ?>
       &RFC1142;
 
       &RFC2080;

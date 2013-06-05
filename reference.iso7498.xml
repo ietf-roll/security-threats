@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='ISO7498wiki'>
+
+<front>
+<title>Security service (telecommunication) --- ISO 7498-2</title>
+<author surname='Wikipedia'>
+<organization /></author>
+<date year='2013' month='June' />
+<abstract>
+<t>Security service is a service, provided by a layer of communicating open systems, which ensures adequate security of the systems or of data transfers[1] as defined by ITU-T X.800 Recommendation.</t>
+</abstract></front>
+
+<seriesInfo name='ISO' value='7498-wikipedia' />
+<format type='html' target='http://en.wikipedia.org/wiki/Security_service_(telecommunication)' />
+</reference>
