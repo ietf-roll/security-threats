@@ -246,18 +246,16 @@ Internet-Draft      Security Threat Analysis for ROLL      February 2013
    This document presents a threat analysis for securing Routing Over
    LLNs (ROLL) through an analysis that starts from the routing basics.
    The objective is two-fold.  First, the analysis will be used to
-   identify pertinent security issues.  Second, it will facilitate both
-   the assessment of a protocol's security threats and the
-   identification of the necessary features for development of secure
-   protocols for the ROLL Working Group.
+   identify pertinent security issues.  This facilitate the assessment
+   of a protocol's security threats.  Identification of which solution
+   to address the threat is application specific, and therefore appears
+   in an applicability statement for that deployment domain.
 
-   The approach adopted in this effort proceeds in four steps, to
-   examine security issues in ROLL, to analyze threats and attacks, to
-   consider the countermeasures, and then to make recommendations for
-   securing ROLL.  The basis is found on identifying the assets and
-   points of access of routing and evaluating their security needs based
-   on the Confidentiality, Integrity, and Availability (CIA) model in
-   the context of LLN.
+   The approach adopted in this effort proceeds in two steps, to examine
+   security issues in ROLL, and to analyze threats and attacks.  The
+   basis is found on identifying the assets and points of access of
+   routing and evaluating their security needs based on the
+   [ISO7498wiki] model of:
 
 
 2.  Terminology
@@ -273,6 +271,8 @@ Internet-Draft      Security Threat Analysis for ROLL      February 2013
 
    Security, in essence, entails implementing measures to ensure
    controlled state changes on devices and network elements, both based
+   on external inputs (received via communications) or internal inputs
+   (physical security of device itself and parameters maintained by the
 
 
 
@@ -281,8 +281,6 @@ Tsao, et al.             Expires August 5, 2013                 [Page 5]
 Internet-Draft      Security Threat Analysis for ROLL      February 2013
 
 
-   on external inputs (received via communications) or internal inputs
-   (physical security of device itself and parameters maintained by the
    device, including, e.g., clock).  State changes would thereby involve
    not only proper authorization for actions, authentication, and
    potentially integrity and confidentiality, but also proper order of
@@ -329,6 +327,8 @@ Internet-Draft      Security Threat Analysis for ROLL      February 2013
    The use of a data flow diagram allows for a clear and concise model
    of the way in which routing nodes interact and process information,
    and hence provides a context for threats and attacks.  The goal of
+   the model is to be as detailed as possible so that corresponding
+   components and mechanisms in an individual routing protocol can be
 
 
 
@@ -337,8 +337,6 @@ Tsao, et al.             Expires August 5, 2013                 [Page 6]
 Internet-Draft      Security Threat Analysis for ROLL      February 2013
 
 
-   the model is to be as detailed as possible so that corresponding
-   components and mechanisms in an individual routing protocol can be
    readily identified, but also to be as general as possible to maximize
    the relevancy of this effort for the various existing and future
    protocols.  Nevertheless, there may be discrepancies, likely in the
@@ -352,6 +350,8 @@ Internet-Draft      Security Threat Analysis for ROLL      February 2013
    information; routes are then generated and stored, which may be
    maintained in the form of the protocol forwarding table.  The nodes
    use the derived routes for making forwarding decisions.
+
+
 
 
 
@@ -2425,6 +2425,10 @@ Internet-Draft      Security Threat Analysis for ROLL      February 2013
               "IEEE Standard Test Access Port and Boundary Scan
               Architecture", IEEE-SA Standards Board, Jun. 14 2001.
 
+   [ISO7498wiki]
+              Wikipedia, "Security service (telecommunication) --- ISO
+              7498-2", ISO 7498-wikipedia, June 2013.
+
    [Karlof2003]
               Karlof, C. and D. Wagner, "Secure routing in wireless
               sensor networks: attacks and countermeasures", Elsevier
@@ -2454,16 +2458,15 @@ Internet-Draft      Security Threat Analysis for ROLL      February 2013
               Perlman, N., "Network Layer Protocols with Byzantine
               Robustness", MIT LCS Tech Report, 429, 1988.
 
-   [RFC1142]  Oran, D., "OSI IS-IS Intra-domain Routing Protocol",
-              RFC 1142, February 1990.
-
-
 
 
 Tsao, et al.             Expires August 5, 2013                [Page 44]
 
 Internet-Draft      Security Threat Analysis for ROLL      February 2013
 
+
+   [RFC1142]  Oran, D., "OSI IS-IS Intra-domain Routing Protocol",
+              RFC 1142, February 1990.
 
    [RFC2080]  Malkin, G. and R. Minnear, "RIPng for IPv6", RFC 2080,
               January 1997.
@@ -2510,9 +2513,6 @@ Internet-Draft      Security Threat Analysis for ROLL      February 2013
               "Industrial Routing Requirements in Low-Power and Lossy
               Networks", RFC 5673, October 2009.
 
-   [RFC5751]  Ramsdell, B. and S. Turner, "Secure/Multipurpose Internet
-              Mail Extensions (S/MIME) Version 3.2 Message
-              Specification", RFC 5751, January 2010.
 
 
 
@@ -2520,6 +2520,10 @@ Tsao, et al.             Expires August 5, 2013                [Page 45]
 
 Internet-Draft      Security Threat Analysis for ROLL      February 2013
 
+
+   [RFC5751]  Ramsdell, B. and S. Turner, "Secure/Multipurpose Internet
+              Mail Extensions (S/MIME) Version 3.2 Message
+              Specification", RFC 5751, January 2010.
 
    [RFC5826]  Brandt, A., Buron, J., and G. Porcu, "Home Automation
               Routing Requirements in Low-Power and Lossy Networks",
@@ -2560,10 +2564,6 @@ Authors' Addresses
    USA
 
    Email: tzeta.tsao@cooperindustries.com
-
-
-
-
 
 
 

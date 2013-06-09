@@ -31,8 +31,7 @@
 <!ENTITY RFC5548 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5548.xml">
 <!ENTITY RFC5751 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5751.xml">
 <!ENTITY RFC5826 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5826.xml">
-<!ENTITY RFC5867 SYSTEM
-"http://xml.resource.org/public/rfc/bibxml/reference.RFC.5867.xml">
+<!ENTITY RFC5867 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5867.xml">
 <!ENTITY I-D.suhopark-hello-wsn SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-suhopark-hello-wsn-00.xml">
 <!ENTITY I-D.ietf-rpsec-ospf-vuln SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-rpsec-ospf-vuln-02.xml">
 ]>
@@ -248,18 +247,18 @@
       <t>This document presents a threat analysis for securing Routing Over
       LLNs (ROLL) through an analysis that starts from the routing basics. The
       objective is two-fold. First, the analysis will be used to identify
-      pertinent security issues.  This facilitate the
-      assessment of a protocol's security threats.  Identification of
-      which solution to address the threat is application specific, and 
-      therefore appears in an applicability statement for that deployment
-      domain. </t>
+      pertinent security issues. Second, it will facilitate both the
+      assessment of a protocol's security threats and the identification of
+      the necessary features for development of secure protocols for the ROLL
+      Working Group.</t>
 
-      <t>The approach adopted in this effort proceeds in two steps, to
-      examine security issues in ROLL, and to analyze threats and attacks.
-      The basis is found on identifying the assets and points
+      <t>The approach adopted in this effort proceeds in four steps, to
+      examine security issues in ROLL, to analyze threats and attacks, to
+      consider the countermeasures, and then to make recommendations for
+      securing ROLL. The basis is found on identifying the assets and points
       of access of routing and evaluating their security needs based on the
-      <xref target="ISO7498wiki"></xref> model of:
-      </t>
+      Confidentiality, Integrity, and Availability (CIA) model in the context
+      of LLN.</t>
     </section>
 
     <section title="Terminology">
@@ -2127,7 +2126,6 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
 
       &I-D.alexander-roll-mikey-lln-key-mgmt;
 
-      <?rfc include="reference.iso7498.xml" ?>
       &RFC1142;
 
       &RFC2080;
