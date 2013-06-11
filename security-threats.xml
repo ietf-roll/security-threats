@@ -5,6 +5,7 @@
      There has to be one entity for each item to be referenced. 
      An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC1142 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1142.xml">
+<!ENTITY RFC1636 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1636.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2328 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2328.xml">
 <!ENTITY RFC2453 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2453.xml">
@@ -254,11 +255,8 @@
       therefore appears in an applicability statement for that deployment
       domain. </t>
 
-      <t>The approach adopted in this effort proceeds in two steps, to
-      examine security issues in ROLL, and to analyze threats and attacks.
-      The basis is found on identifying the assets and points
-      of access of routing and evaluating their security needs based on the
-      <xref target="ISO7498wiki"></xref> model of:
+      <t>Threats are characterized using the terminology of
+      <xref target="ISO7498wiki"></xref>.
       </t>
     </section>
 
@@ -274,33 +272,8 @@
     </section>
 
     <section anchor="cons-on-roll-sec" title="Considerations on ROLL Security">
-      <t>Security, in essence, entails implementing measures to ensure
-      controlled state changes on devices and network elements, both based on
-      external inputs (received via communications) or internal inputs
-      (physical security of device itself and parameters maintained by the
-      device, including, e.g., clock). State changes would thereby involve not
-      only proper authorization for actions, authentication, and potentially
-      integrity and confidentiality, but also proper order of state changes
-      through timeliness, since seriously delayed state changes, such as
-      commands or updates of routing tables, may negatively impact system
-      operation. A security assessment can therefore begin with a focus on the
-      assets or elements of information that may be the target of the state
-      changes and the access points in terms of interfaces and protocol
-      exchanges through which such changes may occur. In the case of routing
-      security the focus is directed towards the elements associated with the
-      establishment and maintenance of network connectivity.</t>
-
-      <t>This section sets the stage for the development of the analysis by
-      applying the systematic approach proposed in <xref
-      target="Myagmar2005"></xref> to the routing security problem, while also
-      drawing references from other reviews and assessments found in the
-      literature, particularly, <xref target="RFC4593"></xref> and <xref
-      target="Karlof2003"></xref>; thus, the work presented herein may find
-      use beyond routing for LLNs. The subsequent subsections begin with a
-      focus on the elements of a generic routing process that is used to
-      establish routing assets and points of access to the routing
-      functionality. Next, the CIA security model is briefly described. Then,
-      consideration is given to issues specific to or amplified in LLNs. This
+      <t>This section sets the stage for the development of the analysis.
+      It starts with the five aspects of from ISO-7498. This
       section concludes with the formulation of a set of security objectives
       for ROLL.</t>
 
@@ -415,48 +388,78 @@ DataBase   A data storage DataBase
         consequences on the security of routing.</t>
       </section>
 
-      <section anchor="cia" title="The CIA Security Reference Model">
-        <t>At the conceptual level, security within an information system in
-        general and applied to ROLL in particular is concerned with the
-        primary issues of confidentiality, integrity, and availability. In the
-        context of ROLL:</t>
+      <section anchor="cia" title="The ISO-7498 Security Reference Model">
+        <t>The reference model includes: 
+        In the context of ROLL:</t>
+
 
         <t><list hangIndent="6" style="hanging">
-            <t hangText="Confidentiality"><vspace />Confidentiality involves
-            the protection of routing information as well as routing neighbor
-            maintenance exchanges so that only authorized and intended network
-            entities may view or access it. Because LLNs are most commonly
-            found on a publicly accessible shared medium, e.g., air or wiring
-            in a building, and sometimes formed ad hoc, confidentiality also
-            extends to the neighbor state and database information within the
-            routing device since the deployment of the network creates the
-            potential for unauthorized access to the physical devices
-            themselves.</t>
+            <t hangText="Authentication"><vspace />
+These services provide for the authentication of a communicating peer entity and the source of data as described below.
+</t>
 
-            <t hangText="Integrity"><vspace />Integrity, as a security
-            principle, entails the protection of routing information and
-            routing neighbor maintenance exchanges, as well as derived
-            information maintained in the database, from unauthorized
-            modification or from misuse. Misuse, for example, may take the
-            form of a delayed or inappropriately replayed message even where
-            confidentiality protection is maintained. Hence, in addition to
-            the data itself, integrity also concerns the authenticity of
-            claimed identity of the origin and destination of a message and
-            its timeliness or freshness. On the other hand, the access to
-            and/or removal of data, execution of the routing process, and use
-            of a device's computing and energy resources, while relevant to
+            <t hangText="Access control"><vspace />
+            This service provides protection against unauthorized use of resources accessible via OSI.
+            These may be OSI or non-OSI resources accessed via OSI protocols.
+            This protection service may be applied to various types of access to a resource (e.g.,
+            the use of a communications resource; the reading, the writing, or the deletion of an information
+            resource; the execution of a processing resource) or to all accesses to a resource. 
+
             routing security are considered larger system integrity issues
             <xref target="RFC4949"></xref> to be addressed beyond the routing
             protocol.</t>
 
-            <t hangText="Availability"><vspace />Availability ensures that
-            routing information exchanges and forwarding services need to be
-            available when they are required for the functioning of the
-            serving network. Availability will apply to maintaining efficient
-            and correct operation of routing and neighbor discovery exchanges
-            (including needed information) and forwarding services so as not
-            to impair or limit the network's central traffic flow
-            function.</t>
+            <t hangText="Data confidentiality"><vspace />
+            These services provide for the protection of data from unauthorized disclosure as described below
+            Connection confidentiality
+            This service provides for the confidentiality of all (N)-user-data on an (N)-connection
+            Connectionless confidentiality
+            This service provides for the confidentiality of all (N)-user-data in a single connectionless (N)-SDU
+            Selective field confidentiality
+            This service provides for the confidentiality of selected fields within the (N)-user-data on an (N)-connection or in a single connectionless (N)-SDU.
+            Traffic flow confidentiality
+            This service provides for the protection of the information which might be derived from observation of traffic flows.
+
+            </t>
+
+            <t hangText="Data integrity"><vspace />
+            These services counter active threats and may take one of the forms described below.
+Connection integrity with recovery
+This service provides for the integrity of all (N)-user-data on an (N)-connection and detects any modification, insertion, deletion or replay of any data within an entire SDU sequence (with recovery attempted).
+Connection integrity without recovery
+As for the previous one but with no recovery attempted.
+Selective field connection integrity
+This service provides for the integrity of selected fields within the (N)-user data of an (N)-SDU transferred over a connection and takes the form of determination of whether the selected fields have been modified, inserted, deleted or replayed.
+Connectionless integrity
+This service, when provided by the (N)-layer, provides integrity assurance to the requesting (N + 1)-entity. This service provides for the integrity of a single connectionless SDU and may take the form of determination of whether a received SDU has been modified. Additionally, a limited form of detection of replay may be provided.
+Selective field connectionless integrity
+This service provides for the integrity of selected fields within a single connectionless SDU and takes the form of determination of whether the selected fields have been modified.
+
+            These services provide for the protection of data from unauthorized disclosure as described below
+            Connection confidentiality
+            This service provides for the confidentiality of all (N)-user-data on an (N)-connection
+            Connectionless confidentiality
+            This service provides for the confidentiality of all (N)-user-data in a single connectionless (N)-SDU
+            Selective field confidentiality
+            This service provides for the confidentiality of selected fields within the (N)-user-data on an (N)-connection or in a single connectionless (N)-SDU.
+            Traffic flow confidentiality
+            This service provides for the protection of the information which might be derived from observation of traffic flows.
+
+            </t>
+
+            <t hangText="Non-repudiation"><vspace />
+            This service may take one or both of two forms.
+            <list>
+              <t hangText="Non-repudiation with proof of origin">
+                The recipient of data is provided with proof of the origin of data. 
+                This will protect against any attempt by the sender to falsely deny sending the data or its contents.
+              </t>
+              <t hangText="Non-repudiation with proof of delivery">
+                The sender of data is provided with proof of delivery of data.
+                This will protect against any subsequent attempt by the recipient to falsely deny receiving the data or its contents.
+              </t>
+            </list>
+            </t>
           </list></t>
 
         <t>It is recognized that, besides those security issues captured in
@@ -2085,12 +2088,11 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
     <section anchor="Acknowledgements" title="Acknowledgments">
       <t>The authors would like to acknowledge the review and comments from
       Rene Struik and JP Vasseur. The authors would also like to acknowledge
-      the guidance and input provided by the ROLL Chairs, David Culler, and JP
-      Vasseur, and the Area Director Adrian Farrel.</t>
+      the guidance and input provided by the ROLL Chairs, David Culler, Michael Richardson
+      and JP Vasseur, and the Area Director Adrian Farrel.</t>
 
-      <t>This document started out as a combined threat and solutions
-      document, but was split up by ROLL co-Chair Michael Richardson as it
-      went through the IETF publication process.</t>
+      <t>This document was revised in 2013 by ROLL co-Chair Michael Richardson 
+      based upon security area directorate review.</t>
     </section>
   </middle>
 
@@ -2129,6 +2131,8 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
 
       <?rfc include="reference.iso7498.xml" ?>
       &RFC1142;
+
+      &RFC1636;
 
       &RFC2080;
 
