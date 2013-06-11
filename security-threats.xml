@@ -2,7 +2,7 @@
 <!-- This template is for creating an Internet Draft using xml2rfc, which is available here: http://xml.resource.org. -->
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 <!-- One method to get references from the online citation libraries.
-     There has to be one entity for each item to be referenced. 
+     There has to be one entity for each item to be referenced.
      An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC1142 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1142.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
@@ -190,7 +190,7 @@
       </address>
     </author>
 
-    <date month="February" year="2013" />
+    <date month="February" year="2013"/>
 
     <!-- If the month and year are both specified and are the current ones, xml2rfc will fill in the current day for you. If only the current year is specified, xml2rfc will fill in the current day and month for you. If the year is not the current one, it is necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the purpose of calculating the expiry date).  With drafts it is normally sufficient to specify just the year. -->
 
@@ -207,16 +207,15 @@
     <!-- Keywords will be incorporated into HTML output files in a meta tag but they have no effect on text or nroff output. If you submit your draft to the RFC Editor, the keywords will be used for the search engine. -->
 
     <abstract>
-      <t>Testing One two three.
-      This document presents a security threat analysis for routing over
-      low-power and lossy networks (LLN). The development builds upon previous
-      work on routing security and adapts the assessments to the issues and
-      constraints specific to low-power and lossy networks. A systematic
-      approach is used in defining and evaluating the security threats.
-      Applicable countermeasures are application specific and are addressed in
-      relevant applicability statements. These assessments provide the basis
-      of the security recommendations for incorporation into low-power, lossy
-      network routing protocols.</t>
+      <t>This document presents a security threat
+      analysis for routing over low-power and lossy networks (LLN). The
+      development builds upon previous work on routing security and adapts the
+      assessments to the issues and constraints specific to low-power and
+      lossy networks. A systematic approach is used in defining and evaluating
+      the security threats. Applicable countermeasures are application
+      specific and are addressed in relevant applicability statements. These
+      assessments provide the basis of the security recommendations for
+      incorporation into low-power, lossy network routing protocols.</t>
     </abstract>
 
     <note title="Requirements Language">
@@ -250,59 +249,70 @@
       objective is two-fold. First, the analysis will be used to identify
       pertinent security issues. Second, it will facilitate both the
       assessment of a protocol's security threats and the identification of
-      the necessary features for development of secure protocols for the ROLL
-      Working Group.</t>
+      necessary countermeasures to secure the ROLL protocols. The approach
+      adopted is a five step process, 1) examine security issues in ROLL, 2)
+      describe the threat sources, 3) analyze threats and attacks, 4) consider
+      countermeasures, and 5) provide recommendations for securing ROLL.</t>
 
-      <t>The approach adopted in this effort proceeds in four steps, to
-      examine security issues in ROLL, to analyze threats and attacks, to
-      consider the countermeasures, and then to make recommendations for
-      securing ROLL. The basis is found on identifying the assets and points
-      of access of routing and evaluating their security needs based on the
-      Confidentiality, Integrity, and Availability (CIA) model in the context
-      of LLN.</t>
+      <t>This document uses [IS07498-2] model, which includes Authentication,
+      Access Control, Data Confidentiality, Data Integrity, and
+      Non-Repudiation but to which Availability is added.</t>
+
+      <t>spt: If this is just about control plane security then we should say
+      so right up front.</t>
     </section>
 
     <section title="Terminology">
       <t>This document adopts the terminology defined in <xref
-      target="RFC6550"></xref> and in <xref target="RFC4949"></xref>, with the
-      following addition:</t>
+      target="RFC6550"/> and in <xref target="RFC4949"/>, with the following
+      addition:</t>
 
       <t><list hangIndent="6" style="hanging">
+          <t hangText="Control Sequence">Control plane: Supports routing and
+          management functions.</t>
+
+          <t hangText="Data Plane">Data plane: See Forwarding plane.</t>
+
+          <t hangText="Data Plane">Forwarding plane: Responsible for receiving
+          a packet on an incoming interface, performing a lookup to identify
+          the packet's next hop and determine the best outgoing interface
+          towards the destination, and forwarding the packet out through the
+          appropriate outgoing interface.</t>
+
           <t hangText="Node">An element of a low-power, lossy network that may
           be a router or a host.</t>
+
+          <t hangText="Sleepy Node">A sleepy node is a Node that may sometimes
+          go into a sleep mode (i.e. go into a low power state to conserve
+          power) and temporarily suspends communication but that is
+          immediately available.</t>
         </list></t>
     </section>
 
     <section anchor="cons-on-roll-sec" title="Considerations on ROLL Security">
-      <t>Security, in essence, entails implementing measures to ensure
+      <t>Routing security, in essence, ensures that the routing protocol
+      operates correctly. It entails implementing measures to ensure
       controlled state changes on devices and network elements, both based on
       external inputs (received via communications) or internal inputs
       (physical security of device itself and parameters maintained by the
       device, including, e.g., clock). State changes would thereby involve not
-      only proper authorization for actions, authentication, and potentially
-      integrity and confidentiality, but also proper order of state changes
-      through timeliness, since seriously delayed state changes, such as
-      commands or updates of routing tables, may negatively impact system
-      operation. A security assessment can therefore begin with a focus on the
-      assets or elements of information that may be the target of the state
-      changes and the access points in terms of interfaces and protocol
-      exchanges through which such changes may occur. In the case of routing
-      security the focus is directed towards the elements associated with the
-      establishment and maintenance of network connectivity.</t>
+      only authorization of injector's actions, authentication of injectors,
+      authentication, integrity, and potentially confidentiality of routing
+      data, but also proper order of state changes through timeliness, since
+      seriously delayed state changes, such as commands or updates of routing
+      tables, may negatively impact system operation.</t>
 
       <t>This section sets the stage for the development of the analysis by
       applying the systematic approach proposed in <xref
-      target="Myagmar2005"></xref> to the routing security problem, while also
-      drawing references from other reviews and assessments found in the
-      literature, particularly, <xref target="RFC4593"></xref> and <xref
-      target="Karlof2003"></xref>; thus, the work presented herein may find
-      use beyond routing for LLNs. The subsequent subsections begin with a
-      focus on the elements of a generic routing process that is used to
-      establish routing assets and points of access to the routing
-      functionality. Next, the CIA security model is briefly described. Then,
-      consideration is given to issues specific to or amplified in LLNs. This
-      section concludes with the formulation of a set of security objectives
-      for ROLL.</t>
+      target="Myagmar2005"/> to the routing security, while also drawing
+      references from other reviews and assessments found in the literature,
+      particularly, <xref target="RFC4593"/> and <xref target="Karlof2003"/>.
+      The subsequent subsections begin with a focus on the elements of a
+      generic routing process that is used to establish routing assets and
+      points of access to the routing functionality. Next, the ISO 7498-2
+      security model is briefly described. Then, consideration is given to
+      issues specific to or amplified in LLNs. This section concludes with the
+      formulation of a set of security objectives for ROLL.</t>
 
       <section anchor="routing-assets"
                title="Routing Assets and Points of Access">
@@ -318,33 +328,27 @@
         these assets and points of access will provide a basis for enumerating
         the attack surface of the control plane.</t>
 
-        <t>A level-0 data flow diagram <xref target="Yourdon1979"></xref> is
-        used here to identify the assets and points of access within a generic
+        <t>A level-0 data flow diagram <xref target="Yourdon1979"/> is used
+        here to identify the assets and points of access within a generic
         routing process. The use of a data flow diagram allows for a clear and
         concise model of the way in which routing nodes interact and process
         information, and hence provides a context for threats and attacks. The
         goal of the model is to be as detailed as possible so that
-        corresponding components and mechanisms in an individual routing
-        protocol can be readily identified, but also to be as general as
-        possible to maximize the relevancy of this effort for the various
-        existing and future protocols. Nevertheless, there may be
-        discrepancies, likely in the form of additional elements, when the
-        model is applied to some protocols. For such cases, the analysis
-        approach laid out in this document should still provide a valid and
-        illustrative path for their security assessment.</t>
+        corresponding assets, points of access, and process in an individual
+        routing protocol can be readily identified.</t>
 
-        <t><xref target="Fig1"></xref> shows that nodes participating in the
-        routing process transmit messages to discover neighbors and to
-        exchange routing information; routes are then generated and stored,
-        which may be maintained in the form of the protocol forwarding table.
-        The nodes use the derived routes for making forwarding decisions.</t>
+        <t><xref target="Fig1"/> shows that nodes participating in the routing
+        process transmit messages to discover neighbors and to exchange
+        routing information; routes are then generated and stored, which may
+        be maintained in the form of the protocol forwarding table. The nodes
+        use the derived routes for making forwarding decisions.</t>
 
         <figure align="center" anchor="Fig1"
                 title="Data Flow Diagram of a Generic Routing Process">
-          <preamble></preamble>
+          <preamble/>
 
-          <artwork align="left"><![CDATA[
-
+          <artwork align="left">
+<![CDATA[
             ...................................................
             :                                                 :
             :                                                 :
@@ -362,8 +366,8 @@
             ...................................................
                                                        |
 |Forwarding                                            |
- On Node_l|<-------------------------------------------+         
-                                 
+ On Node_l|<-------------------------------------------+
+
 
 Notation:
 
@@ -377,15 +381,17 @@ DataBase   A data storage DataBase
 
 ------->   Data flow
 
-            ]]></artwork>
+            ]]>
+          </artwork>
 
-          <postamble></postamble>
+          <postamble/>
         </figure>
 
-        <t>It is seen from <xref target="Fig1"></xref> that <list
-            style="symbols">
+        <t>It is seen from <xref target="Fig1"/> that <list style="symbols">
             <t>Assets include<list style="symbols">
                 <t>routing and/or topology information;</t>
+
+                <t>route generation process;</t>
 
                 <t>communication channel resources (bandwidth);</t>
 
@@ -415,14 +421,29 @@ DataBase   A data storage DataBase
         consequences on the security of routing.</t>
       </section>
 
-      <section anchor="cia" title="The CIA Security Reference Model">
+      <section anchor="iso" title="The ISO 7498-2 Security Reference Model">
         <t>At the conceptual level, security within an information system in
         general and applied to ROLL in particular is concerned with the
-        primary issues of confidentiality, integrity, and availability. In the
-        context of ROLL:</t>
+        primary issues of authentication, access control, data
+        confidentiality, data integrity, and non-repudiation. In the context
+        of ROLL</t>
 
         <t><list hangIndent="6" style="hanging">
-            <t hangText="Confidentiality"><vspace />Confidentiality involves
+            <t hangText="Authentication"><vspace/>Authentication involves the
+            mutual authentication of the routing peers prior to exchanging
+            route information (i.e., peer authentication) as well as ensuring
+            that the source of the route data is from the peer (i.e., data
+            origin authentication).From 5478 LLNs can be drained by
+            unauthenticated peers before confirguratin From 5673 This requires
+            availability of open and untrusted side channels for new joiners,
+            and it requires strong and automated authentication so that
+            networks can automatically accept or reject new joiners. spt: Do
+            we need more here?</t>
+
+            <t hangText="Access Control"><vspace/>Access Control provides
+            protection against unauthorized use of the asset.</t>
+
+            <t hangText="Confidentiality"><vspace/>Confidentiality involves
             the protection of routing information as well as routing neighbor
             maintenance exchanges so that only authorized and intended network
             entities may view or access it. Because LLNs are most commonly
@@ -433,81 +454,70 @@ DataBase   A data storage DataBase
             potential for unauthorized access to the physical devices
             themselves.</t>
 
-            <t hangText="Integrity"><vspace />Integrity, as a security
-            principle, entails the protection of routing information and
-            routing neighbor maintenance exchanges, as well as derived
-            information maintained in the database, from unauthorized
-            modification or from misuse. Misuse, for example, may take the
-            form of a delayed or inappropriately replayed message even where
-            confidentiality protection is maintained. Hence, in addition to
-            the data itself, integrity also concerns the authenticity of
-            claimed identity of the origin and destination of a message and
-            its timeliness or freshness. On the other hand, the access to
-            and/or removal of data, execution of the routing process, and use
-            of a device's computing and energy resources, while relevant to
-            routing security are considered larger system integrity issues
-            <xref target="RFC4949"></xref> to be addressed beyond the routing
-            protocol.</t>
+            <t hangText="Integrity"><vspace/>IIntegrity entails the protection
+            of routing information and routing neighbor maintenance exchanges,
+            as well as derived information maintained in the database, from
+            unauthorized modification, insertions, deletions or replays. to be
+            addressed beyond the routing protocol.</t>
 
-            <t hangText="Availability"><vspace />Availability ensures that
+            <t hangText="Non-repudiation"><vspace/>Non-repudiation is the
+            assurance that the transmission and/or reception of a message
+            cannot later be denied. The service of non-repudiation applies
+            after-the-fact and thus relies on the logging or other capture of
+            on-going message exchanges and signatures. Applied to routing,
+            non-repudiation is not an issue because it does not apply to
+            routing protocols, which are machine-to-machine protocols.
+            Further, with the LLN application domains as described in <xref
+            target="RFC5548">RFC5548</xref><xref
+            target="RFC5673">RFC5548</xref><xref
+            target="RFC5826">RFC5548</xref><xref
+            target="RFC5867">RFC5548</xref>, proactive measures are much more
+            critical than retrospective protections. Finally, given the
+            significant practical limits to on-going routing transaction
+            logging and storage and individual device digital signature
+            verification for each exchange, non-repudiation in the context of
+            routing is an unsupportable burden that bears no further
+            considered as a ROLL security issue.</t>
+          </list></t>
+
+        <t>It is recognized that, besides those security issues captured in
+        the ISO 7498-2 model, availability, is a security requirement:<list
+            hangIndent="6" style="hanging">
+            <t hangText="Availability"><vspace/>Availability ensures that
             routing information exchanges and forwarding services need to be
             available when they are required for the functioning of the
             serving network. Availability will apply to maintaining efficient
             and correct operation of routing and neighbor discovery exchanges
             (including needed information) and forwarding services so as not
-            to impair or limit the network's central traffic flow
-            function.</t>
+            to impair or limit the network's central traffic flow function</t>
           </list></t>
 
-        <t>It is recognized that, besides those security issues captured in
-        the CIA model, non-repudiation, that is, the assurance that the
-        transmission and/or reception of a message cannot later be denied, may
-        be a security requirement under certain circumstances. The service of
-        non-repudiation applies after-the-fact and thus relies on the logging
-        or other capture of on-going message exchanges and signatures. Applied
-        to routing, non-repudiation will involve providing some ability to
-        allow traceability or network management review of participants of the
-        routing process including the ability to determine the events and
-        actions leading to a particular routing state. As such,
-        non-repudiation of routing may thus be more useful when interworking
-        with networks of different ownerships. For the LLN application domains
-        as described in <xref target="RFC5548"></xref>, <xref
-        target="RFC5673"></xref>, <xref target="RFC5826"></xref>, and <xref
-        target="RFC5867"></xref>, particularly with regard to routing
-        security, proactive measures are much more critical than retrospective
-        protections. Furthermore, given the significant practical limits to
-        on-going routing transaction logging and storage and individual device
-        signature authentication for each exchange, non-repudiation in the
-        context of routing is not further considered as a ROLL security
-        issue.</t>
-
-        <t>It should be emphasized here that for routing security the above
-        CIA requirements must be complemented by the proper security policies
-        and enforcement mechanisms to ensure that security objectives are met
-        by a given routing protocol implementation.</t>
+        <t>IIt should be emphasized here that for routing security the above
+        requirements must be complemented by the proper security policies and
+        enforcement mechanisms to ensure that security objectives are met by a
+        given routing protocol implementation.</t>
       </section>
 
       <section anchor="roll-issues"
                title="Issues Specific to or Amplified in LLNs">
-        <t>The work <xref target="RFC5548"></xref>, <xref
-        target="RFC5673"></xref>, <xref target="RFC5826"></xref>, and <xref
-        target="RFC5867"></xref> have identified specific issues and
-        constraints of routing in LLNs for the urban, industrial, home
-        automation, and building automation application domains, respectively.
-        The following is a list of observations and evaluation of their impact
-        on routing security considerations.</t>
+        <t>The work <xref target="RFC5548"/>, <xref target="RFC5673"/>, <xref
+        target="RFC5826"/>, and <xref target="RFC5867"/> have identified
+        specific issues and constraints of routing in LLNs for the urban,
+        industrial, home automation, and building automation application
+        domains, respectively. The following is a list of observations and
+        evaluation of their impact on routing security considerations.</t>
 
         <t><list hangIndent="6" style="hanging">
             <t
-            hangText="Limited energy, memory, and processing node resources"><vspace />As
+            hangText="Limited energy, memory, and processing node resources"><vspace/>As
             a consequence of these constraints, there is an even more critical
             need than usual for a careful study of trade-offs on which and
             what level of security services are to be afforded during the
-            system design process. In addition, the choices of security
-            mechanisms are more stringent. Synchronization of security states
-            with sleepy nodes is yet another issue.</t>
+            system design process. The chosen security mechanisms also needs
+            to work within these constraints. Synchronization of security
+            states with sleepy nodes is yet another issue.</t>
 
-            <t hangText="Large scale of rolled out network"><vspace />The
+            <t hangText="Large scale of rolled out network"><vspace/>The
             possibly numerous nodes to be deployed, e.g., an urban deployment
             can see several hundreds of thousands of nodes, as well as the
             generally low level of expertise expected of the installers, make
@@ -516,7 +526,7 @@ DataBase   A data storage DataBase
             the lifetime of the network, also complicate the operations of key
             management.</t>
 
-            <t hangText="Autonomous operations"><vspace />Self-forming and
+            <t hangText="Autonomous operations"><vspace/>Self-forming and
             self-organizing are commonly prescribed requirements of LLNs. In
             other words, a routing protocol designed for LLNs needs to contain
             elements of ad hoc networking and in most cases cannot rely on
@@ -525,25 +535,24 @@ DataBase   A data storage DataBase
             well as node replacement, can all contribute to complicating the
             operations of key management.</t>
 
-            <t hangText="Highly directional traffic"><vspace />Some types of
+            <t hangText="Highly directional traffic"><vspace/>Some types of
             LLNs see a high percentage of their total traffic traverse between
             the nodes and the LLN Border Routers (LBRs) where the LLNs connect
             to non-LLNs. The special routing status of and the greater volume
-            of traffic near the LBRs have routing security consequences. In
-            fact, when Point-to-MultiPoint (P2MP) and MultiPoint-to-Point
-            (MP2P) traffic represents a majority of the traffic, routing
-            attacks consisting of advertising untruthfully preferred routes
-            may cause serious damage.</t>
+            of traffic near the LBRs have routing security consequences as a
+            higher valued attack target. In fact, when Point-to-MultiPoint
+            (P2MP) and MultiPoint-to-Point (MP2P) traffic represents a
+            majority of the traffic, routing attacks consisting of advertising
+            incorrect preferred routes can cause serious damage.</t>
 
-            <t
-            hangText="Unattended locations and limited physical security"><vspace />Many
+            <t hangText="Unattended locations and limited physical security"><vspace/>Many
             applications have the nodes deployed in unattended or remote
             locations; furthermore, the nodes themselves are often built with
             minimal physical protection. These constraints lower the barrier
             of accessing the data or security material stored on the nodes
             through physical means.</t>
 
-            <t hangText="Support for mobility"><vspace />On the one hand, only
+            <t hangText="Support for mobility"><vspace/>On the one hand, only
             a number of applications require the support of mobile nodes,
             e.g., a home LLN that includes nodes on wearable health care
             devices or an industry LLN that includes nodes on cranes and
@@ -551,7 +560,7 @@ DataBase   A data storage DataBase
             in such applications, it will clearly need to have corresponding
             security mechanisms.</t>
 
-            <t hangText="Support for multicast and anycast"><vspace />Support
+            <t hangText="Support for multicast and anycast"><vspace/>Support
             for multicast and anycast is called out chiefly for large-scale
             networks. Since application of these routing mechanisms in
             autonomous operations of many nodes is new, the consequence on
@@ -559,7 +568,7 @@ DataBase   A data storage DataBase
           </list></t>
 
         <t>The above list considers how an LLN's physical constraints, size,
-        operations, and varieties of application areas may impact security.
+        operations, and variety of application areas may impact security.
         However, it is the combinations of these factors that particularly
         stress the security concerns. For instance, securing routing for a
         large number of autonomous devices that are left in unattended
@@ -570,26 +579,27 @@ DataBase   A data storage DataBase
       </section>
 
       <section anchor="roll-objs" title="ROLL Security Objectives">
-        <t>This subsection applies the CIA model to the routing assets and
+        <t>This subsection applies the ISO 7498-2 model to routing assets and
         access points, taking into account the LLN issues, to develop a set of
         ROLL security objectives.</t>
 
         <t>Since the fundamental function of a routing protocol is to build
-        routes for forwarding packets, it is essential to ensure that<list
+        routes for forwarding packets, it is essential to ensure that:<list
             style="symbols">
-            <t>routing/topology information is not tampered during transfer
-            and in storage;</t>
+            <t>routing/topology information iintegrity remains intact during
+            transfer and in storage;</t>
 
-            <t>routing/topology information is not misappropriated;</t>
+            <t>routing/topology information is used by authorized
+            entities;</t>
 
             <t>routing/topology information is available when needed.</t>
-          </list> In conjunction, it is necessary to be assured of<list
+          </list>In conjunction, it is necessary to be assured that<list
             style="symbols">
-            <t>the authenticity and legitimacy of the participants of the
-            routing neighbor discovery process;</t>
+            <t>authorized peers authenticate themselves during the routing
+            neighbor discovery process;</t>
 
-            <t>the routing/topology information received was faithfully
-            generated according to the protocol design.</t>
+            <t>the routing/topology information received is generated
+            according to the protocol design.</t>
           </list>However, when trust cannot be fully vested through
         authentication of the principals alone, i.e., concerns of insider
         attack, assurance of the truthfulness and timeliness of the received
@@ -639,7 +649,7 @@ DataBase   A data storage DataBase
     <section anchor="roll-threats" title="Threats and Attacks">
       <t>This section outlines general categories of threats under the CIA
       model and highlights the specific attacks in each of these categories
-      for ROLL. As defined in <xref target="RFC4949"></xref>, a threat is "a
+      for ROLL. As defined in <xref target="RFC4949"/>, a threat is "a
       potential for violation of security, which exists when there is a
       circumstance, capability, action, or event that could breach security
       and cause harm." An attack is "an assault on system security that
@@ -651,18 +661,17 @@ DataBase   A data storage DataBase
       <t>The subsequent subsections consider the threats and their realizing
       attacks that can cause security breaches under the CIA model to the
       routing assets and via the routing points of access identified in <xref
-      target="routing-assets"></xref>. The assessment steps through the
-      security concerns of each routing asset and looks at the attacks that
-      can exploit routing points of access. The threats and attacks identified
-      are based on the routing model analysis and associated review of the
-      existing literature. The manifestation of the attacks is assumed to be
-      from either inside or outside attackers, whose capabilities may be
-      limited to node-equivalent or more sophisticated computing
-      platforms.</t>
+      target="routing-assets"/>. The assessment steps through the security
+      concerns of each routing asset and looks at the attacks that can exploit
+      routing points of access. The threats and attacks identified are based
+      on the routing model analysis and associated review of the existing
+      literature. The manifestation of the attacks is assumed to be from
+      either inside or outside attackers, whose capabilities may be limited to
+      node-equivalent or more sophisticated computing platforms.</t>
 
       <section anchor="confident-threat"
                title="Threats and Attacks on Confidentiality">
-        <t>The assessment in <xref target="cia"></xref> indicates that routing
+        <t>The assessment in CIA indicates that routing
         information assets are exposed to confidentiality threats from all
         points of access. The confidentiality threat space is thus defined by
         the access to routing information achievable through the communication
@@ -673,9 +682,9 @@ DataBase   A data storage DataBase
           <t>Routing exchanges include both routing information as well as
           information associated with the establishment and maintenance of
           neighbor state information. As indicated in <xref
-          target="routing-assets"></xref>, the associated routing information
-          assets may also include device specific resource information, such
-          as memory, remaining power, etc., that may be metrics of the routing
+          target="routing-assets"/>, the associated routing information assets
+          may also include device specific resource information, such as
+          memory, remaining power, etc., that may be metrics of the routing
           protocol.</t>
 
           <t>The exposure of routing information exchanged will allow
@@ -722,18 +731,17 @@ DataBase   A data storage DataBase
               interfaces).</t>
             </list>More detailed descriptions of the exposure attacks on
           routing exchange and information will be given in <xref
-          target="counter-measur"></xref> together with the corresponding
+          target="counter-measur"/> together with the corresponding
           countermeasures.</t>
         </section>
       </section>
 
       <section anchor="integ-threat" title="Threats and Attacks on Integrity">
-        <t>The assessment in <xref target="cia"></xref> indicates that
-        information and identity assets are exposed to integrity threats from
-        all points of access. In other words, the integrity threat space is
-        defined by the potential for exploitation introduced by access to
-        assets available through routing exchanges and the on-device
-        storage.</t>
+        <t>The assessment in CIA indicates that information
+        and identity assets are exposed to integrity threats from all points
+        of access. In other words, the integrity threat space is defined by
+        the potential for exploitation introduced by access to assets
+        available through routing exchanges and the on-device storage.</t>
 
         <section anchor="manipul" title="Routing Information Manipulation">
           <t>Manipulation of routing information that range from neighbor
@@ -759,8 +767,8 @@ DataBase   A data storage DataBase
               <t>Byzantine (internal) attacks that permit corruption of
               routing information in the node even where the node continues to
               be a validated entity within the network (see, for example,
-              <xref target="RFC4593"></xref> for further discussions on
-              Byzantine attacks);</t>
+              <xref target="RFC4593"/> for further discussions on Byzantine
+              attacks);</t>
 
               <t>Physical device compromise or remote device access
               attacks.</t>
@@ -791,11 +799,11 @@ DataBase   A data storage DataBase
 
       <section anchor="avail-threat"
                title="Threats and Attacks on Availability">
-        <t>The assessment in <xref target="cia"></xref> indicates that the
-        process and resources assets are exposed to availability threats;
-        attacks of this category may exploit directly or indirectly
-        information exchange or forwarding (see <xref target="RFC4732"></xref>
-        for a general discussion).</t>
+        <t>The assessment in CIA indicates that the process
+        and resources assets are exposed to availability threats; attacks of
+        this category may exploit directly or indirectly information exchange
+        or forwarding (see <xref target="RFC4732"/> for a general
+        discussion).</t>
 
         <section anchor="route-exch-intrpt"
                  title="Routing Exchange Interference or Disruption">
@@ -827,7 +835,7 @@ DataBase   A data storage DataBase
 
           <t>In addition to physical layer obstructions, the forms of attack
           that allows disruption of network traffic forwarding include <xref
-          target="Karlof2003"></xref><list style="symbols">
+          target="Karlof2003"/><list style="symbols">
               <t>Selective forwarding attacks;</t>
 
               <t>Wormhole attacks;</t>
@@ -835,15 +843,15 @@ DataBase   A data storage DataBase
               <t>Sinkhole attacks.</t>
             </list></t>
 
-          <t>For reference, <xref target="Fig2"></xref> depicts the above
-          listed three types of attacks.</t>
+          <t>For reference, <xref target="Fig2"/> depicts the above listed
+          three types of attacks.</t>
 
           <figure align="center" anchor="Fig2"
                   title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
-            <preamble></preamble>
+            <preamble/>
 
-            <artwork align="left"><![CDATA[
-
+            <artwork align="left">
+<![CDATA[
 |Node_1|--(msg1|msg2|msg3)-->|Attacker|--(msg1|msg3)-->|Node_2|
 
                   (a) Selective Forwarding
@@ -877,9 +885,9 @@ DataBase   A data storage DataBase
 
                          (c) Sinkhole
 
-            ]]></artwork>
+            ]]>            </artwork>
 
-            <postamble></postamble>
+            <postamble/>
           </figure>
         </section>
 
@@ -1001,12 +1009,12 @@ DataBase   A data storage DataBase
           applied in providing confidentiality will determine the minimum
           requirement for an attacker mounting this passive security attack.
           The possibility of incorporating options for security level and
-          algorithms is further considered in <xref
-          target="match-needs"></xref>. Because of the resource constraints of
-          LLN devices, symmetric (private) key session security will provide
-          the best trade-off in terms of node and channel resource overhead
-          and the level of security achieved. This will of course not preclude
-          the use of asymmetric (public) key encryption during the session key
+          algorithms is further considered in <xref target="match-needs"/>.
+          Because of the resource constraints of LLN devices, symmetric
+          (private) key session security will provide the best trade-off in
+          terms of node and channel resource overhead and the level of
+          security achieved. This will of course not preclude the use of
+          asymmetric (public) key encryption during the session key
           establishment phase.</t>
 
           <t>As with the key establishment process, data encryption must
@@ -1015,7 +1023,7 @@ DataBase   A data storage DataBase
           inadvertent exposure. The authenticated key establishment will
           ensure that confidentiality is not compromised by providing the
           information to an unauthorized entity (see also <xref
-          target="Huang2003"></xref>).</t>
+          target="Huang2003"/>).</t>
 
           <t>Based on the current state of the art, a minimum 128-bit key
           length should be applied where robust confidentiality is demanded
@@ -1023,15 +1031,15 @@ DataBase   A data storage DataBase
           conjunction with an encryption algorithm that has been publicly
           vetted and where applicable approved for the level of security
           desired. Algorithms such as the Advanced Encryption Standard (AES)
-          <xref target="FIPS197"></xref>, adopted by the U.S. government, or
-          Kasumi-Misty <xref target="Kasumi3gpp"></xref>, adopted by the 3GPP
-          3rd generation wireless mobile consortium, are examples of
-          symmetric-key algorithms capable of ensuring robust confidentiality
-          for routing exchanges. The key length, algorithm and mode of
-          operation will be selected as part of the overall security trade-off
-          that also achieves a balance with the level of confidentiality
-          afforded by the physical device in protecting the routing assets
-          (see <xref target="counter-phy"></xref> below).</t>
+          <xref target="FIPS197"/>, adopted by the U.S. government, or
+          Kasumi-Misty <xref target="Kasumi3gpp"/>, adopted by the 3GPP 3rd
+          generation wireless mobile consortium, are examples of symmetric-key
+          algorithms capable of ensuring robust confidentiality for routing
+          exchanges. The key length, algorithm and mode of operation will be
+          selected as part of the overall security trade-off that also
+          achieves a balance with the level of confidentiality afforded by the
+          physical device in protecting the routing assets (see <xref
+          target="counter-phy"/> below).</t>
 
           <t>As with any encryption algorithm, the use of ciphering
           synchronization parameters and limitations to the usage duration of
@@ -1090,11 +1098,11 @@ DataBase   A data storage DataBase
 
         <section anchor="counter-phy"
                  title="Countering Physical Device Compromise">
-          <t><xref target="roll-threats"></xref> identified that many threats
-          to the routing functionality may involve compromised devices. For
-          the sake of completeness, this subsection examines how to counter
-          physical device compromise, without restricting the consideration to
-          only those methods and apparatuses available to an LLN routing
+          <t><xref target="roll-threats"/> identified that many threats to the
+          routing functionality may involve compromised devices. For the sake
+          of completeness, this subsection examines how to counter physical
+          device compromise, without restricting the consideration to only
+          those methods and apparatuses available to an LLN routing
           protocol.</t>
 
           <t>Given the distributed nature of LLNs and the varying environment
@@ -1124,12 +1132,12 @@ DataBase   A data storage DataBase
           being connected to external general purpose input/output (GPIO)
           pins. Beyond this measure, an important component interface to be
           protected against attack is the Joint Test Action Group (JTAG) <xref
-          target="IEEE1149.1"></xref> interface used for component and
-          populated circuit board testing after manufacture. To provide
-          security on the routing devices, components should be employed that
-          allow fuses on the JTAG interfaces to be blown to disable access.
-          This will raise the bar on unauthorized component information access
-          within a captured device.</t>
+          target="IEEE1149.1"/> interface used for component and populated
+          circuit board testing after manufacture. To provide security on the
+          routing devices, components should be employed that allow fuses on
+          the JTAG interfaces to be blown to disable access. This will raise
+          the bar on unauthorized component information access within a
+          captured device.</t>
 
           <t>At the device level a key component information exchange is
           between the microprocessor and its associated external memory. While
@@ -1273,7 +1281,7 @@ DataBase   A data storage DataBase
           security perspective; on the other hand, public-key based approaches
           generally require more computational resources. Each system will
           need to make trade-off decisions based on its security requirements.
-          As an example, <xref target="Wander2005"></xref> compared the energy
+          As an example, <xref target="Wander2005"/> compared the energy
           consumption between two public-key algorithms on a low-power
           microcontroller, with reference to a symmetric-key algorithm and a
           hash algorithm.</t>
@@ -1309,15 +1317,14 @@ DataBase   A data storage DataBase
           against internal (Byzantine) node attacks.</t>
 
           <t>For link state routing protocols where information is flooded
-          with, for example, areas (OSPF <xref target="RFC2328"></xref>) or
-          levels (ISIS <xref target="RFC1142"></xref>), countermeasures can be
-          directly applied by the routing entities through the processing and
+          with, for example, areas (OSPF <xref target="RFC2328"/>) or levels
+          (ISIS <xref target="RFC1142"/>), countermeasures can be directly
+          applied by the routing entities through the processing and
           comparison of link state information received from different peers.
           By comparing the link information from multiple sources decisions
           can be made by a routing node or external entity with regard to
           routing information validity; see Chapter 2 of <xref
-          target="Perlman1988"></xref> for a discussion on flooding
-          attacks.</t>
+          target="Perlman1988"/> for a discussion on flooding attacks.</t>
 
           <t>For distance vector protocols where information is aggregated at
           each routing node it is not possible for nodes to directly detect
@@ -1326,8 +1333,8 @@ DataBase   A data storage DataBase
           include and support indirect communications exchanges between
           non-adjacent routing peers to provide a secondary channel for
           performing routing information validation. S-RIP <xref
-          target="Wan2004"></xref> is an example of the implementation of this
-          type of dedicated routing protocol security where the correctness of
+          target="Wan2004"/> is an example of the implementation of this type
+          of dedicated routing protocol security where the correctness of
           aggregate distance vector information can only be validated by
           initiating confirmation exchanges directly between nodes that are
           not routing neighbors.</t>
@@ -1339,7 +1346,7 @@ DataBase   A data storage DataBase
           attacks will need to be directly included within the mechanisms of
           the ROLL routing protocol. This can be implemented where such an
           attack is considered relevant even within the physical device
-          protections discussed in <xref target="counter-phy"></xref>.</t>
+          protections discussed in <xref target="counter-phy"/>.</t>
         </section>
       </section>
 
@@ -1354,12 +1361,12 @@ DataBase   A data storage DataBase
         countermeasures to prevent or at least mitigate them. We will also
         note that an availability attack may be facilitated by an identity
         attack as well as a replay attack, as was addressed in <xref
-        target="counter-sybil"></xref> and <xref
-        target="counter-replay"></xref>, respectively.</t>
+        target="counter-sybil"/> and <xref target="counter-replay"/>,
+        respectively.</t>
 
         <section title="Countering HELLO Flood Attacks and ACK Spoofing Attacks">
-          <t>HELLO Flood <xref target="Karlof2003"></xref>,<xref
-          target="I-D.suhopark-hello-wsn"></xref> and ACK Spoofing attacks are
+          <t>HELLO Flood <xref target="Karlof2003"/>,<xref
+          target="I-D.suhopark-hello-wsn"/> and ACK Spoofing attacks are
           different but highly related forms of attacking an LLN. They
           essentially lead nodes to believe that suitable routes are available
           even though they are not and hence constitute a serious availability
@@ -1401,9 +1408,9 @@ DataBase   A data storage DataBase
           from having an extended set of neighbors beyond some tolerated
           threshold and thereby preventing topologies to be built where
           malicious nodes have a false neighborhood set. Furthermore, as shown
-          in <xref target="I-D.suhopark-hello-wsn"></xref>, if the routing
-          protocol supports multiple paths from a sensing node towards several
-          LBRs then HELLO flood attacks can also be diminished; however, the
+          in <xref target="I-D.suhopark-hello-wsn"/>, if the routing protocol
+          supports multiple paths from a sensing node towards several LBRs
+          then HELLO flood attacks can also be diminished; however, the
           energy-efficiency of such approach is clearly sub-optimal. Finally,
           verifying that the link is truly bidirectional by means of, e.g., an
           ACK handshake and appropriate security measures ensures that a
@@ -1422,7 +1429,7 @@ DataBase   A data storage DataBase
           attack facilitates a HELLO flood attack, similar countermeasure are
           applicable here. Viable counter and security measures for both
           attacks have been exposed in <xref
-          target="I-D.suhopark-hello-wsn"></xref></t>
+          target="I-D.suhopark-hello-wsn"/></t>
         </section>
 
         <section title="Countering Overload Attacks">
@@ -1481,7 +1488,7 @@ DataBase   A data storage DataBase
           validation process requires resources and thus itself could be
           exploited for attacks. Alternatively, resource management limits can
           be placed on routing security processing events (see the comment in
-          Section 6, paragraph 4, of <xref target="RFC5751"></xref>).</t>
+          Section 6, paragraph 4, of <xref target="RFC5751"/>).</t>
         </section>
 
         <section title="Countering Selective Forwarding Attacks">
@@ -1523,8 +1530,8 @@ DataBase   A data storage DataBase
         <section title="Countering Sinkhole Attacks">
           <t>In sinkhole attacks, the malicious node manages to attract a lot
           of traffic mainly by advertising the availability of high-quality
-          links even though there are none <xref target="Karlof2003"></xref>.
-          It hence constitutes a serious attack on availability.</t>
+          links even though there are none <xref target="Karlof2003"/>. It
+          hence constitutes a serious attack on availability.</t>
 
           <t>The malicious node creates a sinkhole by attracting a large
           amount of, if not all, traffic from surrounding neighbors by
@@ -1555,15 +1562,15 @@ DataBase   A data storage DataBase
           the network can assure that data is actually routed towards the
           intended destination and not elsewhere. On the other hand,
           geographic position is a sensitive information that has security
-          and/or privacy consequences (see <xref target="conff"></xref>).</t>
+          and/or privacy consequences (see <xref target="conff"/>).</t>
         </section>
 
         <section title="Countering Wormhole Attacks">
           <t>In wormhole attacks at least two malicious nodes shortcut or
           divert the usual routing path by means of a low-latency out-of-band
-          channel <xref target="Karlof2003"></xref>. This changes the
-          availability of certain routing paths and hence constitutes a
-          serious security breach.</t>
+          channel <xref target="Karlof2003"/>. This changes the availability
+          of certain routing paths and hence constitutes a serious security
+          breach.</t>
 
           <t>Essentially, two malicious insider nodes use another, more
           powerful, transmitter to communicate with each other and thereby
@@ -1585,12 +1592,12 @@ DataBase   A data storage DataBase
     </section>
 
     <section anchor="roll-sec-features" title="ROLL Security Features">
-      <t>The assessments and analysis in <xref target="roll-threats"></xref>
+      <t>The assessments and analysis in <xref target="roll-threats"/>
       examined all areas of threats and attacks that could impact routing, and
-      the countermeasures presented in <xref target="counter-measur"></xref>
-      were reached without confining the consideration to means only available
-      to routing. This section puts the results into perspective and provides
-      a framework for addressing the derived set of security objectives that
+      the countermeasures presented in <xref target="counter-measur"/> were
+      reached without confining the consideration to means only available to
+      routing. This section puts the results into perspective and provides a
+      framework for addressing the derived set of security objectives that
       must be met by the routing protocol(s) specified by the ROLL Working
       Group. It bears emphasizing that the target here is a generic, universal
       form of the protocol(s) specified and the normative keywords are mainly
@@ -1613,17 +1620,17 @@ DataBase   A data storage DataBase
       requirements may also be addressed beyond the network routing protocol
       at other system communications layers.</t>
 
-      <t>The first part of this section, <xref target="conff"></xref> to <xref
-      target="avaf"></xref>, is a prescription of ROLL security features of
-      measures that can be addressed as part of the routing protocol itself.
-      As routing is one component of an LLN system, the actual strength of the
-      security services afforded to it should be made to conform to each
-      system's security policy; how a design may address the needs of the
-      urban, industrial, home automation, and building automation application
-      domains also needs to be considered. The second part of this section,
-      <xref target="keymanage"></xref> and <xref target="match-needs"></xref>,
-      discusses system security aspects that may impact routing but that also
-      require considerations beyond the routing protocol, as well as potential
+      <t>The first part of this section, <xref target="conff"/> to <xref
+      target="avaf"/>, is a prescription of ROLL security features of measures
+      that can be addressed as part of the routing protocol itself. As routing
+      is one component of an LLN system, the actual strength of the security
+      services afforded to it should be made to conform to each system's
+      security policy; how a design may address the needs of the urban,
+      industrial, home automation, and building automation application domains
+      also needs to be considered. The second part of this section, <xref
+      target="keymanage"/> and <xref target="match-needs"/>, discusses system
+      security aspects that may impact routing but that also require
+      considerations beyond the routing protocol, as well as potential
       approaches.</t>
 
       <t>If an LLN employs multicast and/or anycast, these alternative
@@ -1639,8 +1646,8 @@ DataBase   A data storage DataBase
         information from eavesdropping or unauthorized exposure is not
         directly essential to maintaining the routing function. Breaches of
         confidentiality may lead to other attacks or the focusing of an
-        attacker's resources (see <xref target="confident-threat"></xref>) but
-        does not of itself directly undermine the operation of the routing
+        attacker's resources (see <xref target="confident-threat"/>) but does
+        not of itself directly undermine the operation of the routing
         function. However, to protect against, and improve vulnerability
         against other more direct attacks, routing information confidentiality
         should be protected. Thus, a secured ROLL protocol<list
@@ -1648,7 +1655,7 @@ DataBase   A data storage DataBase
             <t>MUST implement payload encryption;</t>
 
             <t>MUST provide privacy when geographic information is used (see,
-            e.g., <xref target="RFC3693"></xref>);</t>
+            e.g., <xref target="RFC3693"/>);</t>
 
             <t>MAY provide tunneling;</t>
 
@@ -1670,8 +1677,8 @@ DataBase   A data storage DataBase
 
         <t>Given the mandatory protocol requirement to implement routing node
         authentication as part of routing integrity (see <xref
-        target="intf"></xref>), key exchanges may be coordinated as part of
-        the integrity verification process. This provides an opportunity to
+        target="intf"/>), key exchanges may be coordinated as part of the
+        integrity verification process. This provides an opportunity to
         increase the frequency of key exchange and shorten the cryptoperiod as
         a complement to the key length and encryption algorithm required for a
         given application domain. For LLNs, the coordination of
@@ -1731,7 +1738,7 @@ DataBase   A data storage DataBase
         routing for a receiver to verify the validity of the routing
         information beyond the current exchange; as such, nodes would need to
         be able to communicate and request information from non-adjacent peers
-        (see <xref target="Wan2004"></xref>) to provide information integrity
+        (see <xref target="Wan2004"/>) to provide information integrity
         assurances. With link state-based protocols, on the other hand,
         routing information can be signed at the source thus providing a means
         for validating information that originates beyond a routing peer.
@@ -1745,7 +1752,7 @@ DataBase   A data storage DataBase
         <t>Availability of routing information is linked to system and network
         availability which in the case of LLNs require a broader security view
         beyond the requirements of the routing entities (see <xref
-        target="match-needs"></xref>). Where availability of the network is
+        target="match-needs"/>). Where availability of the network is
         compromised, routing information availability will be accordingly
         affected. However, to specifically assist in protecting routing
         availability<list style="symbols">
@@ -1787,17 +1794,16 @@ DataBase   A data storage DataBase
         <t>For the keys used to protect routing associations, the routing
         protocol(s) specified by the ROLL Working Group SHOULD employ key
         management mechanisms consistent with the guidelines given in <xref
-        target="RFC4107"></xref>. Based on that RFC's recommendations, many
-        LLNs, particularly given the intended scale and ad hoc device
-        associations, will meet the requirement for supporting automated key
-        management in conjunction with the routing protocol operation. These
-        short-term, automated routing session keys may be derived from
-        pre-stored security credentials or can be generated through key
-        management mechanisms that are defined as part of the routing protocol
-        exchange. Beyond the automated short-term keys, a long-term key
-        management mechanism SHOULD also be defined for changing or updating
-        the credentials from which short-term routing association key material
-        is derived.</t>
+        target="RFC4107"/>. Based on that RFC's recommendations, many LLNs,
+        particularly given the intended scale and ad hoc device associations,
+        will meet the requirement for supporting automated key management in
+        conjunction with the routing protocol operation. These short-term,
+        automated routing session keys may be derived from pre-stored security
+        credentials or can be generated through key management mechanisms that
+        are defined as part of the routing protocol exchange. Beyond the
+        automated short-term keys, a long-term key management mechanism SHOULD
+        also be defined for changing or updating the credentials from which
+        short-term routing association key material is derived.</t>
 
         <t>The use of a public key infrastructure (PKI), where feasible, can
         be used to support authenticated short-term key management as well as
@@ -1809,8 +1815,8 @@ DataBase   A data storage DataBase
         communicating peers. Even if the certificate itself is not distributed
         by the node, there needs to be a mechanism to inform the receiving
         node where to find the certificate and obtain associated validation
-        information; see <xref target="RFC3029"></xref> for an example of the
-        kind of localized PKI support that may be applied in a given LLN
+        information; see <xref target="RFC3029"/> for an example of the kind
+        of localized PKI support that may be applied in a given LLN
         environment. Where PKI systems are not feasible, the key management
         system MUST support means for secure configuration, device
         authentication, and adherence to secure key wrapping principles for
@@ -1823,15 +1829,13 @@ DataBase   A data storage DataBase
         long-term key management is defined separately from the routing
         protocol security, LLN application domains can appropriately employ
         IETF-standard key management specifications. Established key
-        management solutions such as IKEv2 <xref target="RFC5996"></xref> or
-        MIKEY <xref target="RFC3830"></xref>, which supports several
-        alternative private, public, or Diffie-Hellman key distribution
-        methods (see <xref target="RFC5197"></xref>), can thus be adapted for
-        use in LLNs. For example, see <xref
-        target="I-D.alexander-roll-mikey-lln-key-mgmt"></xref>. Group key
+        management solutions such as IKEv2 <xref target="RFC5996"/> or MIKEY
+        <xref target="RFC3830"/>, which supports several alternative private,
+        public, or Diffie-Hellman key distribution methods (see <xref
+        target="RFC5197"/>), can thus be adapted for use in LLNs. For example,
+        see <xref target="I-D.alexander-roll-mikey-lln-key-mgmt"/>. Group key
         management and distribution methods may also be developed based on the
-        architecture principles defined in MSEC <xref
-        target="RFC4046"></xref>.</t>
+        architecture principles defined in MSEC <xref target="RFC4046"/>.</t>
       </section>
 
       <section anchor="match-needs"
@@ -1843,12 +1847,12 @@ DataBase   A data storage DataBase
         algorithms for the routing protocol MUST be made to conform to the
         system's target level of security. The development so far takes into
         account collectively the impacts of the issues gathered from <xref
-        target="RFC5548"></xref>, <xref target="RFC5673"></xref>, <xref
-        target="RFC5826"></xref>, and <xref target="RFC5867"></xref>. The
-        following two subsections first consider from an architectural
-        perspective how the security design of a ROLL protocol may be made to
-        adapt to the four application domains, and then examine mechanisms and
-        protocol operations issues.</t>
+        target="RFC5548"/>, <xref target="RFC5673"/>, <xref
+        target="RFC5826"/>, and <xref target="RFC5867"/>. The following two
+        subsections first consider from an architectural perspective how the
+        security design of a ROLL protocol may be made to adapt to the four
+        application domains, and then examine mechanisms and protocol
+        operations issues.</t>
 
         <section anchor="roll-sec-arch" title="Security Architecture">
           <t>The first challenge for a ROLL protocol security design is to
@@ -1859,28 +1863,28 @@ DataBase   A data storage DataBase
           will present yet its own unique constraints.</t>
 
           <t>For a ROLL protocol, the security requirements defined in <xref
-          target="conff"></xref> to <xref target="keymanage"></xref> can be
-          addressed at two levels: 1) through measures implemented directly
-          within the routing protocol itself and initiated and controlled by
-          the routing protocol entities; or 2) through measures invoked on
-          behalf of the routing protocol entities but implemented within the
-          part of the network over which the protocol exchanges occur.</t>
+          target="conff"/> to <xref target="keymanage"/> can be addressed at
+          two levels: 1) through measures implemented directly within the
+          routing protocol itself and initiated and controlled by the routing
+          protocol entities; or 2) through measures invoked on behalf of the
+          routing protocol entities but implemented within the part of the
+          network over which the protocol exchanges occur.</t>
 
           <t>Where security is directly implemented as part of the routing
           protocol the security requirements configured by the user (system
           administrator) will operate independently of the lower layers.
-          OSPFv2 <xref target="RFC2328"></xref> is an example of such an
-          approach in which security parameters are exchanged and assessed
-          within the routing protocol messages. In this case, the mechanism
-          may be, e.g., a header containing security material of configurable
-          security primitives in the fashion of OSPFv2 or RIPv2 <xref
-          target="RFC2453"></xref>. Where IPsec <xref target="RFC4301"></xref>
-          is employed to secure the network, the included protocol-specific
-          (OSPF or RIP) security elements are in addition to and independent
-          of those at the network layer. In the case of LLNs or other networks
-          where system security mandates protective mechanisms at other lower
-          layers of the network, security measures implemented as part of the
-          routing protocol will be redundant to security measures implemented
+          OSPFv2 <xref target="RFC2328"/> is an example of such an approach in
+          which security parameters are exchanged and assessed within the
+          routing protocol messages. In this case, the mechanism may be, e.g.,
+          a header containing security material of configurable security
+          primitives in the fashion of OSPFv2 or RIPv2 <xref
+          target="RFC2453"/>. Where IPsec <xref target="RFC4301"/> is employed
+          to secure the network, the included protocol-specific (OSPF or RIP)
+          security elements are in addition to and independent of those at the
+          network layer. In the case of LLNs or other networks where system
+          security mandates protective mechanisms at other lower layers of the
+          network, security measures implemented as part of the routing
+          protocol will be redundant to security measures implemented
           elsewhere as part of the protocol stack.</t>
 
           <t>Security mechanisms built into the routing protocol can ensure
@@ -1893,7 +1897,7 @@ DataBase   A data storage DataBase
           information can only be fully addressed through measures operating
           directly between the routing entities themselves or external
           entities able to access and analyze the routing information (see
-          discussion in <xref target="counter-byzantine"></xref>).</t>
+          discussion in <xref target="counter-byzantine"/>).</t>
 
           <t>On the other hand, it is more desirable from an LLN device
           perspective that the ROLL protocol is integrated into the framework
@@ -1901,15 +1905,15 @@ DataBase   A data storage DataBase
           shared by different applications and/or across layers for
           efficiency, and where security policy and configurations can be
           consistently specified. See, for example, considerations made in
-          RIPng <xref target="RFC2080"></xref> or the approach presented in
-          <xref target="Messerges2003"></xref>.</t>
+          RIPng <xref target="RFC2080"/> or the approach presented in <xref
+          target="Messerges2003"/>.</t>
 
           <t>Where the routing protocol is able to rely on security measures
           configured within other layers of the protocol stack, greater system
           efficiency can be realized by avoiding potentially redundant
           security. Relying on an open trust model <xref
-          target="Messerges2003"></xref>, the security requirements of the
-          routing protocol can be more flexibly met at different layers of the
+          target="Messerges2003"/>, the security requirements of the routing
+          protocol can be more flexibly met at different layers of the
           transport network; measures that must be applied to protect the
           communications network are concurrently able to provide the needed
           routing protocol protection.</t>
@@ -2015,37 +2019,37 @@ DataBase   A data storage DataBase
           information, as well as the integrity of routing and route
           generation processes.</t>
 
-          <t><xref target="Fig3"></xref> provides an overview of the larger
-          context of system security and the relationship between ROLL
-          requirements and measures and those that relate to the LLN
-          system.</t>
+          <t><xref target="Fig3"/> provides an overview of the larger context
+          of system security and the relationship between ROLL requirements
+          and measures and those that relate to the LLN system.</t>
 
           <figure align="center" anchor="Fig3"
                   title="LLN Device Security Model">
-            <preamble></preamble>
+            <preamble/>
 
-            <artwork align="left"><![CDATA[
+            <artwork align="left">
+<![CDATA[
 
                         Security Services for
                           ROLL-Addressable
                         Security Requirements
                              |        |
-                         +---+        +---+ 
+                         +---+        +---+
              Node_i      |                |      Node_j
                     _____v___          ___v_____
   Specify Security /         \        /         \ Specify Security
   Requirements     | Routing |        | Routing |     Requirements
          +---------| Protocol|        | Protocol|---------+
-         |         | Entity  |        | Entity  |         |  
-         |         \_________/        \_________/         | 
-         |               |                |               | 
-         |ROLL-Specified |                | ROLL-Specified| 
+         |         | Entity  |        | Entity  |         |
+         |         \_________/        \_________/         |
+         |               |                |               |
+         |ROLL-Specified |                | ROLL-Specified|
         ---Interface     |                |     Interface---
          |     ......................................     |
          |     :         |                |         :     |
          |     :   +-----+----+      +----+-----+   :     |
          |     :   |Transport/|      |Transport/|   :     |
-     ____v___  : +>|Network   |      |Network   |<+ :  ___v____ 
+     ____v___  : +>|Network   |      |Network   |<+ :  ___v____
     /        \ : | +-----+----+      +----+-----+ | : /        \
     |        |-:-+       |                |       +-:-|        |
     |Security| :   +-----+----+      +----+-----+   : |Security|
@@ -2060,9 +2064,10 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
                :                                    :
                ...Protocol Stack.....................
 
-            ]]></artwork>
+            ]]>
+            </artwork>
 
-            <postamble></postamble>
+            <postamble/>
           </figure>
         </section>
       </section>
@@ -2160,12 +2165,12 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           <title>IEEE Standard Test Access Port and Boundary Scan
           Architecture</title>
 
-          <author></author>
+          <author/>
 
-          <date month="Jun. 14" year="2001" />
+          <date month="Jun. 14" year="2001"/>
         </front>
 
-        <seriesInfo name="IEEE-SA" value="Standards Board" />
+        <seriesInfo name="IEEE-SA" value="Standards Board"/>
       </reference>
 
       <reference anchor="Kasumi3gpp">
@@ -2173,12 +2178,12 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           <title>3GPP TS 35.202 Specification of the 3GPP confidentiality and
           integrity algorithms; Document 2: Kasumi specification</title>
 
-          <author></author>
+          <author/>
 
-          <date month="" year="2009" />
+          <date month="" year="2009"/>
         </front>
 
-        <seriesInfo name="3GPP TSG" value="SA3" />
+        <seriesInfo name="3GPP TSG" value="SA3"/>
       </reference>
 
       <reference anchor="FIPS197">
@@ -2186,13 +2191,13 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           <title>Federal Information Processing Standards Publication 197:
           Advanced Encryption Standard (AES)</title>
 
-          <author></author>
+          <author/>
 
-          <date month="Nov. 26" year="2001" />
+          <date month="Nov. 26" year="2001"/>
         </front>
 
         <seriesInfo name="US"
-                    value="National Institute of Standards and Technology" />
+                    value="National Institute of Standards and Technology"/>
       </reference>
 
       <!--
@@ -2230,13 +2235,13 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           <title>Network Layer Protocols with Byzantine Robustness</title>
 
           <author initials="N" surname="Perlman">
-            <organization></organization>
+            <organization/>
           </author>
 
-          <date month="" year="1988" />
+          <date month="" year="1988"/>
         </front>
 
-        <seriesInfo name="MIT LCS Tech Report," value="429" />
+        <seriesInfo name="MIT LCS Tech Report," value="429"/>
       </reference>
 
       <reference anchor="Wander2005">
@@ -2245,30 +2250,30 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           sensor networ</title>
 
           <author initials="A.S" surname="Wander">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="N" surname="Gura">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="H" surname="Eberle">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="V" surname="Gupta">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="S.C" surname="Shantz">
-            <organization></organization>
+            <organization/>
           </author>
 
-          <date month="March 8-12" year="2005" />
+          <date month="March 8-12" year="2005"/>
         </front>
 
         <seriesInfo name="in the Proceedings of the Third IEEE International Conference on Pervasive Computing and Communications"
-                    value="pp. 324-328" />
+                    value="pp. 324-328"/>
       </reference>
 
       <reference anchor="Karlof2003">
@@ -2277,18 +2282,18 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           countermeasures</title>
 
           <author initials="C" surname="Karlof">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="D" surname="Wagner">
-            <organization></organization>
+            <organization/>
           </author>
 
-          <date month="September" year="2003" />
+          <date month="September" year="2003"/>
         </front>
 
         <seriesInfo name="Elsevier AdHoc Networks Journal, Special Issue on Sensor Network Applications and Protocols,"
-                    value="1(2):293-315" />
+                    value="1(2):293-315"/>
       </reference>
 
       &RFC5826;
@@ -2308,24 +2313,24 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           <title>Threat Modeling as a Basis for Security Requirements</title>
 
           <author initials="S" surname="Myagmar">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="AJ" surname="Lee">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="W" surname="Yurcik">
-            <organization></organization>
+            <organization/>
           </author>
 
-          <date month="Aug 29," year="2005" />
+          <date month="Aug 29," year="2005"/>
         </front>
 
         <seriesInfo name="in Proceedings of the Symposium on Requirements Engineering for Information Security (SREIS'05),"
-                    value="Paris, France" />
+                    value="Paris, France"/>
 
-        <seriesInfo name="pp." value="94-102" />
+        <seriesInfo name="pp." value="94-102"/>
       </reference>
 
       <reference anchor="Huang2003">
@@ -2334,32 +2339,32 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           Self-Organizing Sensor Networks</title>
 
           <author initials="Q" surname="Huang">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="J" surname="Cukier">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="H" surname="Kobayashi">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="B" surname="Liu">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="J" surname="Zhang">
-            <organization></organization>
+            <organization/>
           </author>
 
-          <date month="Sept. 19" year="2003" />
+          <date month="Sept. 19" year="2003"/>
         </front>
 
         <seriesInfo name="in Proceedings of the 2nd ACM International Conference on Wireless Sensor Networks and Applications,"
-                    value="San Diego, CA, USA" />
+                    value="San Diego, CA, USA"/>
 
-        <seriesInfo name="pp." value="141-150" />
+        <seriesInfo name="pp." value="141-150"/>
       </reference>
 
       <reference anchor="Messerges2003">
@@ -2367,36 +2372,36 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           <title>Low-Power Security for Wireless Sensor Networks</title>
 
           <author initials="T" surname="Messerges">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="J" surname="Cukier">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="T" surname="Kevenaar">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="L" surname="Puhl">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="R" surname="Struik">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="E" surname="Callaway">
-            <organization></organization>
+            <organization/>
           </author>
 
-          <date month="Oct. 31" year="2003" />
+          <date month="Oct. 31" year="2003"/>
         </front>
 
         <seriesInfo name="in Proceedings of the 1st ACM Workshop on Security of Ad Hoc and Sensor Networks,"
-                    value="Fairfax, VA, USA" />
+                    value="Fairfax, VA, USA"/>
 
-        <seriesInfo name="pp." value="1-11" />
+        <seriesInfo name="pp." value="1-11"/>
       </reference>
 
       <reference anchor="Wan2004">
@@ -2404,24 +2409,24 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           <title>S-RIP: A Secure Distance Vector Routing Protocol</title>
 
           <author initials="T" surname="Wan">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="E" surname="Kranakis">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="PC" surname="van Oorschot">
-            <organization></organization>
+            <organization/>
           </author>
 
-          <date month="Jun. 8-11" year="2004" />
+          <date month="Jun. 8-11" year="2004"/>
         </front>
 
         <seriesInfo name="in Proceedings of the 2nd International Conference on Applied Cryptography and Network Security,"
-                    value="Yellow Mountain, China" />
+                    value="Yellow Mountain, China"/>
 
-        <seriesInfo name="pp." value="103-119" />
+        <seriesInfo name="pp." value="103-119"/>
       </reference>
 
       <reference anchor="Yourdon1979">
@@ -2429,19 +2434,19 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
           <title>Structured Design</title>
 
           <author initials="E" surname="Yourdon">
-            <organization></organization>
+            <organization/>
           </author>
 
           <author initials="L" surname="Constantine">
-            <organization></organization>
+            <organization/>
           </author>
 
-          <date month="" year="1979" />
+          <date month="" year="1979"/>
         </front>
 
-        <seriesInfo name="Yourdon Press," value="New York" />
+        <seriesInfo name="Yourdon Press," value="New York"/>
 
-        <seriesInfo name="Chapter 10, pp." value="187-222" />
+        <seriesInfo name="Chapter 10, pp." value="187-222"/>
       </reference>
     </references>
   </back>
