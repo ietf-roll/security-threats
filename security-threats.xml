@@ -433,15 +433,18 @@ DataBase   A data storage DataBase
             mutual authentication of the routing peers prior to exchanging
             route information (i.e., peer authentication) as well as ensuring
             that the source of the route data is from the peer (i.e., data
-            origin authentication).From 5478 LLNs can be drained by
-            unauthenticated peers before confirguratin From 5673 This requires
+            origin authentication).
+            From 5478 LLNs can be drained by
+            unauthenticated peers before confirguratin
+            From 5673 This requires
             availability of open and untrusted side channels for new joiners,
             and it requires strong and automated authentication so that
             networks can automatically accept or reject new joiners. spt: Do
             we need more here?</t>
 
             <t hangText="Access Control"><vspace/>Access Control provides
-            protection against unauthorized use of the asset.</t>
+            protection against unauthorized use of the asset, and deals with the
+            authorization of a node.</t>
 
             <t hangText="Confidentiality"><vspace/>Confidentiality involves
             the protection of routing information as well as routing neighbor
@@ -489,7 +492,7 @@ DataBase   A data storage DataBase
             to impair or limit the network's central traffic flow function</t>
           </list></t>
 
-        <t>IIt should be emphasized here that for routing security the above
+        <t>It should be emphasized here that for routing security the above
         requirements must be complemented by the proper security policies and
         enforcement mechanisms to ensure that security objectives are met by a
         given routing protocol implementation.</t>
@@ -581,8 +584,8 @@ DataBase   A data storage DataBase
         ROLL security objectives.</t>
 
         <t>Since the fundamental function of a routing protocol is to build
-        routes for forwarding packets, it is essential to ensure that:<list
-            style="symbols">
+        routes for forwarding packets, it is essential to ensure that:
+        <list style="symbols">
             <t>routing/topology information iintegrity remains intact during
             transfer and in storage;</t>
 
@@ -590,14 +593,16 @@ DataBase   A data storage DataBase
             entities;</t>
 
             <t>routing/topology information is available when needed.</t>
-          </list>In conjunction, it is necessary to be assured that<list
-            style="symbols">
-            <t>authorized peers authenticate themselves during the routing
-            neighbor discovery process;</t>
+        </list>
+        In conjunction, it is necessary to be assured that
+        <list style="symbols">
+          <t>authorized peers authenticate themselves during the routing
+          neighbor discovery process;</t>
 
-            <t>the routing/topology information received is generated
-            according to the protocol design.</t>
-          </list>However, when trust cannot be fully vested through
+          <t>the routing/topology information received is generated
+          according to the protocol design.</t>
+        </list>
+        However, when trust cannot be fully vested through
         authentication of the principals alone, i.e., concerns of insider
         attack, assurance of the truthfulness and timeliness of the received
         routing/topology information is necessary. With regard to
@@ -618,7 +623,8 @@ DataBase   A data storage DataBase
 
         <t>The vulnerability brought forth by some special-function nodes,
         e.g., LBRs, requires the assurance, particularly in a security
-        context,<list style="symbols">
+        context,
+        <list style="symbols">
             <t>of the availability of communication channels and node
             resources;</t>
 
@@ -644,36 +650,34 @@ DataBase   A data storage DataBase
     </section>
 
     <section anchor="roll-threats" title="Threats and Attacks">
-      <t>This section outlines general categories of threats under the CIA
-      model and highlights the specific attacks in each of these categories
-      for ROLL. As defined in <xref target="RFC4949"/>, a threat is "a
+      <t>This section outlines general categories of threats.
+      As defined in <xref target="RFC4949"/>, a threat is "a
       potential for violation of security, which exists when there is a
       circumstance, capability, action, or event that could breach security
-      and cause harm." An attack is "an assault on system security that
+      and cause harm."</t>
+      <t>An attack is "an assault on system security that
       derives from an intelligent threat, i.e., an intelligent act that is a
       deliberate attempt (especially in the sense of a method or technique) to
       evade security services and violate the security policy of a
-      system."</t>
+      system."
+      </t>
 
-      <t>The subsequent subsections consider the threats and their realizing
-      attacks that can cause security breaches under the CIA model to the
-      routing assets and via the routing points of access identified in <xref
-      target="routing-assets"/>. The assessment steps through the security
-      concerns of each routing asset and looks at the attacks that can exploit
-      routing points of access. The threats and attacks identified are based
-      on the routing model analysis and associated review of the existing
-      literature. The manifestation of the attacks is assumed to be from
-      either inside or outside attackers, whose capabilities may be limited to
-      node-equivalent or more sophisticated computing platforms.</t>
-
+      <section anchor="authentication-threat"
+               title="Threats due to failures to Authenticate">
+      </section>
+      <section anchor="authorization-threat"
+               title="Threats due to failures to Authenticate">
+      </section>
       <section anchor="confident-threat"
-               title="Threats and Attacks on Confidentiality">
-        <t>The assessment in CIA indicates that routing
-        information assets are exposed to confidentiality threats from all
-        points of access. The confidentiality threat space is thus defined by
-        the access to routing information achievable through the communication
-        exchanges between routing nodes together with the direct access to
-        information maintained within the nodes.</t>
+               title="Threats due to failures of Confidentiality">
+        <t>The confidentiality threat space is the set of attacks that
+          are possible through access to (but not modification of) routing
+          information.  A passive eavesdropper on an unencrypted network
+          is in a position to makes such attacks.  As LLNs are usually
+          implemented over radio media, no physical attack is necessary
+          to eavesdrop, and given high-gain antenna, may occur at some
+          distance.
+        </t>
 
         <section anchor="route-exch-expo" title="Routing Exchange Exposure">
           <t>Routing exchanges include both routing information as well as
@@ -684,23 +688,13 @@ DataBase   A data storage DataBase
           memory, remaining power, etc., that may be metrics of the routing
           protocol.</t>
 
-          <t>The exposure of routing information exchanged will allow
-          unauthorized sources to gain access to the content of the exchanges
-          between communicating nodes. The exposure of neighbor state
-          information will allow unauthorized sources to gain knowledge of
-          communication links between routing nodes that are necessary to
-          maintain routing information exchanges.</t>
-
-          <t>The forms of attack that allow unauthorized access or exposure of
-          routing exchange information include<list style="symbols">
-              <t>Deliberate exposure (where one party to the routing exchange
-              is able to independently provide unauthorized access);</t>
-
-              <t>Sniffing (passive reading of transmitted data content);</t>
-
-              <t>Traffic analysis (evaluation of the network routing header
-              information).</t>
-            </list></t>
+          <t>The routing exchanges will contain
+          reachability information, which would identify the relative
+          importance of different nodes in the network.  Nodes higher up in
+          the DODAG, to which more streams of information flow, would be more
+          interesting targets for other attacks, and routing exchange
+          exposures can identify them.
+          </t>
         </section>
 
         <section anchor="route-info-expo"
@@ -720,39 +714,50 @@ DataBase   A data storage DataBase
 
           <t>The forms of attack that allow unauthorized access or exposure of
           the routing information (other than occurring through explicit node
-          exchanges) will include<list style="symbols">
+          exchanges) will include
+          <list style="symbols">
               <t>Physical device compromise;</t>
 
               <t>Remote device access attacks (including those occurring
               through remote network management or software/field upgrade
-              interfaces).</t>
-            </list>More detailed descriptions of the exposure attacks on
-          routing exchange and information will be given in <xref
-          target="counter-measur"/> together with the corresponding
-          countermeasures.</t>
+              interfaces).
+              </t>
+          </list>
+          Both of these attack vectors are considered a device specific issue, and are
+          out of scope for the RPL protocol to defend against.  In some applications,
+          physical device compromise may be a real threat and it may be necessary to
+          provide for other devices to react quickly to exclude a compromised device.
+          </t>
         </section>
       </section>
 
       <section anchor="integ-threat" title="Threats and Attacks on Integrity">
-        <t>The assessment in CIA indicates that information
-        and identity assets are exposed to integrity threats from all points
-        of access. In other words, the integrity threat space is defined by
-        the potential for exploitation introduced by access to assets
-        available through routing exchanges and the on-device storage.</t>
+        <t>An attack on integrity of the messages would permit an attacker
+          to delete, insert or modify routing messages.</t>
 
         <section anchor="manipul" title="Routing Information Manipulation">
-          <t>Manipulation of routing information that range from neighbor
+          <t>
+          Manipulation of routing information that range from neighbor
           states to derived routes will allow unauthorized sources to
           influence the operation and convergence of the routing protocols and
           ultimately impact the forwarding decisions made in the network.
+          </t>
+          <t>
           Manipulation of topology and reachability information will allow
           unauthorized sources to influence the nodes with which routing
           information is exchanged and updated. The consequence of
           manipulating routing exchanges can thus lead to sub-optimality and
           fragmentation or partitioning of the network by restricting the
           universe of routers with which associations can be established and
-          maintained. For example, being able to attract network traffic can
-          make a blackhole attack more damaging.</t>
+          maintained.
+          </t>
+          <t>A sub-optimal network may use too much power and/or may congest some
+          routes leading to premature failure of a node, and a denial of service
+          on the entire network.
+          </t>
+          <t>In addition, being able to attract network traffic can
+          make a blackhole attack more damaging.
+          </t>
 
           <t>The forms of attack that allow manipulation to compromise the
           content and validity of routing information include<list
@@ -771,9 +776,11 @@ DataBase   A data storage DataBase
               attacks.</t>
             </list></t>
         </section>
+      </section>
 
         <section anchor="id-misappr" title="Node Identity Misappropriation">
-          <t>Falsification or misappropriation of node identity between
+          <t>
+            Falsification or misappropriation of node identity between
           routing participants opens the door for other attacks; it can also
           cause incorrect routing relationships to form and/or topologies to
           emerge. Routing attacks may also be mounted through less
