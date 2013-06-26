@@ -2135,8 +2135,11 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
       Vasseur, and the Area Director Adrian Farrel.</t>
 
       <t>This document started out as a combined threat and solutions
-      document, but was split up by ROLL co-Chair Michael Richardson as it
-      went through the IETF publication process.</t>
+      document.  As a result of security review, the document was split up by
+      ROLL co-Chair Michael Richardson and security Area Director Sean Turner
+      as it went through the IETF publication process.  The solutions to the
+      threads are application and layer-2 specific, and have therefore
+      been moved to the relevant applicability statements.</t>
     </section>
   </middle>
 
