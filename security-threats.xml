@@ -818,7 +818,6 @@ DataBase   A data storage DataBase
               attacks.</t>
             </list></t>
         </section>
-      </section>
 
         <section anchor="id-misappr" title="Node Identity Misappropriation">
           <t>
@@ -1009,7 +1008,7 @@ DataBase   A data storage DataBase
         sniffing or traffic analysis, or may attempt access through a
         component or device interface of a tampered routing node.</t>
 
-         <section title="Countering Deliberate Exposure Attacks">
+        <section title="Countering Deliberate Exposure Attacks">
           <t>A deliberate exposure attack is one in which an entity that is
           party to the routing process or topology exchange allows the
           routing/topology information or generated route information to be
@@ -1279,15 +1278,16 @@ DataBase   A data storage DataBase
           Therefore, the protocol needs to ensure the integrity of the
           sequence of the exchange sequence.</t>
 
-          <t>The countermeasure to unauthorized modifications needs to<list
-              style="symbols">
-              <t>implement access control on storage;</t>
+          <t>The countermeasure to unauthorized modifications needs to:
+          <list style="symbols">
+            <t>implement access control on storage;</t>
 
-              <t>provide data integrity service to transferred messages and
-              stored data;</t>
+            <t>provide data integrity service to transferred messages and
+            stored data;</t>
 
-              <t>include sequence number under integrity protection.</t>
-            </list></t>
+            <t>include sequence number under integrity protection.</t>
+          </list>
+          </t>
         </section>
 
         <section title="Countering Overclaiming and Misclaiming Attacks">
@@ -1297,12 +1297,13 @@ DataBase   A data storage DataBase
           routing messages or information. The requisite for a counter is the
           capability to determine unreasonable routes or topology.</t>
 
-          <t>The counter to overclaiming and misclaiming may employ<list
-              style="symbols">
-              <t>comparison with historical routing/topology data;</t>
+          <t>The counter to overclaiming and misclaiming may employ:
+          <list style="symbols">
+            <t>comparison with historical routing/topology data;</t>
 
-              <t>designs which restrict realizable network topologies.</t>
-            </list></t>
+            <t>designs which restrict realizable network topologies.</t>
+          </list>
+          </t>
         </section>
 
         <section anchor="counter-sybil"
@@ -1442,13 +1443,15 @@ DataBase   A data storage DataBase
           information for topology maintenance or flow control.</t>
 
           <t>To counter HELLO flood attacks, several mutually non-exclusive
-          methods are feasible:<list style="symbols">
-              <t>restricting neighborhood cardinality;</t>
+          methods are feasible:
+          <list style="symbols">
+            <t>restricting neighborhood cardinality;</t>
 
-              <t>facilitating multipath routing;</t>
+            <t>facilitating multipath routing;</t>
 
-              <t>verifying bidirectionality.</t>
-            </list></t>
+            <t>verifying bidirectionality.</t>
+          </list>
+          </t>
 
           <t>Restricting the neighborhood cardinality prevents malicious nodes
           from having an extended set of neighbors beyond some tolerated
@@ -1490,28 +1493,31 @@ DataBase   A data storage DataBase
           targeting its availability is a fairly obvious attack. Another way
           of depleting the energy of an LLN node is to have the malicious node
           overload the network with irrelevant traffic. This impacts
-          availability since certain routes get congested which<list
-              style="symbols">
-              <t>renders them useless for affected nodes and data can hence
-              not be delivered;</t>
+          availability since certain routes get congested which:
+          <list style="symbols">
+            <t>renders them useless for affected nodes and data can hence
+            not be delivered;</t>
 
-              <t>makes routes longer as shortest path algorithms work with the
-              congested network;</t>
+            <t>makes routes longer as shortest path algorithms work with the
+            congested network;</t>
 
-              <t>depletes battery and energy scavenging nodes quicker and thus
-              shortens the network's availability at large.</t>
-            </list></t>
+            <t>depletes battery and energy scavenging nodes quicker and thus
+            shortens the network's availability at large.</t>
+          </list>
+          </t>
 
           <t>Overload attacks can be countered by deploying a series of
-          mutually non-exclusive security measures:<list style="symbols">
-              <t>introduce quotas on the traffic rate each node is allowed to
-              send;</t>
+          mutually non-exclusive security measures:
+          <list style="symbols">
+            <t>introduce quotas on the traffic rate each node is allowed to
+            send;</t>
 
-              <t>isolate nodes which send traffic above a certain threshold
-              based on system operation characteristics;</t>
+            <t>isolate nodes which send traffic above a certain threshold
+            based on system operation characteristics;</t>
 
-              <t>allow only trusted data to be received and forwarded.</t>
-            </list></t>
+            <t>allow only trusted data to be received and forwarded.</t>
+          </list>
+          </t>
 
           <t>As for the first one, a simple approach to minimize the harmful
           impact of an overload attack is to introduce traffic quotas. This
@@ -1552,14 +1558,15 @@ DataBase   A data storage DataBase
           where the thus caused collisions incur selective forwarding.</t>
 
           <t>Selective Forwarding attacks can be countered by deploying a
-          series of mutually non-exclusive security measures:<list
-              style="symbols">
-              <t>multipath routing of the same message over disjoint
-              paths;</t>
+          series of mutually non-exclusive security measures:
+          <list style="symbols">
+            <t>multipath routing of the same message over disjoint
+            paths;</t>
 
-              <t>dynamically selecting the next hop from a set of
-              candidates.</t>
-            </list></t>
+            <t>dynamically selecting the next hop from a set of
+            candidates.</t>
+          </list>
+          </t>
 
           <t>The first measure basically guarantees that if a message gets
           lost on a particular routing path due to a malicious selective
@@ -1591,16 +1598,18 @@ DataBase   A data storage DataBase
           flow control.</t>
 
           <t>Sinkhole attacks can be countered by deploying a series of
-          mutually non-exclusive security measures:<list style="symbols">
-              <t>use geographical insights for flow control;</t>
+          mutually non-exclusive security measures:
+          <list style="symbols">
+            <t>use geographical insights for flow control;</t>
 
-              <t>isolate nodes which receive traffic above a certain
-              threshold;</t>
+            <t>isolate nodes which receive traffic above a certain
+            threshold;</t>
 
-              <t>dynamically pick up next hop from set of candidates;</t>
+            <t>dynamically pick up next hop from set of candidates;</t>
 
-              <t>allow only trusted data to be received and forwarded.</t>
-            </list></t>
+            <t>allow only trusted data to be received and forwarded.</t>
+          </list>
+          </t>
 
           <t>Whilst most of these countermeasures have been discussed before,
           the use of geographical information deserves further attention.
@@ -1695,16 +1704,18 @@ DataBase   A data storage DataBase
         target="confident-threat"/>) but does not of itself directly undermine
         the operation of the routing function. However, to protect against,
         and reduce consequences from other more direct attacks, routing
-        information should be protected. Thus, a secured ROLL protocol<list
-            <t>MUST implement payload encryption;</t>
+        information should be protected. Thus, a secured ROLL protocol:
+        <list style="symbols">
+          <t>MUST implement payload encryption;</t>
 
-            <t>MUST provide privacy when geographic information is used (see,
-            e.g., <xref target="RFC3693"/>);</t>
+          <t>MUST provide privacy when geographic information is used (see,
+          e.g., <xref target="RFC3693"/>);</t>
 
-            <t>MAY provide tunneling;</t>
+          <t>MAY provide tunneling;</t>
 
-            <t>MAY provide load balancing.</t>
-          </list></t>
+          <t>MAY provide load balancing.</t>
+        </list>
+        </t>
 
         <t>Where confidentiality is incorporated into the routing exchanges,
         encryption algorithms and key lengths need to be specified in
@@ -1737,10 +1748,10 @@ DataBase   A data storage DataBase
       <section anchor="intf" title="Integrity Features">
         <t>The integrity of routing information provides the basis for
         ensuring that the function of the routing protocol is achieved and
-        maintained. To protect integrity, a secured ROLL protocol<list
-            style="symbols">
-            <t>MUST provide and verify message integrity (including integrity
-            of the encrypted message when confidentiality is applied);</t>
+        maintained. To protect integrity, a secured ROLL protocol:
+        <list style="symbols">
+          <t>MUST provide and verify message integrity (including integrity
+          of the encrypted message when confidentiality is applied);</t>
 
             <t>MUST verify the authenticity and liveness of both principals of
             a connection (independent of the device interface over which the
@@ -1756,7 +1767,8 @@ DataBase   A data storage DataBase
             <t>MAY incorporate external consistency checking and auditing of
             routing information to protect against intentional or
             unintentional Byzantine-induced network anomalies.</t>
-          </list></t>
+        </list>
+        </t>
 
         <t>In conjunction with the integrity protection requirements, a
         secured ROLL protocol SHOULD log, against the offending node, any
@@ -1799,19 +1811,21 @@ DataBase   A data storage DataBase
         target="match-needs"/>). Where availability of the network is
         compromised, routing information availability will be accordingly
         affected. However, to specifically assist in protecting routing
-        availability:<list style="symbols">
-            <t>MAY restrict neighborhood cardinality;</t>
+        availability:
+        <list style="symbols">
+          <t>MAY restrict neighborhood cardinality;</t>
 
-            <t>MAY use multiple paths;</t>
+          <t>MAY use multiple paths;</t>
 
-            <t>MAY use multiple destinations;</t>
+          <t>MAY use multiple destinations;</t>
 
-            <t>MAY choose randomly if multiple paths are available;</t>
+          <t>MAY choose randomly if multiple paths are available;</t>
 
-            <t>MAY set quotas to limit transmit or receive volume;</t>
+          <t>MAY set quotas to limit transmit or receive volume;</t>
 
-            <t>MAY use geographic information for flow control.</t>
-          </list></t>
+          <t>MAY use geographic information for flow control.</t>
+        </list>
+        </t>
       </section>
 
       <section anchor="keymanage" title="Key Management">
