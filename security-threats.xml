@@ -57,7 +57,7 @@ An alternate method (rfc include) is described in the references. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-roll-security-threats-03"
+<rfc category="info" docName="draft-ietf-roll-security-threats-04"
      ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic ipr values: full3667, noModification3667, noDerivatives3667 you can add the attributes updates="NNNN" and obsoletes="NNNN" hey will automatically be output with "(if approved)" -->
 
@@ -190,7 +190,7 @@ An alternate method (rfc include) is described in the references. -->
       </address>
     </author>
 
-    <date month="June" year="2013"/>
+    <date month="July" year="2013"/>
 
     <!-- If the month and year are both specified and are the current ones, xml2rfc will fill in the current day for you. If only the current year is specified, xml2rfc will fill in the current day and month for you. If the year is not the current one, it is necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the purpose of calculating the expiry date).  With drafts it is normally sufficient to specify just the year. -->
 
@@ -687,11 +687,9 @@ DataBase   A data storage DataBase
       capabilities may be limited to node-equivalent or more sophisticated
       computing platforms.</t>
 
-      <section anchor="authentication-threat"
-               title="Threats due to failures to Authenticate">
-      </section>
       <section anchor="authorization-threat"
                title="Threats due to failures to Authenticate">
+        <t>Some items will to this heading</t>
       </section>
 
       <section anchor="confident-threat"
@@ -1025,12 +1023,7 @@ To Node_5  \  |  |
         <section title="Countering Sniffing Attacks">
           <t>A sniffing attack seeks to breach routing confidentiality through
           passive, direct analysis and processing of the information exchanges
-          between nodes. A sniffing attack in an LLN that is not based on a
-          physical device compromise will rely on the attacker attempting to
-          directly derive information from the over-the-shared-medium
-          routing/topology communication exchange (neighbor discovery
-          exchanges may of necessity be conducted in the clear thus limiting
-          the extent to which the information can be kept confidential).</t>
+          between nodes. </t>
 
           <t>Sniffing attacks can be directly countered through the use of
           data encryption for all routing exchanges. Only when a validated and
@@ -1068,8 +1061,7 @@ To Node_5  \  |  |
           exchanges. The key length, algorithm and mode of operation will be
           selected as part of the overall security trade-off that also
           achieves a balance with the level of confidentiality afforded by the
-          physical device in protecting the routing assets (see <xref
-          target="counter-phy"/> below).</t>
+          physical device in protecting the routing assets.</t>
 
           <t>As with any encryption algorithm, the use of ciphering
           synchronization parameters and limitations to the usage duration of
@@ -1124,97 +1116,6 @@ To Node_5  \  |  |
           communication channel will preclude both the additional routing
           traffic overhead and the node implementation required for tunneling
           countermeasures to traffic analysis.</t>
-        </section>
-
-        <section anchor="counter-phy"
-                 title="Countering Physical Device Compromise">
-          <t><xref target="roll-threats"/> identified that many threats to the
-          routing functionality may involve compromised devices. For the sake
-          of completeness, this subsection examines how to counter physical
-          device compromise, without restricting the consideration to only
-          those methods and apparatuses available to an LLN routing
-          protocol.</t>
-
-          <t>Given the distributed nature of LLNs and the varying environment
-          of deployed devices, confidentiality of routing assets and points of
-          access may rely heavily on the security of the routing devices. One
-          means of precluding attacks on the physical device is to prevent
-          physical access to the node through other external security means.
-          However, given the environment in which many LLNs operate,
-          preventing unauthorized access to the physical device cannot be
-          assured. Countermeasures must therefore be employed at the device
-          and component level so that routing/topology or neighbor information
-          and stored route information cannot be accessed even if physical
-          access to the node is obtained.</t>
-
-          <t>With the physical device in the possession of an attacker,
-          unauthorized information access can be attempted by probing internal
-          interfaces or device components. Device security must therefore move
-          to preventing the reading of device processor code or memory
-          locations without the appropriate security keys and in preventing
-          the access to any information exchanges occurring between individual
-          components. Information access will then be restricted to external
-          interfaces in which confidentiality, integrity, and authentication
-          measures can be applied.</t>
-
-          <t>To prevent component information access, deployed routing devices
-          must ensure that their implementation avoids address or data buses
-          being connected to external general purpose input/output (GPIO)
-          pins. Beyond this measure, an important component interface to be
-          protected against attack is the Joint Test Action Group (JTAG) <xref
-          target="IEEE1149.1"/> interface used for component and populated
-          circuit board testing after manufacture. To provide security on the
-          routing devices, components should be employed that allow fuses on
-          the JTAG interfaces to be blown to disable access. This will raise
-          the bar on unauthorized component information access within a
-          captured device.</t>
-
-          <t>At the device level a key component information exchange is
-          between the microprocessor and its associated external memory. While
-          encryption can be implemented to secure data bus exchanges, the use
-          of integrated physical packaging which avoids inter-component
-          exchanges (other than secure external device exchanges) will
-          increase routing security against a physical device interface
-          attack. With an integrated package and disabled internal component
-          interfaces, the level of physical device security can be controlled
-          by managing the degree to which the device packaging is protected
-          against expert physical decomposition and analysis.</t>
-
-          <t>The device package should be hardened such that attempts to
-          remove the integrated components will result in damage to access
-          interfaces, ports or pins that prevent retrieval of code or stored
-          information. The degree of Very Large Scale Integration (VLSI) or
-          Printed Circuit Board (PCB) package security through manufacture can
-          be selected as a trade-off or desired security consistent with the
-          level of security achieved by measures applied for other routing
-          assets and points of access. With package hardening and restricted
-          component access countermeasures, the security level will be raised
-          to that provided by measures employed at the external communications
-          interfaces.</t>
-
-          <t>Another area of node interface vulnerability is that associated
-          with interfaces provided for remote software or firmware upgrades.
-          This may impact both routing information and routing/topology
-          exchange security where it leads to unauthorized upgrade or change
-          to the routing protocol running on a given node as this type of
-          attack can allow for the execution of compromised or intentionally
-          malicious routing code on multiple nodes. Countermeasures to this
-          device interface confidentiality attack needs to be addressed in the
-          larger context of node remote access security. This will ensure not
-          only the authenticity of the provided code (including routing
-          protocol) but that the process is initiated by an authorized
-          (authenticated) entity. For example, digital signing of firmware by
-          an authorized entity will provide an appropriate countermeasure.</t>
-
-          <t>The above identified countermeasures against attacks on routing
-          information confidentiality through internal device interface
-          compromise must be part of the larger LLN system security as they
-          cannot be addressed within the routing protocol itself. Similarly,
-          the use of field tools or other devices that allow explicit access
-          to node information must implement security mechanisms to ensure
-          that routing information can be protected against unauthorized
-          access. These protections will also be external to the routing
-          protocol and hence not part of ROLL.</t>
         </section>
 
         <section anchor="counter-remote"
@@ -1376,9 +1277,8 @@ To Node_5  \  |  |
           detect the Byzantine attack. In the context of the current security
           analysis, any protection against Byzantine routing information
           attacks will need to be directly included within the mechanisms of
-          the ROLL routing protocol. This can be implemented where such an
-          attack is considered relevant even within the physical device
-          protections discussed in <xref target="counter-phy"/>.</t>
+          the ROLL routing protocol.
+          </t>
         </section>
       </section>
 
@@ -1529,8 +1429,15 @@ To Node_5  \  |  |
         </section>
 
         <section title="Countering Selective Forwarding Attacks">
-          <t>Selective forwarding attacks are another form of DoS attack which
-          impacts the routing path availability.</t>
+          <t>Selective forwarding attacks are a form of DoS attack which
+          impacts the availability of the generated routing paths.</t>
+
+          <t>A selective forwarding attack may be done by a node involved
+          with the routing process, or it may be done by what
+          otherwise appears to be a passive antenna or other RF
+          feature or device, but is in fact an active (and selective)
+          device.  An RF antenna/repeater which is not selective, is
+          not a threat.</t>
 
           <t>An insider malicious node basically blends neatly in with the
           network but then may decide to forward and/or manipulate certain
@@ -1758,7 +1665,7 @@ To Node_5  \  |  |
         <t>In conjunction with the integrity protection requirements, a
         secured ROLL protocol SHOULD log, against the offending node, any
         security failure that occurs after a valid integrity check. The record
-        of such failures (as may result, for example, from incorrect security
+
         policy configuration) can provide the basis for nodes to avoid
         initiating routing access to the offender or be used for further
         system countermeasures in the case of potential insider attacks. All
@@ -2139,6 +2046,8 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
       as it went through the IETF publication process.  The solutions to the
       threads are application and layer-2 specific, and have therefore
       been moved to the relevant applicability statements.</t>
+      <t>Ines Robles kept track of the many issues that were raised during the
+      development of this document</t>
     </section>
   </middle>
 
