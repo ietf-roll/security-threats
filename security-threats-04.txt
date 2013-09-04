@@ -1,15 +1,16 @@
 
 
 
+
 Networking Working Group                                         T. Tsao
 Internet-Draft                                              R. Alexander
 Intended status: Informational                      Cooper Power Systems
-Expires: January 5, 2014                                       M. Dohler
+Expires: January 02, 2014                                      M. Dohler
                                                                     CTTC
                                                                  V. Daza
                                                                A. Lozano
                                                 Universitat Pompeu Fabra
-                                                            July 4, 2013
+                                                               July 2013
 
 
 A Security Threat Analysis for Routing over Low-Power and Lossy Networks
@@ -34,7 +35,7 @@ Requirements Language
    "OPTIONAL" in this document are to be interpreted as described in RFC
    2119 [RFC2119].
 
-Status of this Memo
+Status of This Memo
 
    This Internet-Draft is submitted in full conformance with the
    provisions of BCP 78 and BCP 79.
@@ -52,12 +53,12 @@ Status of this Memo
 
 
 
-Tsao, et al.             Expires January 5, 2014                [Page 1]
+Tsao, et al.            Expires January 02, 2014                [Page 1]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
-   This Internet-Draft will expire on January 5, 2014.
+   This Internet-Draft will expire on January 02, 2014.
 
 Copyright Notice
 
@@ -74,156 +75,72 @@ Copyright Notice
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014                [Page 2]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
 Table of Contents
 
-   1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . .  5
-   2.  Terminology  . . . . . . . . . . . . . . . . . . . . . . . . .  5
-   3.  Considerations on ROLL Security  . . . . . . . . . . . . . . .  6
-     3.1.  Routing Assets and Points of Access  . . . . . . . . . . .  7
-     3.2.  The ISO 7498-2 Security Reference Model  . . . . . . . . .  9
-     3.3.  Issues Specific to or Amplified in LLNs  . . . . . . . . . 11
-     3.4.  ROLL Security Objectives . . . . . . . . . . . . . . . . . 12
-   4.  Threat Sources . . . . . . . . . . . . . . . . . . . . . . . . 14
-   5.  Threats and Attacks  . . . . . . . . . . . . . . . . . . . . . 14
-     5.1.  Threats due to failures to Authenticate  . . . . . . . . . 14
-     5.2.  Threats and Attacks on Confidentiality . . . . . . . . . . 14
-       5.2.1.  Routing Exchange Exposure  . . . . . . . . . . . . . . 15
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   4
+   3.  Considerations on ROLL Security . . . . . . . . . . . . . . .   4
+     3.1.  Routing Assets and Points of Access . . . . . . . . . . .   5
+     3.2.  The ISO 7498-2 Security Reference Model . . . . . . . . .   7
+     3.3.  Issues Specific to or Amplified in LLNs . . . . . . . . .   9
+     3.4.  ROLL Security Objectives  . . . . . . . . . . . . . . . .  11
+   4.  Threat Sources  . . . . . . . . . . . . . . . . . . . . . . .  12
+   5.  Threats and Attacks . . . . . . . . . . . . . . . . . . . . .  12
+     5.1.  Threats due to failures to Authenticate . . . . . . . . .  13
+     5.2.  Threats and Attacks on Confidentiality  . . . . . . . . .  13
+       5.2.1.  Routing Exchange Exposure . . . . . . . . . . . . . .  13
        5.2.2.  Routing Information (Routes and Network Topology)
-               Exposure . . . . . . . . . . . . . . . . . . . . . . . 15
-   6.  Threats and Attacks on Integrity . . . . . . . . . . . . . . . 16
-     6.1.  Routing Information Manipulation . . . . . . . . . . . . . 16
-     6.2.  Node Identity Misappropriation . . . . . . . . . . . . . . 17
-   7.  Threats and Attacks on Availability  . . . . . . . . . . . . . 17
-     7.1.  Routing Exchange Interference or Disruption  . . . . . . . 17
-     7.2.  Network Traffic Forwarding Disruption  . . . . . . . . . . 18
-     7.3.  Communications Resource Disruption . . . . . . . . . . . . 19
-     7.4.  Node Resource Exhaustion . . . . . . . . . . . . . . . . . 20
-   8.  Countermeasures  . . . . . . . . . . . . . . . . . . . . . . . 20
-     8.1.  Confidentiality Attack Countermeasures . . . . . . . . . . 21
-       8.1.1.  Countering Deliberate Exposure Attacks . . . . . . . . 21
-       8.1.2.  Countering Sniffing Attacks  . . . . . . . . . . . . . 21
-       8.1.3.  Countering Traffic Analysis  . . . . . . . . . . . . . 22
-       8.1.4.  Countering Remote Device Access Attacks  . . . . . . . 23
-     8.2.  Integrity Attack Countermeasures . . . . . . . . . . . . . 24
-       8.2.1.  Countering Unauthorized Modification Attacks . . . . . 24
-       8.2.2.  Countering Overclaiming and Misclaiming Attacks  . . . 24
-       8.2.3.  Countering Identity (including Sybil) Attacks  . . . . 25
-       8.2.4.  Countering Routing Information Replay Attacks  . . . . 25
-       8.2.5.  Countering Byzantine Routing Information Attacks . . . 25
-     8.3.  Availability Attack Countermeasures  . . . . . . . . . . . 26
+               Exposure  . . . . . . . . . . . . . . . . . . . . . .  13
+   6.  Threats and Attacks on Integrity  . . . . . . . . . . . . . .  14
+     6.1.  Routing Information Manipulation  . . . . . . . . . . . .  14
+     6.2.  Node Identity Misappropriation  . . . . . . . . . . . . .  15
+   7.  Threats and Attacks on Availability . . . . . . . . . . . . .  15
+     7.1.  Routing Exchange Interference or Disruption . . . . . . .  16
+     7.2.  Network Traffic Forwarding Disruption . . . . . . . . . .  16
+     7.3.  Communications Resource Disruption  . . . . . . . . . . .  17
+     7.4.  Node Resource Exhaustion  . . . . . . . . . . . . . . . .  18
+   8.  Countermeasures . . . . . . . . . . . . . . . . . . . . . . .  18
+     8.1.  Confidentiality Attack Countermeasures  . . . . . . . . .  19
+       8.1.1.  Countering Deliberate Exposure Attacks  . . . . . . .  19
+       8.1.2.  Countering Sniffing Attacks . . . . . . . . . . . . .  19
+       8.1.3.  Countering Traffic Analysis . . . . . . . . . . . . .  20
+       8.1.4.  Countering Remote Device Access Attacks . . . . . . .  21
+     8.2.  Integrity Attack Countermeasures  . . . . . . . . . . . .  22
+
+
+
+Tsao, et al.            Expires January 02, 2014                [Page 2]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
+       8.2.1.  Countering Unauthorized Modification Attacks  . . . .  22
+       8.2.2.  Countering Overclaiming and Misclaiming Attacks . . .  22
+       8.2.3.  Countering Identity (including Sybil) Attacks . . . .  23
+       8.2.4.  Countering Routing Information Replay Attacks . . . .  23
+       8.2.5.  Countering Byzantine Routing Information Attacks  . .  23
+     8.3.  Availability Attack Countermeasures . . . . . . . . . . .  24
        8.3.1.  Countering HELLO Flood Attacks and ACK Spoofing
-               Attacks  . . . . . . . . . . . . . . . . . . . . . . . 27
-       8.3.2.  Countering Overload Attacks  . . . . . . . . . . . . . 28
-       8.3.3.  Countering Selective Forwarding Attacks  . . . . . . . 29
-       8.3.4.  Countering Sinkhole Attacks  . . . . . . . . . . . . . 30
-       8.3.5.  Countering Wormhole Attacks  . . . . . . . . . . . . . 31
-   9.  ROLL Security Features . . . . . . . . . . . . . . . . . . . . 31
-     9.1.  Confidentiality Features . . . . . . . . . . . . . . . . . 32
-     9.2.  Integrity Features . . . . . . . . . . . . . . . . . . . . 33
-     9.3.  Availability Features  . . . . . . . . . . . . . . . . . . 34
-     9.4.  Key Management . . . . . . . . . . . . . . . . . . . . . . 35
-
-
-
-Tsao, et al.             Expires January 5, 2014                [Page 3]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
-     9.5.  Consideration on Matching Application Domain Needs . . . . 36
-       9.5.1.  Security Architecture  . . . . . . . . . . . . . . . . 37
-       9.5.2.  Mechanisms and Operations  . . . . . . . . . . . . . . 39
-   10. IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 41
-   11. Security Considerations  . . . . . . . . . . . . . . . . . . . 41
-   12. Acknowledgments  . . . . . . . . . . . . . . . . . . . . . . . 42
-   13. References . . . . . . . . . . . . . . . . . . . . . . . . . . 42
-     13.1. Normative References . . . . . . . . . . . . . . . . . . . 42
-     13.2. Informative References . . . . . . . . . . . . . . . . . . 42
-   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . . 45
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014                [Page 4]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
+               Attacks . . . . . . . . . . . . . . . . . . . . . . .  25
+       8.3.2.  Countering Overload Attacks . . . . . . . . . . . . .  26
+       8.3.3.  Countering Selective Forwarding Attacks . . . . . . .  27
+       8.3.4.  Countering Sinkhole Attacks . . . . . . . . . . . . .  28
+       8.3.5.  Countering Wormhole Attacks . . . . . . . . . . . . .  29
+   9.  ROLL Security Features  . . . . . . . . . . . . . . . . . . .  29
+     9.1.  Confidentiality Features  . . . . . . . . . . . . . . . .  30
+     9.2.  Integrity Features  . . . . . . . . . . . . . . . . . . .  31
+     9.3.  Availability Features . . . . . . . . . . . . . . . . . .  32
+     9.4.  Key Management  . . . . . . . . . . . . . . . . . . . . .  33
+     9.5.  Consideration on Matching Application Domain Needs  . . .  34
+       9.5.1.  Security Architecture . . . . . . . . . . . . . . . .  35
+       9.5.2.  Mechanisms and Operations . . . . . . . . . . . . . .  37
+   10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  39
+   11. Security Considerations . . . . . . . . . . . . . . . . . . .  39
+   12. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  39
+   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  40
+     13.1.  Normative References . . . . . . . . . . . . . . . . . .  40
+     13.2.  Informative References . . . . . . . . . . . . . . . . .  40
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  43
 
 1.  Introduction
 
@@ -245,6 +162,14 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
    This document presents a threat analysis for securing Routing Over
    LLNs (ROLL) through an analysis that starts from the routing basics.
+
+
+
+Tsao, et al.            Expires January 02, 2014                [Page 3]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    The objective is two-fold.  First, the analysis will be used to
    identify pertinent security issues.  Second, it will facilitate both
    the assessment of a protocol's security threats and the
@@ -261,7 +186,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    spt: If this is just about control plane security then we should say
    so right up front.
 
-
 2.  Terminology
 
    This document adopts the terminology defined in [RFC6550] and in
@@ -269,17 +193,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
    Control Sequence  Control plane: Supports routing and management
          functions.
-
-
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014                [Page 5]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
 
    Data Plane  Data plane: See Forwarding plane.
 
@@ -297,7 +210,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
          and temporarily suspends communication but that is immediately
          available.
 
-
 3.  Considerations on ROLL Security
 
    Routing security, in essence, ensures that the routing protocol
@@ -306,6 +218,14 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    on external inputs (received via communications) or internal inputs
    (physical security of device itself and parameters maintained by the
    device, including, e.g., clock).  State changes would thereby involve
+
+
+
+Tsao, et al.            Expires January 02, 2014                [Page 4]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    not only authorization of injector's actions, authentication of
    injectors, authentication, integrity, and potentially confidentiality
    of routing data, but also proper order of state changes through
@@ -330,13 +250,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    This section concludes with the formulation of a set of security
    objectives for ROLL.
 
-
-
-Tsao, et al.             Expires January 5, 2014                [Page 6]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
 3.1.  Routing Assets and Points of Access
 
    An asset is an important system resource (including information,
@@ -360,37 +273,20 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    assets, points of access, and process in an individual routing
    protocol can be readily identified.
 
+
+
+
+
+Tsao, et al.            Expires January 02, 2014                [Page 5]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    Figure 1 shows that nodes participating in the routing process
    transmit messages to discover neighbors and to exchange routing
    information; routes are then generated and stored, which may be
    maintained in the form of the protocol forwarding table.  The nodes
    use the derived routes for making forwarding decisions.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014                [Page 7]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
                     ...................................................
@@ -435,19 +331,19 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
       *  routing and/or topology information;
 
+
+
+Tsao, et al.            Expires January 02, 2014                [Page 6]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
       *  route generation process;
 
       *  communication channel resources (bandwidth);
 
       *  node resources (computing capacity, memory, and remaining
          energy);
-
-
-
-Tsao, et al.             Expires January 5, 2014                [Page 8]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
 
       *  node identifiers (including node identity and ascribed
          attributes such as relative or absolute node location).
@@ -490,6 +386,14 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
          accept or reject new joiners. spt: Do we need more here?
 
    Access Control
+
+
+
+Tsao, et al.            Expires January 02, 2014                [Page 7]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
          Access Control provides protection against unauthorized use of
          the asset, and deals with the authorization of a node.
 
@@ -497,14 +401,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
          Confidentiality involves the protection of routing information
          as well as routing neighbor maintenance exchanges so that only
          authorized and intended network entities may view or access it.
-
-
-
-Tsao, et al.             Expires January 5, 2014                [Page 9]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
          Because LLNs are most commonly found on a publicly accessible
          shared medium, e.g., air or wiring in a building, and sometimes
          formed ad hoc, confidentiality also extends to the neighbor
@@ -540,6 +436,20 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    ISO 7498-2 model, availability, is a security requirement:
 
    Availability
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014                [Page 8]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
          Availability ensures that routing information exchanges and
          forwarding services need to be available when they are required
          for the functioning of the serving network.  Availability will
@@ -552,14 +462,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    requirements must be complemented by the proper security policies and
    enforcement mechanisms to ensure that security objectives are met by
    a given ROLL implementation.
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 10]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
 
 3.3.  Issues Specific to or Amplified in LLNs
 
@@ -589,6 +491,21 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
          complicate the operations of key management.
 
    Autonomous operations
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014                [Page 9]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
          Self-forming and self-organizing are commonly prescribed
          requirements of LLNs.  In other words, a routing protocol
          designed for LLNs needs to contain elements of ad hoc
@@ -608,14 +525,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
          (MP2P) traffic represents a majority of the traffic, routing
          attacks consisting of advertising incorrect preferred routes
          can cause serious damage.
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 11]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
 
    Unattended locations and limited physical security
          Many applications have the nodes deployed in unattended or
@@ -645,6 +554,14 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    large number of autonomous devices that are left in unattended
    locations with limited physical security presents challenges that are
    not found in the common circumstance of administered networked
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 10]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    routers.  The following subsection sets up the security objectives
    for the routing protocol designed by the ROLL WG.
 
@@ -665,13 +582,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    o  routing/topology information is available when needed.
 
    In conjunction, it is necessary to be assured that
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 12]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
 
    o  authorized peers authenticate themselves during the routing
       neighbor discovery process;
@@ -700,6 +610,14 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    The vulnerability brought forth by some special-function nodes, e.g.,
    LBRs, requires the assurance, particularly in a security context,
 
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 11]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    o  of the availability of communication channels and node resources;
 
    o  that the neighbor discovery process operates without undermining
@@ -720,20 +638,10 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    ROLL security objectives may be compromised and how those potential
    compromises can be countered.
 
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 13]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
 4.  Threat Sources
 
    provides a detailed review of the threat sources: outsiders and
-   byzantine. ROLL has the same threat sources. [RFC4593]
-
+   byzantine.  ROLL has the same threat sources.  [RFC4593]
 
 5.  Threats and Attacks
 
@@ -748,6 +656,23 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    intelligent threat, i.e., an intelligent act that is a deliberate
    attempt (especially in the sense of a method or technique) to evade
    security services and violate the security policy of a system."
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 12]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
 
    The subsequent subsections consider the threats and the attacks that
    can cause security breaches under the ISO 7498-2 model to the routing
@@ -774,17 +699,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    exchanges between routing nodes or by direct access of node's
    information.
 
-
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 14]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
 5.2.1.  Routing Exchange Exposure
 
    Routing exchanges include both routing information as well as
@@ -806,6 +720,15 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    forwarding table) and neighbor topology information are the products
    of the routing process that are stored within the node device
    databases.
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 13]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
 
    The exposure of this information will allow attachers to gain direct
    access to the configuration and connectivity of the network thereby
@@ -830,17 +753,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    may be necessary to provide for other devices to react quickly to
    exclude a compromised device.
 
-
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 15]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
 6.  Threats and Attacks on Integrity
 
    The assessment in Section 3.2 indicates that information and identity
@@ -864,6 +776,16 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    universe of routers with which associations can be established and
    maintained.
 
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 14]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    A sub-optimal network may use too much power and/or may congest some
    routes leading to premature failure of a node, and a denial of
    service on the entire network.
@@ -885,18 +807,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
    o  Physical device compromise or remote device access attacks.
 
-
-
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 16]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
 6.2.  Node Identity Misappropriation
 
    Falsification or misappropriation of node identity between routing
@@ -917,13 +827,20 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
    o  Routing information replay.
 
-
 7.  Threats and Attacks on Availability
 
    The assessment in Section 3.2 indicates that the process and
    resources assets are exposed to threats against availability; attacks
    in this category may exploit directly or indirectly information
    exchange or forwarding (see [RFC4732] for a general discussion).
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 15]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
 
 7.1.  Routing Exchange Interference or Disruption
 
@@ -943,15 +860,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
    In addition, attacks may also be directly conducted at the physical
    layer in the form of jamming or interfering.
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 17]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
 
 7.2.  Network Traffic Forwarding Disruption
 
@@ -974,73 +882,46 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    attacks.
 
 
+      |Node_1|--(msg1|msg2|msg3)-->|Attacker|--(msg1|msg3)-->|Node_2|
+
+      (a) Selective Forwarding
 
 
 
+      |Node_1|-------------Unreachable---------x|Node_2|
+         |                                         ^
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 18]
+Tsao, et al.            Expires January 02, 2014               [Page 16]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
-   |Node_1|--(msg1|msg2|msg3)-->|Attacker|--(msg1|msg3)-->|Node_2|
-
-   (a) Selective Forwarding
-
+         |               Private Link              |
+         '-->|Attacker_1|===========>|Attacker_2|--'
 
 
-   |Node_1|-------------Unreachable---------x|Node_2|
-      |                                         ^
-      |               Private Link              |
-      '-->|Attacker_1|===========>|Attacker_2|--'
+      (b) Wormhole
 
 
-   (b) Wormhole
+      |Node_1|     |Node_4|
+          |            |
+          `--------.   |
+      Falsify as    \  |
+      Good Link \   |  |
+      To Node_5  \  |  |
+                  \ V  V
+      |Node_2|-->|Attacker|--Not Forwarded---x|Node_5|
+                    ^  ^ \
+                    |  |  \ Falsify as
+                    |  |   \Good Link
+                    /  |    To Node_5
+           ,-------'   |
+           |           |
+      |Node_3|     |Node_i|
 
-
-   |Node_1|     |Node_4|
-       |            |
-       `--------.   |
-   Falsify as    \  |
-   Good Link \   |  |
-   To Node_5  \  |  |
-               \ V  V
-   |Node_2|-->|Attacker|--Not Forwarded---x|Node_5|
-                 ^  ^ \
-                 |  |  \ Falsify as
-                 |  |   \Good Link
-                 /  |    To Node_5
-        ,-------'   |
-        |           |
-   |Node_3|     |Node_i|
-
-   (c) Sinkhole
+      (c) Sinkhole
 
 
       Figure 2: Selective Forwarding, Wormhole, and Sinkhole Attacks
@@ -1057,16 +938,21 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    threats to the underlying transport network that supports routing is
    considered beyond the scope of the current document.  Nonetheless,
    attacks on the subsystem will affect routing operation and so must be
+   directly addressed within the underlying subsystem and its
+   implemented protocol layers.
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 19]
+
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 17]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
-
-   directly addressed within the underlying subsystem and its
-   implemented protocol layers.
 
 7.4.  Node Resource Exhaustion
 
@@ -1098,7 +984,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
    o  Overload attacks.
 
-
 8.  Countermeasures
 
    By recognizing the characteristics of LLNs that may impact routing,
@@ -1116,7 +1001,11 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 20]
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 18]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1172,7 +1061,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 21]
+Tsao, et al.            Expires January 02, 2014               [Page 19]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1228,7 +1117,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 22]
+Tsao, et al.            Expires January 02, 2014               [Page 20]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1284,7 +1173,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 23]
+Tsao, et al.            Expires January 02, 2014               [Page 21]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1340,7 +1229,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 24]
+Tsao, et al.            Expires January 02, 2014               [Page 22]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1396,7 +1285,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 25]
+Tsao, et al.            Expires January 02, 2014               [Page 23]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1452,7 +1341,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 26]
+Tsao, et al.            Expires January 02, 2014               [Page 24]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1508,7 +1397,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 27]
+Tsao, et al.            Expires January 02, 2014               [Page 25]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1560,15 +1449,16 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    o  depletes battery and energy scavenging nodes quicker and thus
       shortens the network's availability at large.
 
-   Overload attacks can be countered by deploying a series of mutually
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 28]
+
+Tsao, et al.            Expires January 02, 2014               [Page 26]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
+   Overload attacks can be countered by deploying a series of mutually
    non-exclusive security measures:
 
    o  introduce quotas on the traffic rate each node is allowed to send;
@@ -1616,15 +1506,15 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    all packets are dropped, then this attacker is also often referred to
    as a "black hole".  Such a form of attack is particularly dangerous
    if coupled with sinkhole attacks since inherently a large amount of
-   traffic is attracted to the malicious node and thereby causing
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 29]
+Tsao, et al.            Expires January 02, 2014               [Page 27]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
+   traffic is attracted to the malicious node and thereby causing
    significant damage.  In a shared medium, an outside malicious node
    would selectively jam overheard data flows, where the thus caused
    collisions incur selective forwarding.
@@ -1675,8 +1565,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-
-Tsao, et al.             Expires January 5, 2014               [Page 30]
+Tsao, et al.            Expires January 02, 2014               [Page 28]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1714,7 +1603,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    mitigated using similar strategies as already outlined above in the
    context of sinkhole attacks.
 
-
 9.  ROLL Security Features
 
    The assessments and analysis in Section 5 examined all areas of
@@ -1732,7 +1620,8 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 31]
+
+Tsao, et al.            Expires January 02, 2014               [Page 29]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -1784,16 +1673,14 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    consequences from other more direct attacks, routing information
    should be protected.  Thus, a secured ROLL protocol:
 
+   o  MUST implement payload encryption;
 
 
 
-
-Tsao, et al.             Expires January 5, 2014               [Page 32]
+Tsao, et al.            Expires January 02, 2014               [Page 30]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
-
-   o  MUST implement payload encryption;
 
    o  MUST provide privacy when geographic information is used (see,
       e.g., [RFC3693]);
@@ -1841,15 +1728,15 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
       connection (independent of the device interface over which the
       information is received or accessed);
 
+   o  MUST verify message sequence;
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 33]
+
+Tsao, et al.            Expires January 02, 2014               [Page 31]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
-
-   o  MUST verify message sequence;
 
    o  SHOULD incorporate protocol-specific parameter validity range
       checks, change increments, and message event frequency checks,
@@ -1894,17 +1781,22 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 9.3.  Availability Features
 
-   Availability of routing information is linked to system and network
-   availability which in the case of LLNs require a broader security
-   view beyond the requirements of the routing entities (see
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 34]
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 32]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
+   Availability of routing information is linked to system and network
+   availability which in the case of LLNs require a broader security
+   view beyond the requirements of the routing entities (see
    Section 9.5).  Where availability of the network is compromised,
    routing information availability will be accordingly affected.
    However, to specifically assist in protecting routing availability:
@@ -1950,16 +1842,16 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    credentials or can be generated through key management mechanisms
    that are defined as part of the routing protocol exchange.  Beyond
    the automated short-term keys, a long-term key management mechanism
-   SHOULD also be defined for changing or updating the credentials from
-   which short-term routing association key material is derived.
 
 
 
-
-Tsao, et al.             Expires January 5, 2014               [Page 35]
+Tsao, et al.            Expires January 02, 2014               [Page 33]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
+
+   SHOULD also be defined for changing or updating the credentials from
+   which short-term routing association key material is derived.
 
    The use of a public key infrastructure (PKI), where feasible, can be
    used to support authenticated short-term key management as well as
@@ -2009,10 +1901,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 36]
+Tsao, et al.            Expires January 02, 2014               [Page 34]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -2068,7 +1957,7 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 37]
+Tsao, et al.            Expires January 02, 2014               [Page 35]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
@@ -2120,15 +2009,16 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    layer or higher or lower protocol layers(s)) according to the
    particular application domain and user network configuration.
 
-   Based on device capabilities and the spectrum of operating
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 38]
+
+Tsao, et al.            Expires January 02, 2014               [Page 36]
 
 Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
+   Based on device capabilities and the spectrum of operating
    environments it would be difficult for a single fixed security design
    to be applied to address the diversified needs of the urban,
    industrial, home, and building ROLL application domains, and
@@ -2164,6 +2054,26 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 9.5.2.  Mechanisms and Operations
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 37]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    With an architecture allowing different configurations to meet the
    application domain needs, the task is then to find suitable
    mechanisms.  For example, one of the main problems of synchronizing
@@ -2177,13 +2087,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    of authentication credentials.  This exemplifies the need for the
    coordination and interoperation between the requirements of the ROLL
    routing protocol and that of the system security elements.
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 39]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
 
    Similarly, the vulnerability brought forth by some special-function
    nodes, e.g., LBRs requires the assurance, particularly, of the
@@ -2206,41 +2109,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 40]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
    Security Services for
    ROLL-Addressable
    Security Requirements
@@ -2254,6 +2122,14 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    |         | Entity  |        | Entity  |         |
    |         \_________/        \_________/         |
    |               |                |               |
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 38]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    |ROLL-Specified |                | ROLL-Specified|
    ---Interface     |                |     Interface---
    |     ......................................     |
@@ -2279,28 +2155,17 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
                     Figure 3: LLN Device Security Model
 
-
 10.  IANA Considerations
 
    This memo includes no request to IANA.
-
 
 11.  Security Considerations
 
    The analysis presented in this document provides security analysis
    and design guidelines with a scope limited to ROLL.  Security
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 41]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
    services are identified as requirements for securing ROLL.  The
    specific mechanisms to be used to deal with each threat is specified
    in link-layer and deployment specific applicability statements.
-
 
 12.  Acknowledgments
 
@@ -2313,12 +2178,19 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    document.  As a result of security review, the document was split up
    by ROLL co-Chair Michael Richardson and security Area Director Sean
    Turner as it went through the IETF publication process.  The
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 39]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    solutions to the threads are application and layer-2 specific, and
    have therefore been moved to the relevant applicability statements.
 
    Ines Robles kept track of the many issues that were raised during the
    development of this document
-
 
 13.  References
 
@@ -2340,25 +2212,17 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 13.2.  Informative References
 
-   [FIPS197]  "Federal Information Processing Standards Publication 197:
-              Advanced Encryption Standard (AES)", US National Institute
-              of Standards and Technology, Nov. 26 2001.
+   [FIPS197]  , "Federal Information Processing Standards Publication
+              197: Advanced Encryption Standard (AES)", US National
+              Institute of Standards and Technology, Nov. 26 2001.
 
    [Huang2003]
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 42]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
-
               Huang, Q., Cukier, J., Kobayashi, H., Liu, B., and J.
               Zhang, "Fast Authenticated Key Establishment Protocols for
               Self-Organizing Sensor Networks", in Proceedings of the
               2nd ACM International Conference on Wireless Sensor
-              Networks and Applications, San Diego, CA, USA, pp. 141-
-              150, Sept. 19 2003.
+              Networks and Applications, San Diego, CA, USA, pp.
+              141-150, Sept. 19 2003.
 
    [I-D.alexander-roll-mikey-lln-key-mgmt]
               Alexander, R. and T. Tsao, "Adapted Multimedia Internet
@@ -2368,12 +2232,22 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
               progress), September 2012.
 
    [I-D.suhopark-hello-wsn]
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 40]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
               Park, S., "Routing Security in Sensor Network: HELLO Flood
               Attack and Defense", draft-suhopark-hello-wsn-00 (work in
               progress), December 2005.
 
    [IEEE1149.1]
-              "IEEE Standard Test Access Port and Boundary Scan
+              , "IEEE Standard Test Access Port and Boundary Scan
               Architecture", IEEE-SA Standards Board, Jun. 14 2001.
 
    [Karlof2003]
@@ -2383,9 +2257,9 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
               Applications and Protocols, 1(2):293-315, September 2003.
 
    [Kasumi3gpp]
-              "3GPP TS 35.202 Specification of the 3GPP confidentiality
-              and integrity algorithms; Document 2: Kasumi
-              specification", 3GPP TSG SA3, 2009.
+              , "3GPP TS 35.202 Specification of the 3GPP
+              confidentiality and integrity algorithms; Document 2:
+              Kasumi specification", 3GPP TSG SA3, 2009.
 
    [Messerges2003]
               Messerges, T., Cukier, J., Kevenaar, T., Puhl, L., Struik,
@@ -2398,31 +2272,31 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
               Myagmar, S., Lee, AJ., and W. Yurcik, "Threat Modeling as
               a Basis for Security Requirements", in Proceedings of the
               Symposium on Requirements Engineering for Information
-              Security (SREIS'05), Paris, France, pp. 94-102, Aug
-              29, 2005.
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 43]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
+              Security (SREIS'05), Paris, France, pp. 94-102, Aug 29,
+              2005.
 
    [Perlman1988]
               Perlman, N., "Network Layer Protocols with Byzantine
               Robustness", MIT LCS Tech Report, 429, 1988.
 
-   [RFC1142]  Oran, D., "OSI IS-IS Intra-domain Routing Protocol",
-              RFC 1142, February 1990.
+   [RFC1142]  Oran, D., "OSI IS-IS Intra-domain Routing Protocol", RFC
+              1142, February 1990.
 
    [RFC2080]  Malkin, G. and R. Minnear, "RIPng for IPv6", RFC 2080,
               January 1997.
 
    [RFC2328]  Moy, J., "OSPF Version 2", STD 54, RFC 2328, April 1998.
 
-   [RFC2453]  Malkin, G., "RIP Version 2", STD 56, RFC 2453,
-              November 1998.
+   [RFC2453]  Malkin, G., "RIP Version 2", STD 56, RFC 2453, November
+              1998.
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 41]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
 
    [RFC3029]  Adams, C., Sylvester, P., Zolotarev, M., and R.
               Zuccherato, "Internet X.509 Public Key Infrastructure Data
@@ -2443,11 +2317,11 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    [RFC4593]  Barbir, A., Murphy, S., and Y. Yang, "Generic Threats to
               Routing Protocols", RFC 4593, October 2006.
 
-   [RFC4732]  Handley, M., Rescorla, E., and IAB, "Internet Denial-of-
+   [RFC4732]  Handley, M., Rescorla, E., IAB, "Internet Denial-of-
               Service Considerations", RFC 4732, December 2006.
 
-   [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
-              RFC 4949, August 2007.
+   [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2", RFC
+              4949, August 2007.
 
    [RFC5197]  Fries, S. and D. Ignjatic, "On the Applicability of
               Various Multimedia Internet KEYing (MIKEY) Modes and
@@ -2456,14 +2330,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    [RFC5548]  Dohler, M., Watteyne, T., Winter, T., and D. Barthel,
               "Routing Requirements for Urban Low-Power and Lossy
               Networks", RFC 5548, May 2009.
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 44]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
-
 
    [RFC5673]  Pister, K., Thubert, P., Dwars, S., and T. Phinney,
               "Industrial Routing Requirements in Low-Power and Lossy
@@ -2474,16 +2340,23 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
               Specification", RFC 5751, January 2010.
 
    [RFC5826]  Brandt, A., Buron, J., and G. Porcu, "Home Automation
-              Routing Requirements in Low-Power and Lossy Networks",
-              RFC 5826, April 2010.
+              Routing Requirements in Low-Power and Lossy Networks", RFC
+              5826, April 2010.
 
    [RFC5867]  Martocci, J., De Mil, P., Riou, N., and W. Vermeylen,
               "Building Automation Routing Requirements in Low-Power and
               Lossy Networks", RFC 5867, June 2010.
 
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 42]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
+
+
    [RFC5996]  Kaufman, C., Hoffman, P., Nir, Y., and P. Eronen,
-              "Internet Key Exchange Protocol Version 2 (IKEv2)",
-              RFC 5996, September 2010.
+              "Internet Key Exchange Protocol Version 2 (IKEv2)", RFC
+              5996, September 2010.
 
    [Wan2004]  Wan, T., Kranakis, E., and PC. van Oorschot, "S-RIP: A
               Secure Distance Vector Routing Protocol", in Proceedings
@@ -2502,7 +2375,6 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
               Yourdon, E. and L. Constantine, "Structured Design",
               Yourdon Press, New York, Chapter 10, pp. 187-222, 1979.
 
-
 Authors' Addresses
 
    Tzeta Tsao
@@ -2512,13 +2384,6 @@ Authors' Addresses
    USA
 
    Email: tzeta.tsao@cooperindustries.com
-
-
-
-
-Tsao, et al.             Expires January 5, 2014               [Page 45]
-
-Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
    Roger K. Alexander
@@ -2537,6 +2402,12 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
    Spain
 
    Email: mischa.dohler@cttc.es
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 43]
+
+Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
    Vanesa Daza
@@ -2572,5 +2443,22 @@ Internet-Draft      Security Threat Analysis for ROLL          July 2013
 
 
 
-Tsao, et al.             Expires January 5, 2014               [Page 46]
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires January 02, 2014               [Page 44]

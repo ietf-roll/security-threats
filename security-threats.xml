@@ -34,6 +34,8 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC5867 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5867.xml">
 <!ENTITY I-D.suhopark-hello-wsn SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-suhopark-hello-wsn-00.xml">
 <!ENTITY I-D.ietf-rpsec-ospf-vuln SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-rpsec-ospf-vuln-02.xml">
+<!ENTITY I-D.ietf-roll-terminology SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-roll-terminology-04.xml">
+<!ENTITY ISO.7498-2.1988 SYSTEM "http://xml.resource.org/public/rfc/bibxml-misc/_reference.ISO.7498-2.1988.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- used by XSLT processors -->
@@ -190,7 +192,7 @@ An alternate method (rfc include) is described in the references. -->
       </address>
     </author>
 
-    <date month="July" year="2013"/>
+    <date month="September" year="2013"/>
 
     <!-- If the month and year are both specified and are the current ones, xml2rfc will fill in the current day for you. If only the current year is specified, xml2rfc will fill in the current day and month for you. If the year is not the current one, it is necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the purpose of calculating the expiry date).  With drafts it is normally sufficient to specify just the year. -->
 
@@ -245,48 +247,27 @@ An alternate method (rfc include) is described in the references. -->
       challenges.</t>
 
       <t>This document presents a threat analysis for securing Routing Over
-      LLNs (ROLL) through an analysis that starts from the routing basics. The
-      objective is two-fold. First, the analysis will be used to identify
-      pertinent security issues. Second, it will facilitate both the
-      assessment of a protocol's security threats and the identification of
-      necessary countermeasures to secure the ROLL protocols. The approach
-      adopted is a five step process, 1) examine security issues in ROLL, 2)
-      describe the threat sources, 3) analyze threats and attacks, 4) consider
-      countermeasures, and 5) provide recommendations for securing ROLL.</t>
+      LLNs (ROLL) through an analysis that starts from the routing basics.
+      The process requires two steps.
+      First, the analysis will be used to identify pertinent security issues.
+      The second step is to identify necessary countermeasures to secure the
+      ROLL protocols.  As there are multiple ways to solve the problem and
+      the specific tradeoffs are deployment specific, the specific
+      countermeasure to be used is detailed in applicatbility statements.</t>
 
       <t>This document uses [IS07498-2] model, which includes Authentication,
       Access Control, Data Confidentiality, Data Integrity, and
       Non-Repudiation but to which Availability is added.</t>
 
-      <t>spt: If this is just about control plane security then we should say
-      so right up front.</t>
+      <t>All of this document concerns itself with control plane traffic
+      only.</t>
     </section>
 
     <section title="Terminology">
       <t>This document adopts the terminology defined in <xref
-      target="RFC6550"/> and in <xref target="RFC4949"/>, with the following
-      addition:</t>
-
-      <t><list hangIndent="6" style="hanging">
-        <t hangText="Control Sequence">Control plane: Supports routing and
-        management functions.</t>
-
-        <t hangText="Data Plane">Data plane: See Forwarding plane.</t>
-
-        <t hangText="Data Plane">Forwarding plane: Responsible for receiving
-        a packet on an incoming interface, performing a lookup to identify
-        the packet's next hop and determine the best outgoing interface
-        towards the destination, and forwarding the packet out through the
-        appropriate outgoing interface.</t>
-
-        <t hangText="Node">An element of a low-power, lossy network that may
-        be a router or a host.</t>
-
-        <t hangText="Sleepy Node">A sleepy node is a Node that may sometimes
-        go into a sleep mode (i.e. go into a low power state to conserve
-        power) and temporarily suspends communication but that is
-        immediately available.</t>
-      </list></t>
+      target="RFC6550"/>, in <xref target="RFC4949"/>, and in
+      <xref target="I-D.ietf-roll-terminology" />.
+      </t>
     </section>
 
     <section anchor="cons-on-roll-sec" title="Considerations on ROLL Security">
@@ -297,12 +278,12 @@ An alternate method (rfc include) is described in the references. -->
       (physical security of device itself and parameters maintained by the
       device, including, e.g., clock). State changes would thereby involve not
       only authorization of injector's actions, authentication of injectors,
-      authentication, integrity, and potentially confidentiality of routing
+      and potentially confidentiality of routing
       data, but also proper order of state changes through timeliness, since
       seriously delayed state changes, such as commands or updates of routing
       tables, may negatively impact system operation. A security assesment can
-      therefore begin with a focus on the assets<xref
-      target="RFC4949">RFC4949</xref>that may be the target of the state
+      therefore begin with a focus on the assets <xref target="RFC4949" />
+      that may be the target of the state
       changes and the access points in terms of interfaces and protocol
       exchanges through which such changes may occur. In the case of routing
       security the focus is directed towards the elements associated with the
@@ -315,7 +296,8 @@ An alternate method (rfc include) is described in the references. -->
       particularly, <xref target="RFC4593"/> and <xref target="Karlof2003"/>.
       The subsequent subsections begin with a focus on the elements of a
       generic routing process that is used to establish routing assets and
-      points of access to the routing functionality. Next, the ISO 7498-2
+      points of access to the routing functionality. Next, the
+      <xref target="ISO.7498-2.1988"/>
       security model is briefly described. Then, consideration is given to
       issues specific to or amplified in LLNs. This section concludes with the
       formulation of a set of security objectives for ROLL.</t>
@@ -440,13 +422,14 @@ DataBase   A data storage DataBase
           route information (i.e., peer authentication) as well as ensuring
           that the source of the route data is from the peer (i.e., data
           origin authentication).
-          From 5478 LLNs can be drained by
-          unauthenticated peers before confirguratin
-          From 5673 This requires
+
+          <xref target="RFC5548" /> points out that LLNs can be drained by
+          unauthenticated peers before configuration.
+
+          <xref target="RFC5673" /> requires
           availability of open and untrusted side channels for new joiners,
           and it requires strong and automated authentication so that
-          networks can automatically accept or reject new joiners. spt: Do
-          we need more here?</t>
+          networks can automatically accept or reject new joiners.</t>
 
           <t hangText="Access Control"><vspace/>Access Control provides
           protection against unauthorized use of the asset, and deals with the
@@ -476,8 +459,10 @@ DataBase   A data storage DataBase
           on-going message exchanges and signatures. Applied to routing,
           non-repudiation is not an issue because it does not apply to
           routing protocols, which are machine-to-machine protocols.
-          Further, with the LLN application domains as described in <xref
-          target="RFC5867">RFC5548</xref>, proactive measures are much more
+          Further, with the LLN application domains as described in
+          <xref target="RFC5867" /> and
+          <xref target="RFC5548" />,
+          proactive measures are much more
           critical than retrospective protections. Finally, given the
           significant practical limits to on-going routing transaction
           logging and storage and individual device digital signature
@@ -524,13 +509,14 @@ DataBase   A data storage DataBase
           states with sleepy nodes is yet another issue.</t>
 
           <t hangText="Large scale of rolled out network"><vspace/>The
-          possibly numerous nodes to be deployed, e.g., an urban deployment
-          can see several hundreds of thousands of nodes, as well as the
-          generally low level of expertise expected of the installers, make
-          manual on-site configuration unlikely. Prolonged rollout and
-          delayed addition of nodes, which may be from old inventory, over
-          the lifetime of the network, also complicate the operations of key
-          management.</t>
+          possibly numerous nodes to be deployed make manual on-site
+          configuration unlikely. For example, an urban deployment
+          can see several hundreds of thousands of nodes being installed
+          by many installers with a low level of expertise.
+          Nodes may be installed and not activated for many years,
+          and additional nodes may be added later on, which may be
+          from old inventory. The lifetime of the network is measured in
+          decades, and this complicates the operation of key management.</t>
 
           <t hangText="Autonomous operations"><vspace/>Self-forming and
           self-organizing are commonly prescribed requirements of LLNs. In
@@ -559,12 +545,17 @@ DataBase   A data storage DataBase
           through physical means.</t>
 
           <t hangText="Support for mobility"><vspace/>On the one hand, only
-          a number of applications require the support of mobile nodes,
+          a limited number of applications require the support of mobile nodes,
           e.g., a home LLN that includes nodes on wearable health care
           devices or an industry LLN that includes nodes on cranes and
           vehicles. On the other hand, if a routing protocol is indeed used
           in such applications, it will clearly need to have corresponding
           security mechanisms.</t>
+
+          <t>Additionally nodes may appear to move from one side of a wall
+          to another without any actual motion involved, the result of changes
+          to electromagnetic properties, such as opening and closing of a
+          metal door. </t>
 
           <t hangText="Support for multicast and anycast"><vspace/>Support
           for multicast and anycast is called out chiefly for large-scale
@@ -655,9 +646,9 @@ DataBase   A data storage DataBase
     </section>
 
     <section anchor="threat-sources" title="Threat Sources">
-      <t><xref target="RFC4593">provides a detailed review of the threat
+      <t><xref target="RFC4593" /> provides a detailed review of the threat
       sources: outsiders and byzantine. ROLL has the same threat
-      sources.</xref></t>
+      sources.</t>
     </section>
 
     <section anchor="roll-threats" title="Threats and Attacks">
@@ -683,13 +674,46 @@ DataBase   A data storage DataBase
       routing points of access. The threats and attacks identified are based
       on the routing model analysis and associated review of the existing
       literature. The source of the attacks is assumed to be from either
-      inside or outside attackers <xref target="threat-sources"/>, whose
-      capabilities may be limited to node-equivalent or more sophisticated
+      inside or outside attackers. The capability these attackes may be
+      limited to node-equivalent, but also to more sophisticated
       computing platforms.</t>
 
       <section anchor="authorization-threat"
                title="Threats due to failures to Authenticate">
-        <t>Some items will to this heading</t>
+
+        <section anchor="any-identity" title="Node Impersonation">
+          <t>If an attacker can join a network with any identify,
+          then it may be able to assume the role of a legitimate
+          (and existing node).  It may be able to report false readings
+          (in metering applications), or provide inappropriate control
+          messages (in control systems involving actuators) if the
+          security of the application is leveraged from the security
+          of the routing system.</t>
+          <t>In other systems where there is separate application layer
+          security, the ability to impersonate a node would permit an attacker
+          to direct traffic to itself, which facilitates on-path attacks
+          including replaying, delaying, or duplicating control messages.
+          </t>
+        </section>
+
+        <section anchor="extra-node" title="Dummy Node">
+          <t>If an attacker can join a network with any identify,
+          then it can pretend to be a legitimate node, receiving any
+          service legitimate nodes receive.  It may also be able to report false
+          readings (in metering applications),
+          or provide inappropriate authorizations (in control systems involving
+          actuators), or perform any other attacks that are facilitated
+          by being able to direct traffic towards itself.
+          </t>
+        </section>
+
+        <section anchor="spam-resource" title="Node Resource Spam">
+          <t>If an attacker can join a network with any identify,
+          then it can continously do so, draining down the resources of
+          the network to store identity and routing information, potentionally
+          forcing legitimate nodes of the network.</t>
+        </section>
+
       </section>
 
       <section anchor="confident-threat"
@@ -865,18 +889,10 @@ DataBase   A data storage DataBase
         <t>In addition to physical layer obstructions, the forms of attack
         that allows disruption of network traffic forwarding include <xref
         target="Karlof2003"/><list style="symbols">
-        <t>Selective forwarding attacks;</t>
-
-        <t>Wormhole attacks;</t>
-
-        <t>Sinkhole attacks.</t>
-        </list></t>
-
-        <t>For reference, <xref target="Fig2"/> depicts the above listed
-        three types of attacks.</t>
+        <t>Selective forwarding attacks;
 
         <figure align="center" anchor="Fig2"
-                title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
+                title="Selective Forwarding">
           <preamble/>
 
           <artwork align="left">
@@ -884,9 +900,20 @@ DataBase   A data storage DataBase
 |Node_1|--(msg1|msg2|msg3)-->|Attacker|--(msg1|msg3)-->|Node_2|
 
 (a) Selective Forwarding
+            ]]>            </artwork>
 
+            <postamble/>
+        </figure>
+        </t>
 
+        <t>Wormhole attacks;
 
+        <figure align="center" anchor="Fig3"
+                title="Wormhole Attacks">
+          <preamble/>
+
+          <artwork align="left">
+            <![CDATA[
 |Node_1|-------------Unreachable---------x|Node_2|
    |                                         ^
    |               Private Link              |
@@ -894,8 +921,20 @@ DataBase   A data storage DataBase
 
 
 (b) Wormhole
+            ]]>            </artwork>
 
+            <postamble/>
+        </figure>
+        </t>
 
+        <t>Sinkhole attacks.
+
+        <figure align="center" anchor="Fig4"
+                title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
+          <preamble/>
+
+          <artwork align="left">
+            <![CDATA[
 |Node_1|     |Node_4|
     |            |
     `--------.   |
@@ -918,6 +957,9 @@ To Node_5  \  |  |
 
             <postamble/>
         </figure>
+        </t>
+        </list></t>
+
       </section>
 
       <section anchor="disrpt-comm-resourse"
@@ -1076,46 +1118,43 @@ To Node_5  \  |  |
           patterns (including link-load) of the network from which other
           attacks can be mounted. The traffic analysis attack on an LLN,
           especially one founded on shared medium, is passive and relies on
-          the ability to read the immutable source/destination routing
+          the ability to read the immutable source/destination layer-3 routing
           information that must remain unencrypted to permit network routing.
+          </t>
+          <t>
           Alternatively, attacks can be mounted through the injection of
           unauthorized discovery traffic into the network. By implementing
           authentication measures between communicating nodes, active traffic
           analysis attacks can be prevented within the LLN thereby reducing
           confidentiality vulnerabilities to those associated with passive
-          analysis.</t>
+          analysis.
+          </t>
 
           <t>One way in which passive traffic analysis attacks can be muted is
           through the support of load balancing that allows traffic to a given
           destination to be sent along diverse routing paths. Where the
           routing protocol supports load balancing along multiple links at
           each node, the number of routing permutations in a wide area network
-          surges thus increasing the cost of traffic analysis. Network
-          analysis through this passive attack will require a wider array of
-          analysis points and additional processing on the part of the
-          attacker. Note however that where network traffic is dispersed as a
-          countermeasure there may be implications beyond routing with regard
-          to general traffic confidentiality. Another approach to countering
+          surges thus increasing the cost of traffic analysis.
+          ROLL does not generally support multi-path routing within a
+          single DODAG.  Multiple DODAGs are supported in the protocol,
+          but few deployments will have space for more than half a dozen,
+          and there are at present no clear ways to multiplex traffic
+          for a single application across multiple DODAGs.
+          </t>
+          <t>
+          Another approach to countering
           passive traffic analysis could be for nodes to maintain constant
           amount of traffic to different destinations through the generation
           of arbitrary traffic flows; the drawback of course would be the
-          consequent overhead. In LLNs, the diverse radio connectivity and
-          dynamic links (including potential frequency hopping), or a complex
-          wiring system hidden from sight, will help to further mitigate
-          traffic analysis attacks when load balancing is also
-          implemented.</t>
+          consequent overhead. </t>
 
           <t>The only means of fully countering a traffic analysis attack is
           through the use of tunneling (encapsulation) where encryption is
           applied across the entirety of the original packet
-          source/destination addresses. With tunneling there is a further
-          requirement that the encapsulating intermediate nodes apply an
-          additional layer of routing so that traffic arrives at the
-          destination through dynamic routes. For some LLNs, memory and
-          processing constraints as well as the limitations of the
-          communication channel will preclude both the additional routing
-          traffic overhead and the node implementation required for tunneling
-          countermeasures to traffic analysis.</t>
+          source/destination addresses.  Deployments which use layer-2
+          security that includes encryption already do this for all traffic.
+          </t>
         </section>
 
         <section anchor="counter-remote"
@@ -1966,53 +2005,52 @@ To Node_5  \  |  |
           information, as well as the integrity of routing and route
           generation processes.</t>
 
-          <t><xref target="Fig3"/> provides an overview of the larger context
+          <t><xref target="Fig5"/> provides an overview of the larger context
           of system security and the relationship between ROLL requirements
           and measures and those that relate to the LLN system.</t>
 
-          <figure align="center" anchor="Fig3"
+          <figure align="center" anchor="Fig5"
                   title="LLN Device Security Model">
             <preamble/>
 
             <artwork align="left">
               <![CDATA[
-
-Security Services for
-ROLL-Addressable
-Security Requirements
-|        |
-+---+        +---+
-Node_i      |                |      Node_j
-_____v___          ___v_____
-Specify Security /         \        /         \ Specify Security
-Requirements     | Routing |        | Routing |     Requirements
-+---------| Protocol|        | Protocol|---------+
-|         | Entity  |        | Entity  |         |
-|         \_________/        \_________/         |
-|               |                |               |
-|ROLL-Specified |                | ROLL-Specified|
----Interface     |                |     Interface---
-|     ......................................     |
-|     :         |                |         :     |
-|     :   +-----+----+      +----+-----+   :     |
-|     :   |Transport/|      |Transport/|   :     |
-____v___  : +>|Network   |      |Network   |<+ :  ___v____
-/        \ : | +-----+----+      +----+-----+ | : /        \
-|        |-:-+       |                |       +-:-|        |
-|Security| :   +-----+----+      +----+-----+   : |Security|
-+->|Services|-:-->|   Link   |      |   Link   |<--:-|Services|<-+
-|  |Entity  | :   +-----+----+      +----+-----+   : |Entity  |  |
-|  |        |-:-+       |                |       +-:-|        |  |
-|  \________/ : | +-----+----+      +----+-----+ | : \________/  |
-|             : +>| Physical |      | Physical |<+ :             |
+                        Security Services for
+                          ROLL-Addressable
+                        Security Requirements
+                             |        |
+                         +---+        +---+
+             Node_i      |                |      Node_j
+                    _____v___          ___v_____
+  Specify Security /         \        /         \ Specify Security
+  Requirements     | Routing |        | Routing |     Requirements
+         +---------| Protocol|        | Protocol|---------+
+         |         | Entity  |        | Entity  |         |
+         |         \_________/        \_________/         |
+         |               |                |               |
+         |ROLL-Specified |                | ROLL-Specified|
+        ---Interface     |                |     Interface---
+         |     ......................................     |
+         |     :         |                |         :     |
+         |     :   +-----+----+      +----+-----+   :     |
+         |     :   |Transport/|      |Transport/|   :     |
+     ____v___  : +>|Network   |      |Network   |<+ :  ___v____
+    /        \ : | +-----+----+      +----+-----+ | : /        \
+    |        |-:-+       |                |       +-:-|        |
+    |Security| :   +-----+----+      +----+-----+   : |Security|
+ +->|Services|-:-->|   Link   |      |   Link   |<--:-|Services|<-+
+ |  |Entity  | :   +-----+----+      +----+-----+   : |Entity  |  |
+ |  |        |-:-+       |                |       +-:-|        |  |
+ |  \________/ : | +-----+----+      +----+-----+ | : \________/  |
+ |             : +>| Physical |      | Physical |<+ :             |
 Application    :   +-----+----+      +----+-----+   :    Application
 Domain User    :         |                |         :    Domain User
 Configuration  :         |__Comm. Channel_|         :  Configuration
-:                                    :
-...Protocol Stack.....................
+               :                                    :
+               ...Protocol Stack.....................
 
-              ]]>
-            </artwork>
+           ]]>
+         </artwork>
 
             <postamble/>
           </figure>
@@ -2258,6 +2296,8 @@ value="National Institute of Standards and Technology" />
 
       &I-D.suhopark-hello-wsn;
 
+      &I-D.ietf-roll-terminology;
+      &ISO.7498-2.1988;
       <!--      &I-D.ietf-rpsec-ospf-vuln; -->
 
       <reference anchor="Myagmar2005">

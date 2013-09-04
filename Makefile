@@ -5,3 +5,6 @@ security-threats-${VERSION}.txt: security-threats.txt
 %.txt: %.xml
 	unset DISPLAY; XML_LIBRARY=$(XML_LIBRARY):./src xml2rfc $? $@
 
+%.html: %.xml
+	unset DISPLAY; XML_LIBRARY=$(XML_LIBRARY):./src xml2rfc --html -o $@ $?
+
