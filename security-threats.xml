@@ -24,6 +24,7 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC4732 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4732.xml">
 <!ENTITY RFC4822 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4822.xml">
 <!ENTITY RFC4107 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4107.xml">
+<!ENTITY RFC5055 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5055.xml">
 <!ENTITY RFC6550 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6550.xml">
 <!ENTITY RFC6553 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6553.xml">
 <!ENTITY RFC6554 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6554.xml">
@@ -35,7 +36,7 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY I-D.suhopark-hello-wsn SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-suhopark-hello-wsn-00.xml">
 <!ENTITY I-D.ietf-rpsec-ospf-vuln SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-rpsec-ospf-vuln-02.xml">
 <!ENTITY I-D.ietf-roll-terminology SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-roll-terminology-04.xml">
-<!ENTITY ISO.7498-2.1988 SYSTEM "http://xml.resource.org/public/rfc/bibxml-misc/_reference.ISO.7498-2.1988.xml">
+<!ENTITY ISO.7498-2.1988 SYSTEM "http://xml.resource.org/public/rfc/bibxml-misc/reference.ISO.7498-2.1988.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- used by XSLT processors -->
@@ -192,7 +193,23 @@ An alternate method (rfc include) is described in the references. -->
       </address>
     </author>
 
-    <date month="September" year="2013"/>
+    <author fullname="Michael Richardson (ed)" initials="M." surname="Richardson">
+      <organization>Sandelman Software Works</organization>
+
+      <address>
+        <postal>
+          <street>470 Dawson Avenue</street>
+          <city>Ottawa</city>
+          <region>ON</region>
+          <code>K1Z5V7</code>
+          <country>Canada</country>
+        </postal>
+
+        <email>mcr+ietf@sandelman.ca</email>
+      </address>
+    </author>
+
+    <date year="2013"/>
 
     <!-- If the month and year are both specified and are the current ones, xml2rfc will fill in the current day for you. If only the current year is specified, xml2rfc will fill in the current day and month for you. If the year is not the current one, it is necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the purpose of calculating the expiry date).  With drafts it is normally sufficient to specify just the year. -->
 
@@ -200,7 +217,7 @@ An alternate method (rfc include) is described in the references. -->
 
     <area>Routing</area>
 
-    <workgroup>Networking Working Group</workgroup>
+    <workgroup>Routing Over Low-Power and Lossy Networks</workgroup>
 
     <!-- WG name at the upperleft corner of the doc, IETF is fine for individual submissions. If this element is not present, the default is "Network Working Group", which is used by the RFC Editor as a nod to the history of the IETF. -->
 
@@ -1801,7 +1818,7 @@ To Node_5  \  |  |
         communicating peers. Even if the certificate itself is not distributed
         by the node, there needs to be a mechanism to inform the receiving
         node where to find the certificate and obtain associated validation
-        information; see <xref target="RFC3029"/> for an example of the kind
+        information; see <xref target="RFC5055"/> for an example of the kind
         of localized PKI support that may be applied in a given LLN
         environment. Where PKI systems are not feasible, the key management
         system MUST support means for secure configuration, device
@@ -1817,7 +1834,7 @@ To Node_5  \  |  |
         IETF-standard key management specifications. Established key
         management solutions such as IKEv2 <xref target="RFC5996"/> or MIKEY
         <xref target="RFC3830"/>, which supports several alternative private,
-        public, or Diffie-Hellman key distribution methods (see <xref
+        public key distributions methods (see <xref
         target="RFC5197"/>), can thus be adapted for use in LLNs. For example,
         see <xref target="I-D.alexander-roll-mikey-lln-key-mgmt"/>. Group key
         management and distribution methods may also be developed based on the
@@ -2130,7 +2147,7 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
       &RFC2453;
 
-      &RFC3029;
+      &RFC5055;
 
       &RFC3693;
 
@@ -2264,6 +2281,34 @@ value="National Institute of Standards and Technology" />
 
         <seriesInfo name="in the Proceedings of the Third IEEE International Conference on Pervasive Computing and Communications"
                     value="pp. 324-328"/>
+      </reference>
+      <reference anchor="Szcze2008" target="http://www.ic.unicamp.br/~leob/publications/ewsn/NanoECC.pdf">
+        <front>
+          <title>NanoECC: testing the limits of elliptic curve cryptography in sensor networks</title>
+
+          <author initials="P." surname="Szczechowiak1">
+            <organization/>
+          </author>
+
+          <author initials="L.B." surname="Oliveira">
+            <organization/>
+          </author>
+
+          <author initials="M." surname="Scott">
+            <organization/>
+          </author>
+
+          <author initials="M." surname="Collier">
+            <organization/>
+          </author>
+
+          <author initials="R." surname="Dahab">
+            <organization/>
+          </author>
+
+          <date year="2008"/>
+        </front>
+        <seriesInfo name="" value="pp. 324-328"/>
       </reference>
 
       <reference anchor="Karlof2003">
