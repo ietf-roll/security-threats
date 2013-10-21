@@ -10,7 +10,6 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC2453 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2453.xml">
 <!ENTITY RFC2080 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2080.xml">
 <!ENTITY RFC3029 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3029.xml">
-<!ENTITY RFC3693 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3693.xml">
 <!ENTITY RFC3830 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3830.xml">
 <!ENTITY RFC4046 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4046.xml">
 <!ENTITY RFC5197 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5197.xml">
@@ -25,15 +24,18 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC4822 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4822.xml">
 <!ENTITY RFC4107 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4107.xml">
 <!ENTITY RFC5055 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5055.xml">
-<!ENTITY RFC6550 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6550.xml">
-<!ENTITY RFC6553 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6553.xml">
-<!ENTITY RFC6554 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6554.xml">
-<!ENTITY I-D.alexander-roll-mikey-lln-key-mgmt SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-alexander-roll-mikey-lln-key-mgmt-04.xml">
 <!ENTITY RFC5548 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5548.xml">
 <!ENTITY RFC5751 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5751.xml">
 <!ENTITY RFC5826 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5826.xml">
 <!ENTITY RFC5867 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5867.xml">
+<!ENTITY RFC6550 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6550.xml">
+<!ENTITY RFC6553 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6553.xml">
+<!ENTITY RFC6554 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6554.xml">
+<!ENTITY I-D.alexander-roll-mikey-lln-key-mgmt SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-alexander-roll-mikey-lln-key-mgmt-04.xml">
+<!ENTITY RFC6192 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6192.xml">
+<!ENTITY RFC6719 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6719.xml">
 <!ENTITY I-D.suhopark-hello-wsn SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-suhopark-hello-wsn-00.xml">
+<!ENTITY I-D.kelsey-intarea-mesh-link-establishment SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.kelsey-intarea-mesh-link-establishment.xml">
 <!ENTITY I-D.ietf-rpsec-ospf-vuln SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-rpsec-ospf-vuln-02.xml">
 <!ENTITY I-D.ietf-roll-terminology SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-roll-terminology-04.xml">
 <!ENTITY ISO.7498-2.1988 SYSTEM "http://xml.resource.org/public/rfc/bibxml-misc/reference.ISO.7498-2.1988.xml">
@@ -60,7 +62,7 @@ An alternate method (rfc include) is described in the references. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-roll-security-threats-04"
+<rfc category="info" docName="draft-ietf-roll-security-threats-05"
      ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic ipr values: full3667, noModification3667, noDerivatives3667 you can add the attributes updates="NNNN" and obsoletes="NNNN" hey will automatically be output with "(if approved)" -->
 
@@ -285,6 +287,9 @@ An alternate method (rfc include) is described in the references. -->
       target="RFC6550"/>, in <xref target="RFC4949"/>, and in
       <xref target="I-D.ietf-roll-terminology" />.
       </t>
+      <t>The terms control plane and forwarding plane are used 
+      consistently with section 1 of <xref target="RFC6192"/>.
+      </t>
     </section>
 
     <section anchor="cons-on-roll-sec" title="Considerations on ROLL Security">
@@ -379,7 +384,10 @@ Notation:
 (Proc)     A process Proc
 
 ________
-DataBase   A data storage DataBase
+topology   A structure storing neighbor adjacency (parent/child)
+--------
+________
+ routes    A structure storing the forwarding information base (FIB)
 --------
 
 |Node_n|   An external entity Node_n
@@ -553,6 +561,18 @@ DataBase   A data storage DataBase
           (P2MP) and MultiPoint-to-Point (MP2P) traffic represents a
           majority of the traffic, routing attacks consisting of advertising
           incorrect preferred routes can cause serious damage.</t>
+          <t>
+          While it might seem that nodes higher up in the cyclic graph (i.e. those
+          with lower rank) should be secured in a stronger fashion,  it is not
+          in general easy to predict which nodes will occupy those positions
+          until after deployment.  Issues of redundancy and inventory control
+          suggests that any node might wind up in such a sensitive attack position,
+          so all nodes need to be equally secure.</t>
+          <t>In addition, even if it were possible to predict which nodes will
+          occupy positions of lower rank and provision them with stronger
+          security mechanisms, in the absense of a strong authorization model,
+          any node could advertise an incorrect preferred route.</t>
+          
 
           <t hangText="Unattended locations and limited physical security"><vspace/>Many
           applications have the nodes deployed in unattended or remote
@@ -888,7 +908,7 @@ DataBase   A data storage DataBase
 
         <t>ACK spoofing;</t>
 
-        <t>Overload attacks.</t>
+        <t><xref target="overload-attack">Overload attacks.</xref></t>
         </list></t>
 
         <t>In addition, attacks may also be directly conducted at the
@@ -976,6 +996,11 @@ To Node_5  \  |  |
         </figure>
         </t>
         </list></t>
+        <t>
+          These attacks are generally done to both control plane and forwarding plane traffic.
+          A system that prevents control plane traffic (RPL messages) from being diverted in these ways will also
+          prevent actual data from being diverted.
+        </t>
 
       </section>
 
@@ -1022,7 +1047,7 @@ To Node_5  \  |  |
 
         <t>HELLO flood attacks;</t>
 
-        <t>Overload attacks.</t>
+        <t><xref target="overload-attack">Overload attacks.</xref></t>
         </list></t>
       </section>
     </section>
@@ -1047,7 +1072,7 @@ To Node_5  \  |  |
         interface access. To gain access to routing/topology information, the
         attacker may rely on a compromised node that deliberately exposes the
         information during the routing exchange process, may rely on passive
-        sniffing or traffic analysis, or may attempt access through a
+        wiretapping or traffic analysis, or may attempt access through a
         component or device interface of a tampered routing node.</t>
 
         <section title="Countering Deliberate Exposure Attacks">
@@ -1079,12 +1104,12 @@ To Node_5  \  |  |
           exchanges.</t>
         </section>
 
-        <section title="Countering Sniffing Attacks">
-          <t>A sniffing attack seeks to breach routing confidentiality through
+        <section title="Countering Passive Wiretapping Attacks">
+          <t>A passive wiretap attack seeks to breach routing confidentiality through
           passive, direct analysis and processing of the information exchanges
           between nodes. </t>
 
-          <t>Sniffing attacks can be directly countered through the use of
+          <t>Passive wiretap attacks can be directly countered through the use of
           data encryption for all routing exchanges. Only when a validated and
           authenticated node association is completed will routing exchange be
           allowed to proceed using established session keys and an agreed
@@ -1137,14 +1162,6 @@ To Node_5  \  |  |
           especially one founded on shared medium, is passive and relies on
           the ability to read the immutable source/destination layer-3 routing
           information that must remain unencrypted to permit network routing.
-          </t>
-          <t>
-          Alternatively, attacks can be mounted through the injection of
-          unauthorized discovery traffic into the network. By implementing
-          authentication measures between communicating nodes, active traffic
-          analysis attacks can be prevented within the LLN thereby reducing
-          confidentiality vulnerabilities to those associated with passive
-          analysis.
           </t>
 
           <t>One way in which passive traffic analysis attacks can be muted is
@@ -1261,32 +1278,28 @@ To Node_5  \  |  |
           extension to new areas, e.g., where geographic distribution is
           explicitly or implicitly an asset to an application running on the
           LLN, for example, the LBR in a P2MP or MP2P LLN.</t>
-
-          <t>The countering of identity attacks need to ensure the
-          authenticity and liveliness of the parties of a message exchange.
-          The means may be through the use of shared key- or public key-based
-          authentication scheme. On the one hand, the large-scale nature of
-          the LLNs makes the network-wide shared key scheme undesirable from a
-          security perspective; on the other hand, public-key based approaches
-          generally require more computational resources. Each system will
-          need to make trade-off decisions based on its security requirements.
-          As an example, <xref target="Wander2005"/> compared the energy
-          consumption between two public-key algorithms on a low-power
-          microcontroller, with reference to a symmetric-key algorithm and a
-          hash algorithm.</t>
         </section>
 
         <section anchor="counter-replay"
                  title="Countering Routing Information Replay Attacks">
-          <t>In routing, message replay can result in false topology and/or
-          routes. The counter of replay attacks needs to ensure the freshness
-          of the message. On the one hand, there are a number of mechanisms
-          commonly used for countering replay, e.g., with a counter. On the
-          other hand, the choice should take into account how a particular
-          mechanism is made available in an LLN. For example, many LLNs have a
-          central source of time and have it distributed by relaying, such
-          that secured time distribution becomes a prerequisite of using
-          timestamping to counter replay.</t>
+          <t>In many routing protocols, message replay can result in false topology and/or
+          routes.  This is often counted with some kind of counter to ensure the freshness
+          of the message.  Replay of a current, literal RPL message are in general idempotent
+          to the topology.   An older (lower DODAGVersionNumber) message, if replayed
+          would be rejected as being stale.  The trickle algorithm further dampens the 
+          affect of any such replay, as if the message was current, then it would contain
+          the same information as before, and it would cause no network changes.
+          </t>
+          <t>Replays may well occur in some radio technologies (not very likely, 802.15.4) as
+          a result of echos or reflections, and so some replays must be assumed to occur naturally.
+          </t>
+          <t>Note that for there to be no affect at all, the replay must be done with the 
+          same apparent power for all nodes receiving the replay.  A change in apparent power
+          might change the metrics through changes to the ETX and therefore might affect the routing even
+          though the contents of the packet were never changed.  Any replay which appears to
+          be different should be analyzed as a Selective Forwarding Attack, Sinkhole Attack or
+          Wormhole Attack.
+          </t>
         </section>
 
         <section anchor="counter-byzantine"
@@ -1360,69 +1373,41 @@ To Node_5  \  |  |
           even though they are not and hence constitute a serious availability
           attack.</t>
 
-          <t>The origin of facilitating a HELLO flood attack lies in the fact
-          that many routing protocols require nodes to send HELLO packets
-          either upon joining or in regular intervals so as to announce or
-          confirm their existence to the network. Those nodes that receive the
-          HELLO packet assume that they are indeed neighbors.</t>
-
-          <t>With this in mind, a malicious node can send or replay HELLO
-          packets using, e.g., a higher transmission power. That creates the
-          false illusion of being a neighbor to an increased number of nodes
-          in the network, thereby effectively increasing its unidirectional
-          neighborhood cardinality. The high quality of the falsely advertised
-          link may coerce nodes to route data via the malicious node. However,
-          those affected nodes, for which the malicious node is in fact
-          unreachable, never succeed in their delivery and the packets are
-          effectively dropped. The symptoms are hence similar to those of a
-          sinkhole, wormhole and selective forwarding attack.</t>
-
-          <t>A malicious HELLO flood attack clearly distorts the network
-          topology. It thus affects protocols building and maintaining the
-          network topology as well as routing protocols as such, since the
-          attack is primarily targeted on protocols that require sharing of
-          information for topology maintenance or flow control.</t>
-
-          <t>To counter HELLO flood attacks, several mutually non-exclusive
-          methods are feasible:
-          <list style="symbols">
-            <t>restricting neighborhood cardinality;</t>
-
-            <t>facilitating multipath routing;</t>
-
-            <t>verifying bidirectionality.</t>
-          </list>
+          <t>A HELLO attack mounted against RPL would involve sending out
+          (or replaying) DIO messages by the attacker.  Lower power LLN nodes
+          might then attempt to join the DODAG at a lower rank than they would
+          otherwise.
           </t>
 
-          <t>Restricting the neighborhood cardinality prevents malicious nodes
-          from having an extended set of neighbors beyond some tolerated
-          threshold and thereby preventing topologies to be built where
-          malicious nodes have a false neighborhood set. Furthermore, as shown
-          in <xref target="I-D.suhopark-hello-wsn"/>, if the routing protocol
-          supports multiple paths from a sensing node towards several LBRs
-          then HELLO flood attacks can also be diminished; however, the
-          energy-efficiency of such approach is clearly sub-optimal. Finally,
-          verifying that the link is truly bidirectional by means of, e.g., an
-          ACK handshake and appropriate security measures ensures that a
-          communication link is only established if not only the affected node
-          is within range of the malicious node but also vice versa. Whilst
-          this does not really eliminate the problem of HELLO flooding, it
-          greatly reduces the number of affected nodes and the probability of
-          such an attack succeeding.</t>
+          <t>The most effective method from <xref target="I-D.suhopark-hello-wsn"/>
+          is the verify bidirectionality.  A number of layer-2 links are arranged
+          in controller/spoke arrangements, and continuously are validating connectivity
+          at layer 2.</t>
+          <t>In addition, in order to calculate metrics, the ETX must be computed,
+          and this involves, in general, sending a number of messages between nodes
+          which are believed to be adjacent. <xref target="I-D.kelsey-intarea-mesh-link-establishment"/>
+          is one such protocol.
+          </t>
 
-          <t>As for the latter, the adversary may spoof the ACK messages to
-          convince the affected node that the link is truly bidirectional and
-          thereupon drop, tunnel or selectively forward messages. Such ACK
-          spoofing attack is possible if the malicious node has a receiver
-          which is significantly more sensitive than that of a normal node,
-          thereby effectively extending its range. Since an ACK spoofing
-          attack facilitates a HELLO flood attack, similar countermeasure are
-          applicable here. Viable counter and security measures for both
-          attacks have been exposed in <xref
-          target="I-D.suhopark-hello-wsn"/></t>
+          <t>In order to join the DODAG, a DAO message is sent upwards.
+          In RPL the DAO is acknowledged by the DAO-ACK message.  This clearly
+          checks bidirectionality at the control plane.
+          </t>
+
+          <t>As discussed in section 5.1, <xref target="I-D.suhopark-hello-wsn"/>
+          a receiver with a sensitive receiver could well hear the DAOs, and even
+          send DAO-ACKs as well.  Such a node is a form of WormHole attack.
+          </t>
+
+          <t>
+          These attacks are also all easily defended against using either layer-2
+          or layer-3 authentication.  Such an attack could only be made against
+          a completely open network (such as might be used for provisioning new nodes), 
+          or by a compromised node.
+          </t>
         </section>
 
-        <section title="Countering Overload Attacks">
+        <section anchor="overload-attack" title="Countering Overload Attacks">
           <t>Overload attacks are a form of DoS attack in that a malicious
           node overloads the network with irrelevant traffic, thereby draining
           the nodes' energy store more quickly, when the nodes rely on
@@ -1442,7 +1427,7 @@ To Node_5  \  |  |
             <t>makes routes longer as shortest path algorithms work with the
             congested network;</t>
 
-            <t>depletes battery and energy scavenging nodes quicker and thus
+            <t>depletes battery and energy scavenging nodes more quickly and thus
             shortens the network's availability at large.</t>
           </list>
           </t>
@@ -1559,19 +1544,23 @@ To Node_5  \  |  |
           </list>
           </t>
 
-          <t>Whilst most of these countermeasures have been discussed before,
-          the use of geographical information deserves further attention.
-          Essentially, if geographic positions of nodes are available, then
-          the network can assure that data is actually routed towards the
-          intended destination and not elsewhere. On the other hand,
-          geographic position is a sensitive information that has security
-          and/or privacy consequences (see <xref target="conff"/>).</t>
+          <t>Some LLNs may provide for geolocation services, often derived
+          from solving triangulation equations from radio delay calculations,
+          such calculations could in theory be subverted by a sinkhole that
+          transmitted at precisely the right power in a node to node fashion.
+          </t>
+          <t>While geographic knowledge could help assure that traffic always
+          went in the physical direction desired, it would not assure that
+          the traffic was taking the most efficient route, as the lowest
+          cost real route might be match the physical topology; such as when
+          different parts of an LLN are connected by high-speed wired networks.
+          </t>
         </section>
 
         <section title="Countering Wormhole Attacks">
-          <t>In wormhole attacks at least two malicious nodes shortcut or
-          divert the usual routing path by means of a low-latency out-of-band
-          channel <xref target="Karlof2003"/>. This changes the availability
+          <t>In wormhole attacks at least two malicious nodes 
+          claim to have a short path between themselves <xref target="Karlof2003"/>. 
+          This changes the availability
           of certain routing paths and hence constitutes a serious security
           breach.</t>
 
@@ -1582,14 +1571,28 @@ To Node_5  \  |  |
           network; it could also involve tunneling the information to another
           region of the network where there are, e.g., more malicious nodes
           available to aid the intrusion or where messages are replayed, etc.
+          </t>
+          <t>
           In conjunction with selective forwarding, wormhole attacks can
           create race conditions which impact topology maintenance, routing
           protocols as well as any security suits built on "time of check" and
           "time of use".</t>
 
-          <t>Wormhole attacks are very difficult to detect in general but can
-          be mitigated using similar strategies as already outlined above in
-          the context of sinkhole attacks.</t>
+          <t>A pure Wormhole attack is nearly impossible to detect.  A wormhole
+          which is used in order to subsequently mount another kind of attack
+          would be defeated by defeating the other attack.  A perfect wormhole, 
+          in which there is nothing adverse that occurs to the traffic, would
+          be difficult to call an attack.  The worst thing that a benign wormhole
+          can do in such a situation is to cease to operate (become unstable),
+          causing the network to have to recalculate routes.  
+          </t>
+          <t>A highly unstable wormhole is no different than a radio opaque (i.e. metal)
+          door that opens and closes a lot.  RPL includes
+          hystersis in its objective functions 
+          <xref target="RFC6719" />
+          in an attempt to deal with frequent
+          changes to the ETX between nodes.
+          </t>
         </section>
       </section>
     </section>
@@ -1656,9 +1659,6 @@ To Node_5  \  |  |
         <list style="symbols">
           <t>MUST implement payload encryption;</t>
 
-          <t>MUST provide privacy when geographic information is used (see,
-          e.g., <xref target="RFC3693"/>);</t>
-
           <t>MAY provide tunneling;</t>
 
           <t>MAY provide load balancing.</t>
@@ -1696,60 +1696,15 @@ To Node_5  \  |  |
       <section anchor="intf" title="Integrity Features">
         <t>The integrity of routing information provides the basis for
         ensuring that the function of the routing protocol is achieved and
-        maintained. To protect integrity, a secured ROLL protocol:
-        <list style="symbols">
-          <t>MUST provide and verify message integrity (including integrity
-          of the encrypted message when confidentiality is applied);</t>
-
-          <t>MUST verify the authenticity and liveness of both principals of
-          a connection (independent of the device interface over which the
-          information is received or accessed);</t>
-
-          <t>MUST verify message sequence;</t>
-
-          <t>SHOULD incorporate protocol-specific parameter validity range
-          checks, change increments, and message event frequency checks,
-          etc. as a means of countering intentional or unintentional
-          Byzantine threats;</t>
-
-          <t>MAY incorporate external consistency checking and auditing of
-          routing information to protect against intentional or
-          unintentional Byzantine-induced network anomalies.</t>
-        </list>
+        maintained.  To protect integrity, RPL must either run using
+        only the Secure versions of the messages, or must run over
+        a layer-2 that uses channel binding between node identity
+        and transmissions.  (i.e.: a layer-2 which has an identical
+        network-wide transmission key can not defend against many attacks)
         </t>
 
-        <t>In conjunction with the integrity protection requirements, a
-        secured ROLL protocol SHOULD log, against the offending node, any
-        security failure that occurs after a valid integrity check. The record
+        <t>XXX. Logging is critical, but presently impossible. </t>
 
-        policy configuration) can provide the basis for nodes to avoid
-        initiating routing access to the offender or be used for further
-        system countermeasures in the case of potential insider attacks. All
-        integrity security failures SHOULD be logged, where feasible, but
-        cannot be reliably considered as countering against the offending
-        source(s).</t>
-
-        <t>Depending on the nature of the routing protocol, e.g., distance
-        vector or link state, additional measures may be necessary when the
-        validity of the routing information is of concern. In the most basic
-        form, verification of routing peer authenticity and liveliness can be
-        used to build a "chain of trust" along the path the routing
-        information flows, such that network-wide information is validated
-        through the concatenation of trust established at each individual
-        routing peer exchange. This is particularly important in the case of
-        distance vector-based routing protocols, where information is updated
-        at intermediate nodes, In such cases, there are no direct means within
-        routing for a receiver to verify the validity of the routing
-        information beyond the current exchange; as such, nodes would need to
-        be able to communicate and request information from non-adjacent peers
-        (see <xref target="Wan2004"/>) to provide information integrity
-        assurances. With link state-based protocols, on the other hand,
-        routing information can be signed at the source thus providing a means
-        for validating information that originates beyond a routing peer.
-        Therefore, where necessary, a secured ROLL protocol MAY use security
-        auditing mechanisms that are external to routing to verify the
-        validity of the routing information content exchanged among routing
-        peers.</t>
       </section>
 
       <section anchor="avaf" title="Availability Features">
@@ -1780,65 +1735,19 @@ To Node_5  \  |  |
         <t>The functioning of the routing security services requires keys and
         credentials. Therefore, even though not directly a ROLL security
         requirement, an LLN MUST have a process for initial key and credential
-        configuration, as well as secure storage within the associated devices
-        (including use of trusted platform modules where feasible and
-        appropriate to the operating environment). Beyond initial credential
+        configuration, as well as secure storage within the associated devices.
+        Anti-tampering SHOULD be a consideration in physical design.
+        Beyond initial credential
         configuration, an LLN is also encouraged to have automatic procedures
         for the revocation and replacement of the maintained security
         credentials.</t>
 
-        <t>Peer associations and signaling exchanges require the generation
-        and use of keys that MAY be derived from secret or public key
-        exchanges as part of the routing signaling exchange or be directly
-        obtained through device configuration. The routing protocol
-        specification MUST include mechanisms to identify and synchronize
-        these keys.</t>
-
-        <t>For keys used to establish peer associations, the routing
-        protocol(s) specified by the ROLL Working Group SHOULD employ key
-        management mechanisms consistent with the guidelines given in <xref
-        target="RFC4107"/>. Based on that RFC's recommendations, many LLNs,
-        particularly given the intended scale and ad hoc device associations,
-        will meet the requirement for supporting automated key management in
-        conjunction with the routing protocol operation. These short-term,
-        automated routing session keys may be derived from pre-stored security
-        credentials or can be generated through key management mechanisms that
-        are defined as part of the routing protocol exchange. Beyond the
-        automated short-term keys, a long-term key management mechanism SHOULD
-        also be defined for changing or updating the credentials from which
-        short-term routing association key material is derived.</t>
-
-        <t>The use of a public key infrastructure (PKI), where feasible, can
-        be used to support authenticated short-term key management as well as
-        the distribution of long-term routing security keying material. Note
-        that where the option for a PKI is supported for security of the
-        routing protocol itself, the routing protocol MUST include provisions
-        for public key certificates to be included or referenced within
-        routing messages to allow a node's public key to be shared with
-        communicating peers. Even if the certificate itself is not distributed
-        by the node, there needs to be a mechanism to inform the receiving
-        node where to find the certificate and obtain associated validation
-        information; see <xref target="RFC5055"/> for an example of the kind
-        of localized PKI support that may be applied in a given LLN
-        environment. Where PKI systems are not feasible, the key management
-        system MUST support means for secure configuration, device
-        authentication, and adherence to secure key wrapping principles for
-        the secure distribution and update of device keys.</t>
-
-        <t>LLN routing protocols SHOULD be designed to allow the use of
-        existing and validated key management schemes. As part of the LLN
-        optimization, these schemes may be independent of the routing protocol
-        and part of the broader LLN system security specifications. Where the
-        long-term key management is defined separately from the routing
-        protocol security, LLN application domains can appropriately employ
-        IETF-standard key management specifications. Established key
-        management solutions such as IKEv2 <xref target="RFC5996"/> or MIKEY
-        <xref target="RFC3830"/>, which supports several alternative private,
-        public key distributions methods (see <xref
-        target="RFC5197"/>), can thus be adapted for use in LLNs. For example,
-        see <xref target="I-D.alexander-roll-mikey-lln-key-mgmt"/>. Group key
-        management and distribution methods may also be developed based on the
-        architecture principles defined in MSEC <xref target="RFC4046"/>.</t>
+        <t> While RPL has secure modes, but some modes are impractical
+        without use of public key cryptography believed to be too expensive
+        by many.  RPL layer-3 security will often depend upon existing LLN
+        layer-2 security mechanisms, which provides for node authentication,
+        but little in the way of node authorization.
+        </t>
       </section>
 
       <section anchor="match-needs"
@@ -2132,6 +2041,11 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
       &RFC4107;
 
       &RFC6550;
+
+      &I-D.ietf-roll-terminology;
+
+      &RFC6719;
+
     </references>
 
     <references title="Informative References">
@@ -2149,8 +2063,6 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
       &RFC5055;
 
-      &RFC3693;
-
       &RFC3830;
 
       &RFC4046;
@@ -2166,6 +2078,8 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
       &RFC5751;
 
       &RFC5996;
+
+      &RFC6192;
 
       <reference anchor="IEEE1149.1">
         <front>
@@ -2341,7 +2255,8 @@ value="National Institute of Standards and Technology" />
 
       &I-D.suhopark-hello-wsn;
 
-      &I-D.ietf-roll-terminology;
+      &I-D.kelsey-intarea-mesh-link-establishment;
+
       &ISO.7498-2.1988;
       <!--      &I-D.ietf-rpsec-ospf-vuln; -->
 
