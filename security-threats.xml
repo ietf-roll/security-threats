@@ -813,144 +813,143 @@ ________
           </t>
         </section>
       </section>
-    </section>
 
-    <section anchor="integ-threat" title="Threats and Attacks on Integrity">
-      <t>The assessment in <xref target="iso"/> indicates that information
-      and identity assets are exposed to integrity threats from all points
-      of access. In other words, the integrity threat space is defined by
-      the potential for exploitation introduced by access to assets
-      available through routing exchanges and the on-device storage.</t>
-
-      <section anchor="manipul" title="Routing Information Manipulation">
-        <t>
-          Manipulation of routing information that range from neighbor
-          states to derived routes will allow unauthorized sources to
-          influence the operation and convergence of the routing protocols and
-          ultimately impact the forwarding decisions made in the network.
-        </t>
-        <t>
-          Manipulation of topology and reachability information will allow
-          unauthorized sources to influence the nodes with which routing
-          information is exchanged and updated. The consequence of
-          manipulating routing exchanges can thus lead to sub-optimality and
-          fragmentation or partitioning of the network by restricting the
-          universe of routers with which associations can be established and
-          maintained.
-        </t>
-        <t>A sub-optimal network may use too much power and/or may congest some
-        routes leading to premature failure of a node, and a denial of service
-        on the entire network.
-        </t>
-        <t>In addition, being able to attract network traffic can
-        make a blackhole attack more damaging.
-        </t>
-
-        <t>The forms of attack that allow manipulation to compromise the
-        content and validity of routing information include<list
-        style="symbols">
-        <t>Falsification, including overclaiming and misclaiming;</t>
-
-        <t>Routing information replay;</t>
-
-        <t>Byzantine (internal) attacks that permit corruption of
-        routing information in the node even where the node continues to
-        be a validated entity within the network (see, for example,
-        <xref target="RFC4593"/> for further discussions on Byzantine
-        attacks);</t>
-
-        <t>Physical device compromise or remote device access
-        attacks.</t>
-        </list></t>
+      <section anchor="integ-threat" title="Threats and Attacks on Integrity">
+        <t>The assessment in <xref target="iso"/> indicates that information
+        and identity assets are exposed to integrity threats from all points
+        of access. In other words, the integrity threat space is defined by
+        the potential for exploitation introduced by access to assets
+        available through routing exchanges and the on-device storage.</t>
+        
+        <section anchor="manipul" title="Routing Information Manipulation">
+          <t>
+            Manipulation of routing information that range from neighbor
+            states to derived routes will allow unauthorized sources to
+            influence the operation and convergence of the routing protocols and
+            ultimately impact the forwarding decisions made in the network.
+          </t>
+          <t>
+            Manipulation of topology and reachability information will allow
+            unauthorized sources to influence the nodes with which routing
+            information is exchanged and updated. The consequence of
+            manipulating routing exchanges can thus lead to sub-optimality and
+            fragmentation or partitioning of the network by restricting the
+            universe of routers with which associations can be established and
+            maintained.
+          </t>
+          <t>A sub-optimal network may use too much power and/or may congest some
+          routes leading to premature failure of a node, and a denial of service
+          on the entire network.
+          </t>
+          <t>In addition, being able to attract network traffic can
+          make a blackhole attack more damaging.
+          </t>
+          
+          <t>The forms of attack that allow manipulation to compromise the
+          content and validity of routing information include<list
+          style="symbols">
+          <t>Falsification, including overclaiming and misclaiming;</t>
+          
+          <t>Routing information replay;</t>
+          
+          <t>Byzantine (internal) attacks that permit corruption of
+          routing information in the node even where the node continues to
+          be a validated entity within the network (see, for example,
+          <xref target="RFC4593"/> for further discussions on Byzantine
+          attacks);</t>
+          
+          <t>Physical device compromise or remote device access
+          attacks.</t>
+          </list></t>
+        </section>
+        
+        <section anchor="id-misappr" title="Node Identity Misappropriation">
+          <t>
+            Falsification or misappropriation of node identity between
+            routing participants opens the door for other attacks; it can also
+            cause incorrect routing relationships to form and/or topologies to
+            emerge. Routing attacks may also be mounted through less
+            sophisticated node identity misappropriation in which the valid
+            information broadcast or exchanged by a node is replayed without
+            modification. The receipt of seemingly valid information that is
+            however no longer current can result in routing disruption, and
+            instability (including failure to converge). Without measures to
+            authenticate the routing participants and to ensure the freshness
+            and validity of the received information the protocol operation can
+            be compromised. The forms of attack that misuse node identity
+            include<list style="symbols">
+            <t>Identity attacks, including Sybil attacks in which a
+            malicious node illegitimately assumes multiple identities;</t>
+            
+            <t>Routing information replay.</t>
+          </list></t>
+        </section>
       </section>
-
-      <section anchor="id-misappr" title="Node Identity Misappropriation">
-        <t>
-          Falsification or misappropriation of node identity between
-          routing participants opens the door for other attacks; it can also
-          cause incorrect routing relationships to form and/or topologies to
-          emerge. Routing attacks may also be mounted through less
-          sophisticated node identity misappropriation in which the valid
-          information broadcast or exchanged by a node is replayed without
-          modification. The receipt of seemingly valid information that is
-          however no longer current can result in routing disruption, and
-          instability (including failure to converge). Without measures to
-          authenticate the routing participants and to ensure the freshness
-          and validity of the received information the protocol operation can
-          be compromised. The forms of attack that misuse node identity
-          include<list style="symbols">
-          <t>Identity attacks, including Sybil attacks in which a
-          malicious node illegitimately assumes multiple identities;</t>
-
-          <t>Routing information replay.</t>
-        </list></t>
-      </section>
-    </section>
-
-    <section anchor="avail-threat"
-             title="Threats and Attacks on Availability">
-      <t>The assessment in <xref target="iso"/> indicates that the process
-      and resources assets are exposed to threats against availability;
-      attacks in this category may exploit directly or indirectly
-      information exchange or forwarding (see <xref target="RFC4732"/> for a
-      general discussion).</t>
-
-      <section anchor="route-exch-intrpt"
-               title="Routing Exchange Interference or Disruption">
-        <t>Interference is the threat action and disruption is threat
-        consequence that allows attackers to influence the operation and
-        convergence of the routing protocols by impeding the routing
-        information exchange.</t>
-
-        <t>The forms of attack that allow interference or disruption of
-        routing exchange include:<list style="symbols">
-        <t>Routing information replay;</t>
-
-        <t>ACK spoofing;</t>
-
-        <t><xref target="overload-attack">Overload attacks.</xref></t>
-        </list></t>
-
-        <t>In addition, attacks may also be directly conducted at the
-        physical layer in the form of jamming or interfering.</t>
-      </section>
-
-      <section anchor="disrupt-forward"
-               title="Network Traffic Forwarding Disruption">
-        <t>The disruption of the network traffic forwarding capability will
-        undermine the central function of network routers and the ability to
-        handle user traffic. This affects the availability of the network
-        because of the potential to impair the primary capability of the
-        network.</t>
-
-        <t>In addition to physical layer obstructions, the forms of attack
-        that allows disruption of network traffic forwarding include <xref
-        target="Karlof2003"/><list style="symbols">
-        <t>Selective forwarding attacks;
-
-        <figure align="center" anchor="Fig2"
-                title="Selective Forwarding">
-          <preamble/>
-
-          <artwork align="left">
-            <![CDATA[
+      
+      <section anchor="avail-threat"
+               title="Threats and Attacks on Availability">
+        <t>The assessment in <xref target="iso"/> indicates that the process
+        and resources assets are exposed to threats against availability;
+        attacks in this category may exploit directly or indirectly
+        information exchange or forwarding (see <xref target="RFC4732"/> for a
+        general discussion).</t>
+        
+        <section anchor="route-exch-intrpt"
+                 title="Routing Exchange Interference or Disruption">
+          <t>Interference is the threat action and disruption is threat
+          consequence that allows attackers to influence the operation and
+          convergence of the routing protocols by impeding the routing
+          information exchange.</t>
+          
+          <t>The forms of attack that allow interference or disruption of
+          routing exchange include:<list style="symbols">
+          <t>Routing information replay;</t>
+          
+          <t>ACK spoofing;</t>
+          
+          <t><xref target="overload-attack">Overload attacks.</xref></t>
+          </list></t>
+          
+          <t>In addition, attacks may also be directly conducted at the
+          physical layer in the form of jamming or interfering.</t>
+        </section>
+        
+        <section anchor="disrupt-forward"
+                 title="Network Traffic Forwarding Disruption">
+          <t>The disruption of the network traffic forwarding capability will
+          undermine the central function of network routers and the ability to
+          handle user traffic. This affects the availability of the network
+          because of the potential to impair the primary capability of the
+          network.</t>
+          
+          <t>In addition to physical layer obstructions, the forms of attack
+          that allows disruption of network traffic forwarding include <xref
+          target="Karlof2003"/><list style="symbols">
+          <t>Selective forwarding attacks;
+          
+          <figure align="center" anchor="Fig2"
+                  title="Selective Forwarding">
+            <preamble/>
+            
+            <artwork align="left">
+              <![CDATA[
 |Node_1|--(msg1|msg2|msg3)-->|Attacker|--(msg1|msg3)-->|Node_2|
 
 (a) Selective Forwarding
             ]]>            </artwork>
 
-            <postamble/>
-        </figure>
-        </t>
-
-        <t>Wormhole attacks;
-
-        <figure align="center" anchor="Fig3"
-                title="Wormhole Attacks">
-          <preamble/>
-
-          <artwork align="left">
-            <![CDATA[
+              <postamble/>
+          </figure>
+          </t>
+          
+          <t>Wormhole attacks;
+          
+          <figure align="center" anchor="Fig3"
+                  title="Wormhole Attacks">
+            <preamble/>
+            
+            <artwork align="left">
+              <![CDATA[
 |Node_1|-------------Unreachable---------x|Node_2|
    |                                         ^
    |               Private Link              |
@@ -958,20 +957,20 @@ ________
 
 
 (b) Wormhole
-            ]]>            </artwork>
-
-            <postamble/>
-        </figure>
-        </t>
-
-        <t>Sinkhole attacks.
-
-        <figure align="center" anchor="Fig4"
-                title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
-          <preamble/>
-
-          <artwork align="left">
-            <![CDATA[
+              ]]>            </artwork>
+              
+              <postamble/>
+          </figure>
+          </t>
+          
+          <t>Sinkhole attacks.
+          
+          <figure align="center" anchor="Fig4"
+                  title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
+            <preamble/>
+            
+            <artwork align="left">
+              <![CDATA[
 |Node_1|     |Node_4|
     |            |
     `--------.   |
@@ -990,65 +989,66 @@ To Node_5  \  |  |
 
 (c) Sinkhole
 
-            ]]>            </artwork>
+              ]]>            </artwork>
 
-            <postamble/>
-        </figure>
-        </t>
-        </list></t>
-        <t>
-          These attacks are generally done to both control plane and forwarding plane traffic.
-          A system that prevents control plane traffic (RPL messages) from being diverted in these ways will also
-          prevent actual data from being diverted.
-        </t>
-
-      </section>
-
-      <section anchor="disrpt-comm-resourse"
-               title="Communications Resource Disruption">
-        <t>Attacks mounted against the communication channel resource assets
-        needed by the routing protocol can be used as a means of disrupting
-        its operation. However, while various forms of Denial of Service
-        (DoS) attacks on the underlying transport subsystem will affect
-        routing protocol exchanges and operation (for example physical layer
-        RF jamming in a wireless network or link layer attacks), these
-        attacks cannot be countered by the routing protocol. As such, the
-        threats to the underlying transport network that supports routing is
-        considered beyond the scope of the current document. Nonetheless,
-        attacks on the subsystem will affect routing operation and so must
-        be directly addressed within the underlying subsystem and its
-        implemented protocol layers.</t>
-      </section>
-
-      <section anchor="exhaust-resource" title="Node Resource Exhaustion">
-        <t>A potential threat consequence can arise from attempts to
-        overload the node resource asset by initiating exchanges that can
-        lead to the exhaustion of processing, memory, or energy resources.
-        The establishment and maintenance of routing neighbors opens the
-        routing process to engagement and potential acceptance of multiple
-        neighboring peers. Association information must be stored for each
-        peer entity and for the wireless network operation provisions made
-        to periodically update and reassess the associations. An introduced
-        proliferation of apparent routing peers can therefore have a
-        negative impact on node resources.</t>
-
-        <t>Node resources may also be unduly consumed by attackers
-        attempting uncontrolled topology peering or routing exchanges,
-        routing replays, or the generating of other data traffic floods.
-        Beyond the disruption of communications channel resources, these
-        consequences may be able to exhaust node resources only where the
-        engagements are able to proceed with the peer routing entities.
-        Routing operation and network forwarding functions can thus be
-        adversely impacted by node resources exhaustion that stems from
-        attacks that include:<list style="symbols">
-        <t>Identity (including Sybil) attacks;</t>
-
-        <t>Routing information replay attacks;</t>
-
-        <t>HELLO flood attacks;</t>
-
-        <t><xref target="overload-attack">Overload attacks.</xref></t>
-        </list></t>
+              <postamble/>
+          </figure>
+          </t>
+          </list></t>
+          <t>
+            These attacks are generally done to both control plane and forwarding plane traffic.
+            A system that prevents control plane traffic (RPL messages) from being diverted in these ways will also
+            prevent actual data from being diverted.
+          </t>
+          
+        </section>
+        
+        <section anchor="disrpt-comm-resourse"
+                 title="Communications Resource Disruption">
+          <t>Attacks mounted against the communication channel resource assets
+          needed by the routing protocol can be used as a means of disrupting
+          its operation. However, while various forms of Denial of Service
+          (DoS) attacks on the underlying transport subsystem will affect
+          routing protocol exchanges and operation (for example physical layer
+          RF jamming in a wireless network or link layer attacks), these
+          attacks cannot be countered by the routing protocol. As such, the
+          threats to the underlying transport network that supports routing is
+          considered beyond the scope of the current document. Nonetheless,
+          attacks on the subsystem will affect routing operation and so must
+          be directly addressed within the underlying subsystem and its
+          implemented protocol layers.</t>
+        </section>
+        
+        <section anchor="exhaust-resource" title="Node Resource Exhaustion">
+          <t>A potential threat consequence can arise from attempts to
+          overload the node resource asset by initiating exchanges that can
+          lead to the exhaustion of processing, memory, or energy resources.
+          The establishment and maintenance of routing neighbors opens the
+          routing process to engagement and potential acceptance of multiple
+          neighboring peers. Association information must be stored for each
+          peer entity and for the wireless network operation provisions made
+          to periodically update and reassess the associations. An introduced
+          proliferation of apparent routing peers can therefore have a
+          negative impact on node resources.</t>
+          
+          <t>Node resources may also be unduly consumed by attackers
+          attempting uncontrolled topology peering or routing exchanges,
+          routing replays, or the generating of other data traffic floods.
+          Beyond the disruption of communications channel resources, these
+          consequences may be able to exhaust node resources only where the
+          engagements are able to proceed with the peer routing entities.
+          Routing operation and network forwarding functions can thus be
+          adversely impacted by node resources exhaustion that stems from
+          attacks that include:<list style="symbols">
+          <t>Identity (including Sybil) attacks;</t>
+          
+          <t>Routing information replay attacks;</t>
+          
+          <t>HELLO flood attacks;</t>
+          
+          <t><xref target="overload-attack">Overload attacks.</xref></t>
+          </list></t>
+        </section>
       </section>
     </section>
 
