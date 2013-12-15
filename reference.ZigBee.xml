@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+      <reference anchor="ZigBeeIP">
+         <front>
+            <title>ZigBee IP Specification</title>
+            <author>
+               <organization>ZigBee Public Document 15-002r00</organization>
+            </author>
+            <date year="2013"/>
+         </front>
+      </reference>

@@ -1,4 +1,4 @@
-VERSION=05
+VERSION=06
 security-threats-${VERSION}.txt: security-threats.txt
 	cp security-threats.txt security-threats-${VERSION}.txt
 

@@ -39,6 +39,7 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY I-D.ietf-rpsec-ospf-vuln SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-rpsec-ospf-vuln-02.xml">
 <!ENTITY I-D.ietf-roll-terminology SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-roll-terminology-04.xml">
 <!ENTITY ISO.7498-2.1988 SYSTEM "http://xml.resource.org/public/rfc/bibxml-misc/reference.ISO.7498-2.1988.xml">
+<!ENTITY ZigBeeIP SYSTEM "reference.ZigBeeIP.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- used by XSLT processors -->
@@ -72,8 +73,8 @@ An alternate method (rfc include) is described in the references. -->
   <front>
     <!-- The abbreviated title is used in the page header - it is only necessary if the full title is longer than 39 characters -->
 
-    <title abbrev="Security Threat Analysis for ROLL">A Security Threat
-    Analysis for Routing over Low-Power and Lossy Networks</title>
+    <title abbrev="Security Threat Analysis for ROLL RPL">A Security Threat
+    Analysis for Routing Protocol for Low-power and lossy networks (RPL)</title>
 
     <!-- add 'role="editor"' below for the editors if appropriate -->
 
@@ -230,14 +231,12 @@ An alternate method (rfc include) is described in the references. -->
 
     <abstract>
       <t>This document presents a security threat
-      analysis for routing over low-power and lossy networks (LLN). The
-      development builds upon previous work on routing security and adapts the
+      analysis for the Routing Protocol for Low-power and lossy networks (RPL, ROLL).
+      The development builds upon previous work on routing security and adapts the
       assessments to the issues and constraints specific to low-power and
       lossy networks. A systematic approach is used in defining and evaluating
       the security threats. Applicable countermeasures are application
-      specific and are addressed in relevant applicability statements. These
-      assessments provide the basis of the security recommendations for
-      incorporation into low-power, lossy network routing protocols.</t>
+      specific and are addressed in relevant applicability statements. </t>
     </abstract>
 
     <note title="Requirements Language">
@@ -266,12 +265,11 @@ An alternate method (rfc include) is described in the references. -->
       connectivity among these deployed devices becomes one of these key
       challenges.</t>
 
-      <t>This document presents a threat analysis for securing Routing Over
-      LLNs (ROLL) through an analysis that starts from the routing basics.
-      The process requires two steps.
+      <t>This document presents a threat analysis for securing the
+      Routing Protocol for LLNs (RPL). The process requires two steps.
       First, the analysis will be used to identify pertinent security issues.
-      The second step is to identify necessary countermeasures to secure the
-      ROLL protocols.  As there are multiple ways to solve the problem and
+      The second step is to identify necessary countermeasures to secure RPL.
+      As there are multiple ways to solve the problem and
       the specific tradeoffs are deployment specific, the specific
       countermeasure to be used is detailed in applicatbility statements.</t>
 
@@ -279,8 +277,11 @@ An alternate method (rfc include) is described in the references. -->
       Access Control, Data Confidentiality, Data Integrity, and
       Non-Repudiation but to which Availability is added.</t>
 
-      <t>All of this document concerns itself with control plane traffic
-      only.</t>
+      <t>All of this document concerns itself with securing the control plane traffic.
+      As such it does not address authorization or authentication of application traffic,
+      nor does it deal with multicast traffic controls.  Mechanisms used to secure 
+      RPL traffic SHOULD be leveraged to secure other protocols.
+      </t>
     </section>
 
     <section title="Terminology">
@@ -293,7 +294,7 @@ An alternate method (rfc include) is described in the references. -->
       </t>
     </section>
 
-    <section anchor="cons-on-roll-sec" title="Considerations on ROLL Security">
+    <section anchor="cons-on-roll-sec" title="Considerations on RPL Security">
       <t>Routing security, in essence, ensures that the routing protocol
       operates correctly. It entails implementing measures to ensure
       controlled state changes on devices and network elements, both based on
@@ -323,7 +324,7 @@ An alternate method (rfc include) is described in the references. -->
       <xref target="ISO.7498-2.1988"/>
       security model is briefly described. Then, consideration is given to
       issues specific to or amplified in LLNs. This section concludes with the
-      formulation of a set of security objectives for ROLL.</t>
+      formulation of a set of security objectives for RPL.</t>
 
       <section anchor="routing-assets"
                title="Routing Assets and Points of Access">
@@ -437,10 +438,10 @@ ________
 
       <section anchor="iso" title="The ISO 7498-2 Security Reference Model">
         <t>At the conceptual level, security within an information system in
-        general and applied to ROLL in particular is concerned with the
+        general and applied to RPL in particular is concerned with the
         primary issues of authentication, access control, data
         confidentiality, data integrity, and non-repudiation. In the context
-        of ROLL</t>
+        of RPL</t>
 
         <t><list hangIndent="6" style="hanging">
           <t hangText="Authentication"><vspace/>Authentication involves the
@@ -494,7 +495,7 @@ ________
           logging and storage and individual device digital signature
           verification for each exchange, non-repudiation in the context of
           routing is an unsupportable burden that bears no further
-          considered as a ROLL security issue.</t>
+          considered as an RPL security issue.</t>
         </list></t>
 
         <t>It is recognized that, besides those security issues captured in
@@ -509,10 +510,10 @@ ________
         to impair or limit the network's central traffic flow function</t>
         </list></t>
 
-        <t>It should be emphasized here that for ROLL security the above
+        <t>It should be emphasized here that for RPL security the above
         requirements must be complemented by the proper security policies and
         enforcement mechanisms to ensure that security objectives are met by a
-        given ROLL implementation.</t>
+        given RPL implementation.</t>
       </section>
 
       <section anchor="roll-issues"
@@ -613,10 +614,10 @@ ________
         the routing protocol designed by the ROLL WG.</t>
       </section>
 
-      <section anchor="roll-objs" title="ROLL Security Objectives">
+      <section anchor="roll-objs" title="RPL Security Objectives">
         <t>This subsection applies the ISO 7498-2 model to routing assets and
         access points, taking into account the LLN issues, to develop a set of
-        ROLL security objectives.</t>
+        RPL security objectives.</t>
 
         <t>Since the fundamental function of a routing protocol is to build
         routes for forwarding packets, it is essential to ensure that:
@@ -666,7 +667,7 @@ ________
           undermining routing availability.</t>
         </list></t>
 
-        <t>There are other factors which are not part of a ROLL protocol but
+        <t>There are other factors which are not part of RPL but
         directly affecting its function. These factors include weaker barrier
         of accessing the data or security material stored on the nodes through
         physical means; therefore, the internal and external interfaces of a
@@ -677,7 +678,7 @@ ________
         <t>Each individual system's use and environment will dictate how the
         above objectives are applied, including the choices of security
         services as well as the strengths of the mechanisms that must be
-        implemented. The next two sections take a closer look at how the ROLL
+        implemented. The next two sections take a closer look at how the RPL
         security objectives may be compromised and how those potential
         compromises can be countered.</t>
       </section>
@@ -685,14 +686,14 @@ ________
 
     <section anchor="threat-sources" title="Threat Sources">
       <t><xref target="RFC4593" /> provides a detailed review of the threat
-      sources: outsiders and byzantine. ROLL has the same threat
+      sources: outsiders and byzantine. RPL has the same threat
       sources.</t>
     </section>
 
     <section anchor="roll-threats" title="Threats and Attacks">
       <t>This section outlines general categories of threats under the ISO
       7498-2 model and highlights the specific attacks in each of these
-      categories for ROLL. As defined in <xref target="RFC4949"/>, a threat is
+      categories for RPL. As defined in <xref target="RFC4949"/>, a threat is
       "a potential for violation of security, which exists when there is a
       circumstance, capability, action, or event that could breach security
       and cause harm."</t>
@@ -759,8 +760,8 @@ ________
         <t>The assessment in <xref target="iso"/> indicates that there are
         threat actions against the confidentiality of routing information at
         all points of access. The confidentiality threat consequences is
-        disclosure, see Section 3.1.2 of <xref target="RFC4593"/>. For ROLL
-        this is the disclosure of routing information either by evesdropping
+        disclosure, see Section 3.1.2 of <xref target="RFC4593"/>. For RPL
+        this is the disclosure of routing information either by eavesdropping
         on the communication exchanges between routing nodes or by direct
         access of node's information.</t>
 
@@ -808,150 +809,149 @@ ________
           </list>
           </t>
           <t>Both of these attack vectors are considered a device specific issue, and are
-          out of scope for the RPL protocol to defend against.  In some applications,
+          out of scope for RPL to defend against.  In some applications,
           physical device compromise may be a real threat and it may be necessary to
           provide for other devices to react quickly to exclude a compromised device.
           </t>
         </section>
       </section>
-    </section>
 
-    <section anchor="integ-threat" title="Threats and Attacks on Integrity">
-      <t>The assessment in <xref target="iso"/> indicates that information
-      and identity assets are exposed to integrity threats from all points
-      of access. In other words, the integrity threat space is defined by
-      the potential for exploitation introduced by access to assets
-      available through routing exchanges and the on-device storage.</t>
-
-      <section anchor="manipul" title="Routing Information Manipulation">
-        <t>
-          Manipulation of routing information that range from neighbor
-          states to derived routes will allow unauthorized sources to
-          influence the operation and convergence of the routing protocols and
-          ultimately impact the forwarding decisions made in the network.
-        </t>
-        <t>
-          Manipulation of topology and reachability information will allow
-          unauthorized sources to influence the nodes with which routing
-          information is exchanged and updated. The consequence of
-          manipulating routing exchanges can thus lead to sub-optimality and
-          fragmentation or partitioning of the network by restricting the
-          universe of routers with which associations can be established and
-          maintained.
-        </t>
-        <t>A sub-optimal network may use too much power and/or may congest some
-        routes leading to premature failure of a node, and a denial of service
-        on the entire network.
-        </t>
-        <t>In addition, being able to attract network traffic can
-        make a blackhole attack more damaging.
-        </t>
-
-        <t>The forms of attack that allow manipulation to compromise the
-        content and validity of routing information include<list
-        style="symbols">
-        <t>Falsification, including overclaiming and misclaiming;</t>
-
-        <t>Routing information replay;</t>
-
-        <t>Byzantine (internal) attacks that permit corruption of
-        routing information in the node even where the node continues to
-        be a validated entity within the network (see, for example,
-        <xref target="RFC4593"/> for further discussions on Byzantine
-        attacks);</t>
-
-        <t>Physical device compromise or remote device access
-        attacks.</t>
-        </list></t>
+      <section anchor="integ-threat" title="Threats and Attacks on Integrity">
+        <t>The assessment in <xref target="iso"/> indicates that information
+        and identity assets are exposed to integrity threats from all points
+        of access. In other words, the integrity threat space is defined by
+        the potential for exploitation introduced by access to assets
+        available through routing exchanges and the on-device storage.</t>
+        
+        <section anchor="manipul" title="Routing Information Manipulation">
+          <t>
+            Manipulation of routing information that range from neighbor
+            states to derived routes will allow unauthorized sources to
+            influence the operation and convergence of the routing protocols and
+            ultimately impact the forwarding decisions made in the network.
+          </t>
+          <t>
+            Manipulation of topology and reachability information will allow
+            unauthorized sources to influence the nodes with which routing
+            information is exchanged and updated. The consequence of
+            manipulating routing exchanges can thus lead to sub-optimality and
+            fragmentation or partitioning of the network by restricting the
+            universe of routers with which associations can be established and
+            maintained.
+          </t>
+          <t>A sub-optimal network may use too much power and/or may congest some
+          routes leading to premature failure of a node, and a denial of service
+          on the entire network.
+          </t>
+          <t>In addition, being able to attract network traffic can
+          make a blackhole attack more damaging.
+          </t>
+          
+          <t>The forms of attack that allow manipulation to compromise the
+          content and validity of routing information include<list
+          style="symbols">
+          <t>Falsification, including overclaiming and misclaiming;</t>
+          
+          <t>Routing information replay;</t>
+          
+          <t>Byzantine (internal) attacks that permit corruption of
+          routing information in the node even where the node continues to
+          be a validated entity within the network (see, for example,
+          <xref target="RFC4593"/> for further discussions on Byzantine
+          attacks);</t>
+          
+          <t>Physical device compromise or remote device access
+          attacks.</t>
+          </list></t>
+        </section>
+        
+        <section anchor="id-misappr" title="Node Identity Misappropriation">
+          <t>
+            Falsification or misappropriation of node identity between
+            routing participants opens the door for other attacks; it can also
+            cause incorrect routing relationships to form and/or topologies to
+            emerge. Routing attacks may also be mounted through less
+            sophisticated node identity misappropriation in which the valid
+            information broadcast or exchanged by a node is replayed without
+            modification. The receipt of seemingly valid information that is
+            however no longer current can result in routing disruption, and
+            instability (including failure to converge). Without measures to
+            authenticate the routing participants and to ensure the freshness
+            and validity of the received information the protocol operation can
+            be compromised. The forms of attack that misuse node identity
+            include<list style="symbols">
+            <t>Identity attacks, including Sybil attacks in which a
+            malicious node illegitimately assumes multiple identities;</t>
+            
+            <t>Routing information replay.</t>
+          </list></t>
+        </section>
       </section>
-
-      <section anchor="id-misappr" title="Node Identity Misappropriation">
-        <t>
-          Falsification or misappropriation of node identity between
-          routing participants opens the door for other attacks; it can also
-          cause incorrect routing relationships to form and/or topologies to
-          emerge. Routing attacks may also be mounted through less
-          sophisticated node identity misappropriation in which the valid
-          information broadcast or exchanged by a node is replayed without
-          modification. The receipt of seemingly valid information that is
-          however no longer current can result in routing disruption, and
-          instability (including failure to converge). Without measures to
-          authenticate the routing participants and to ensure the freshness
-          and validity of the received information the protocol operation can
-          be compromised. The forms of attack that misuse node identity
-          include<list style="symbols">
-          <t>Identity attacks, including Sybil attacks in which a
-          malicious node illegitimately assumes multiple identities;</t>
-
-          <t>Routing information replay.</t>
-        </list></t>
-      </section>
-    </section>
-
-    <section anchor="avail-threat"
-             title="Threats and Attacks on Availability">
-      <t>The assessment in <xref target="iso"/> indicates that the process
-      and resources assets are exposed to threats against availability;
-      attacks in this category may exploit directly or indirectly
-      information exchange or forwarding (see <xref target="RFC4732"/> for a
-      general discussion).</t>
-
-      <section anchor="route-exch-intrpt"
-               title="Routing Exchange Interference or Disruption">
-        <t>Interference is the threat action and disruption is threat
-        consequence that allows attackers to influence the operation and
-        convergence of the routing protocols by impeding the routing
-        information exchange.</t>
-
-        <t>The forms of attack that allow interference or disruption of
-        routing exchange include:<list style="symbols">
-        <t>Routing information replay;</t>
-
-        <t>ACK spoofing;</t>
-
-        <t><xref target="overload-attack">Overload attacks.</xref></t>
-        </list></t>
-
-        <t>In addition, attacks may also be directly conducted at the
-        physical layer in the form of jamming or interfering.</t>
-      </section>
-
-      <section anchor="disrupt-forward"
-               title="Network Traffic Forwarding Disruption">
-        <t>The disruption of the network traffic forwarding capability will
-        undermine the central function of network routers and the ability to
-        handle user traffic. This affects the availability of the network
-        because of the potential to impair the primary capability of the
-        network.</t>
-
-        <t>In addition to physical layer obstructions, the forms of attack
-        that allows disruption of network traffic forwarding include <xref
-        target="Karlof2003"/><list style="symbols">
-        <t>Selective forwarding attacks;
-
-        <figure align="center" anchor="Fig2"
-                title="Selective Forwarding">
-          <preamble/>
-
-          <artwork align="left">
-            <![CDATA[
+      
+      <section anchor="avail-threat"
+               title="Threats and Attacks on Availability">
+        <t>The assessment in <xref target="iso"/> indicates that the process
+        and resources assets are exposed to threats against availability;
+        attacks in this category may exploit directly or indirectly
+        information exchange or forwarding (see <xref target="RFC4732"/> for a
+        general discussion).</t>
+        
+        <section anchor="route-exch-intrpt"
+                 title="Routing Exchange Interference or Disruption">
+          <t>Interference is the threat action and disruption is threat
+          consequence that allows attackers to influence the operation and
+          convergence of the routing protocols by impeding the routing
+          information exchange.</t>
+          
+          <t>The forms of attack that allow interference or disruption of
+          routing exchange include:<list style="symbols">
+          <t>Routing information replay;</t>
+          
+          <t>ACK spoofing;</t>
+          
+          <t><xref target="overload-attack">Overload attacks.</xref></t>
+          </list></t>
+          
+          <t>In addition, attacks may also be directly conducted at the
+          physical layer in the form of jamming or interfering.</t>
+        </section>
+        
+        <section anchor="disrupt-forward"
+                 title="Network Traffic Forwarding Disruption">
+          <t>The disruption of the network traffic forwarding capability will
+          undermine the central function of network routers and the ability to
+          handle user traffic. This affects the availability of the network
+          because of the potential to impair the primary capability of the
+          network.</t>
+          
+          <t>In addition to physical layer obstructions, the forms of attack
+          that allows disruption of network traffic forwarding include <xref
+          target="Karlof2003"/><list style="symbols">
+          <t>Selective forwarding attacks;
+          
+          <figure align="center" anchor="Fig2"
+                  title="Selective Forwarding">
+            <preamble/>
+            
+            <artwork align="left">
+              <![CDATA[
 |Node_1|--(msg1|msg2|msg3)-->|Attacker|--(msg1|msg3)-->|Node_2|
 
 (a) Selective Forwarding
             ]]>            </artwork>
 
-            <postamble/>
-        </figure>
-        </t>
-
-        <t>Wormhole attacks;
-
-        <figure align="center" anchor="Fig3"
-                title="Wormhole Attacks">
-          <preamble/>
-
-          <artwork align="left">
-            <![CDATA[
+              <postamble/>
+          </figure>
+          </t>
+          
+          <t>Wormhole attacks;
+          
+          <figure align="center" anchor="Fig3"
+                  title="Wormhole Attacks">
+            <preamble/>
+            
+            <artwork align="left">
+              <![CDATA[
 |Node_1|-------------Unreachable---------x|Node_2|
    |                                         ^
    |               Private Link              |
@@ -959,20 +959,20 @@ ________
 
 
 (b) Wormhole
-            ]]>            </artwork>
-
-            <postamble/>
-        </figure>
-        </t>
-
-        <t>Sinkhole attacks.
-
-        <figure align="center" anchor="Fig4"
-                title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
-          <preamble/>
-
-          <artwork align="left">
-            <![CDATA[
+              ]]>            </artwork>
+              
+              <postamble/>
+          </figure>
+          </t>
+          
+          <t>Sinkhole attacks.
+          
+          <figure align="center" anchor="Fig4"
+                  title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
+            <preamble/>
+            
+            <artwork align="left">
+              <![CDATA[
 |Node_1|     |Node_4|
     |            |
     `--------.   |
@@ -991,79 +991,77 @@ To Node_5  \  |  |
 
 (c) Sinkhole
 
-            ]]>            </artwork>
+              ]]>            </artwork>
 
-            <postamble/>
-        </figure>
-        </t>
-        </list></t>
-        <t>
-          These attacks are generally done to both control plane and forwarding plane traffic.
-          A system that prevents control plane traffic (RPL messages) from being diverted in these ways will also
-          prevent actual data from being diverted.
-        </t>
-
-      </section>
-
-      <section anchor="disrpt-comm-resourse"
-               title="Communications Resource Disruption">
-        <t>Attacks mounted against the communication channel resource assets
-        needed by the routing protocol can be used as a means of disrupting
-        its operation. However, while various forms of Denial of Service
-        (DoS) attacks on the underlying transport subsystem will affect
-        routing protocol exchanges and operation (for example physical layer
-        RF jamming in a wireless network or link layer attacks), these
-        attacks cannot be countered by the routing protocol. As such, the
-        threats to the underlying transport network that supports routing is
-        considered beyond the scope of the current document. Nonetheless,
-        attacks on the subsystem will affect routing operation and so must
-        be directly addressed within the underlying subsystem and its
-        implemented protocol layers.</t>
-      </section>
-
-      <section anchor="exhaust-resource" title="Node Resource Exhaustion">
-        <t>A potential threat consequence can arise from attempts to
-        overload the node resource asset by initiating exchanges that can
-        lead to the exhaustion of processing, memory, or energy resources.
-        The establishment and maintenance of routing neighbors opens the
-        routing process to engagement and potential acceptance of multiple
-        neighboring peers. Association information must be stored for each
-        peer entity and for the wireless network operation provisions made
-        to periodically update and reassess the associations. An introduced
-        proliferation of apparent routing peers can therefore have a
-        negative impact on node resources.</t>
-
-        <t>Node resources may also be unduly consumed by attackers
-        attempting uncontrolled topology peering or routing exchanges,
-        routing replays, or the generating of other data traffic floods.
-        Beyond the disruption of communications channel resources, these
-        consequences may be able to exhaust node resources only where the
-        engagements are able to proceed with the peer routing entities.
-        Routing operation and network forwarding functions can thus be
-        adversely impacted by node resources exhaustion that stems from
-        attacks that include:<list style="symbols">
-        <t>Identity (including Sybil) attacks;</t>
-
-        <t>Routing information replay attacks;</t>
-
-        <t>HELLO flood attacks;</t>
-
-        <t><xref target="overload-attack">Overload attacks.</xref></t>
-        </list></t>
+              <postamble/>
+          </figure>
+          </t>
+          </list></t>
+          <t>
+            These attacks are generally done to both control plane and forwarding plane traffic.
+            A system that prevents control plane traffic (RPL messages) from being diverted in these ways will also
+            prevent actual data from being diverted.
+          </t>
+          
+        </section>
+        
+        <section anchor="disrpt-comm-resourse"
+                 title="Communications Resource Disruption">
+          <t>Attacks mounted against the communication channel resource assets
+          needed by the routing protocol can be used as a means of disrupting
+          its operation. However, while various forms of Denial of Service
+          (DoS) attacks on the underlying transport subsystem will affect
+          routing protocol exchanges and operation (for example physical layer
+          RF jamming in a wireless network or link layer attacks), these
+          attacks cannot be countered by the routing protocol. As such, the
+          threats to the underlying transport network that supports routing is
+          considered beyond the scope of the current document. Nonetheless,
+          attacks on the subsystem will affect routing operation and so must
+          be directly addressed within the underlying subsystem and its
+          implemented protocol layers.</t>
+        </section>
+        
+        <section anchor="exhaust-resource" title="Node Resource Exhaustion">
+          <t>A potential threat consequence can arise from attempts to
+          overload the node resource asset by initiating exchanges that can
+          lead to the exhaustion of processing, memory, or energy resources.
+          The establishment and maintenance of routing neighbors opens the
+          routing process to engagement and potential acceptance of multiple
+          neighboring peers. Association information must be stored for each
+          peer entity and for the wireless network operation provisions made
+          to periodically update and reassess the associations. An introduced
+          proliferation of apparent routing peers can therefore have a
+          negative impact on node resources.</t>
+          
+          <t>Node resources may also be unduly consumed by attackers
+          attempting uncontrolled topology peering or routing exchanges,
+          routing replays, or the generating of other data traffic floods.
+          Beyond the disruption of communications channel resources, these
+          consequences may be able to exhaust node resources only where the
+          engagements are able to proceed with the peer routing entities.
+          Routing operation and network forwarding functions can thus be
+          adversely impacted by node resources exhaustion that stems from
+          attacks that include:<list style="symbols">
+          <t>Identity (including Sybil) attacks;</t>
+          
+          <t>Routing information replay attacks;</t>
+          
+          <t>HELLO flood attacks;</t>
+          
+          <t><xref target="overload-attack">Overload attacks.</xref></t>
+          </list></t>
+        </section>
       </section>
     </section>
 
     <section anchor="counter-measur" title="Countermeasures">
       <t>By recognizing the characteristics of LLNs that may impact routing,
-      this analysis provides the basis for developing capabilities within ROLL
-      protocols to deter the identified attacks and mitigate the threats. The
+      this analysis provides the basis for understanding the capabilities
+      within RPL used to deter the identified attacks and mitigate the threats. The
       following subsections consider such countermeasures by grouping the
       attacks according to the classification of the ISO 7498-2 model so that
       associations with the necessary security services are more readily
-      visible. However, the considerations here are more systematic than
-      confined to means available only within routing; the next section will
-      then distill and make recommendations appropriate for a secured ROLL
-      protocol.</t>
+      visible.  </t>
 
       <section anchor="counter-confident-atk"
                title="Confidentiality Attack Countermeasures">
@@ -1082,6 +1080,12 @@ To Node_5  \  |  |
           routing/topology information or generated route information to be
           exposed to an unauthorized entity.</t>
 
+          <t>For instance, due to mis-configuration
+          or inappropriate enabling of a diagnostic interface, an entity might be
+          copying ("bridging") traffic from a secured ESSID/PAN to an
+          unsecured interface.</t> 
+
+          <!-- BULLSHIT? -->
           <t>A prerequisite to countering this attack is to ensure that the
           communicating nodes are authenticated prior to data encryption
           applied in the routing exchange. Authentication ensures that the
@@ -1093,8 +1097,8 @@ To Node_5  \  |  |
           peer-to-peer (i.e., between the routing initiating and responding
           nodes). This helps ensure that neither node is exchaning routing
           information with another peer without the knowledge of both
-          communicating peerscan. For a deliberate exposure attack to succeed,
-          the comprised node will need to more overt and take independent
+          communicating peers. For a deliberate exposure attack to succeed,
+          the comprised node will need to be more overt and take independent
           actions in order to disclose the routing information to 3rd
           party.</t>
 
@@ -1134,8 +1138,7 @@ To Node_5  \  |  |
           target="Huang2003"/>).</t>
 
           <t>Based on the current state of the art, a minimum 128-bit key
-          length should be applied where robust confidentiality is demanded
-          for routing protection. This session key shall be applied in
+          length SHOULD be applied.  This session key shall be applied in
           conjunction with an encryption algorithm that has been publicly
           vetted and where applicable approved for the level of security
           desired. Algorithms such as the Advanced Encryption Standard (AES)
@@ -1143,15 +1146,12 @@ To Node_5  \  |  |
           Kasumi-Misty <xref target="Kasumi3gpp"/>, adopted by the 3GPP 3rd
           generation wireless mobile consortium, are examples of symmetric-key
           algorithms capable of ensuring robust confidentiality for routing
-          exchanges. The key length, algorithm and mode of operation will be
-          selected as part of the overall security trade-off that also
-          achieves a balance with the level of confidentiality afforded by the
-          physical device in protecting the routing assets.</t>
+          exchanges. </t>
 
-          <t>As with any encryption algorithm, the use of ciphering
-          synchronization parameters and limitations to the usage duration of
-          established keys should be part of the security specification to
-          reduce the potential for brute force analysis.</t>
+          <t>Section 10.9 of <xref target="RFC6550" /> specifies AES-128 in 
+          CCM mode with a 32-bit MAC.</t>
+          <t>Section 5.6 Zigbee IP <xref target="ZigBeeIP" /> specifies 
+          use of CCM, with PANA and EAP-TLS for key management.</t>
         </section>
 
         <section title="Countering Traffic Analysis">
@@ -1159,19 +1159,16 @@ To Node_5  \  |  |
           confidentiality and gaining access to routing information by
           allowing an attacker to indirectly map the connectivity or flow
           patterns (including link-load) of the network from which other
-          attacks can be mounted. The traffic analysis attack on an LLN,
+          attacks can be mounted.   The traffic analysis attack on an LLN,
           especially one founded on shared medium, is passive and relies on
-          the ability to read the immutable source/destination layer-3 routing
-          information that must remain unencrypted to permit network routing.
+          the ability to read the immutable source/destination layer-2 and/or layer-3
+          routing information that must remain unencrypted to permit network routing.
           </t>
 
           <t>One way in which passive traffic analysis attacks can be muted is
           through the support of load balancing that allows traffic to a given
-          destination to be sent along diverse routing paths. Where the
-          routing protocol supports load balancing along multiple links at
-          each node, the number of routing permutations in a wide area network
-          surges thus increasing the cost of traffic analysis.
-          ROLL does not generally support multi-path routing within a
+          destination to be sent along diverse routing paths. 
+          RPL does not generally support multi-path routing within a
           single DODAG.  Multiple DODAGs are supported in the protocol,
           but few deployments will have space for more than half a dozen,
           and there are at present no clear ways to multiplex traffic
@@ -1182,7 +1179,7 @@ To Node_5  \  |  |
           passive traffic analysis could be for nodes to maintain constant
           amount of traffic to different destinations through the generation
           of arbitrary traffic flows; the drawback of course would be the
-          consequent overhead. </t>
+          consequent overhead and energy expenditure. </t>
 
           <t>The only means of fully countering a traffic analysis attack is
           through the use of tunneling (encapsulation) where encryption is
@@ -1204,8 +1201,8 @@ To Node_5  \  |  |
 
           <t>To ensure confidentiality of the node routing information against
           attacks through remote access, any local or remote device requesting
-          routing information must be authenticated to ensure authorized
-          access. Since remote access is not invoked as part of a routing
+          routing information must be authenticated, and must be authorized for that
+          access.  Since remote access is not invoked as part of a routing
           protocol security of routing information stored on the node against
           remote access will not be addressable as part of the routing
           protocol.</t>
@@ -1254,8 +1251,8 @@ To Node_5  \  |  |
           <t>Both overclaiming and misclaiming aim to introduce false routes
           or topology that would not be generated by the network otherwise,
           while there are not necessarily unauthorized modifications to the
-          routing messages or information. The requisite for a counter is the
-          capability to determine unreasonable routes or topology.</t>
+          routing messages or information.  In order to counter overclaiming, the
+          capability to determine unreasonable routes or topology is required.</t>
 
           <t>The counter to overclaiming and misclaiming may employ:
           <list style="symbols">
@@ -1263,6 +1260,10 @@ To Node_5  \  |  |
 
             <t>designs which restrict realizable network topologies.</t>
           </list>
+          </t>
+          <t>
+            RPL includes no specific mechanisms in the protocol to counter overlaims.
+            An implementation could have specific heuristics implemented locally.
           </t>
         </section>
 
@@ -1279,6 +1280,11 @@ To Node_5  \  |  |
           extension to new areas, e.g., where geographic distribution is
           explicitly or implicitly an asset to an application running on the
           LLN, for example, the LBR in a P2MP or MP2P LLN.</t>
+          <t>
+            RPL includes specific public key based authentication at layer-3 that
+            provide for authorization.   Many deployments use layer-2 security that
+            includes admission controls at layer-2 using mechanisms such as PANA.
+          </t>
         </section>
 
         <section anchor="counter-replay"
@@ -1329,7 +1335,8 @@ To Node_5  \  |  |
           routing information validity; see Chapter 2 of <xref
           target="Perlman1988"/> for a discussion on flooding attacks.</t>
 
-          <t>For distance vector protocols where information is aggregated at
+          <t>For distance vector protocols, such as RPL, where information 
+          is aggregated at
           each routing node it is not possible for nodes to directly detect
           Byzantine information manipulation attacks from the routing
           information exchange. In such cases, the routing protocol must
@@ -1341,13 +1348,10 @@ To Node_5  \  |  |
           aggregate distance vector information can only be validated by
           initiating confirmation exchanges directly between nodes that are
           not routing neighbors.</t>
-
-          <t>Alternatively, an entity external to the routing protocol would
-          be required to collect and audit routing information exchanges to
-          detect the Byzantine attack. In the context of the current security
-          analysis, any protection against Byzantine routing information
-          attacks will need to be directly included within the mechanisms of
-          the ROLL routing protocol.
+          <t>
+            RPL does not provide any direct mechanisms like S-RIP. 
+            It does listen to multiple parents, and may switch parents if it
+            begins to suspect that it is being lied to.
           </t>
         </section>
       </section>
@@ -1598,14 +1602,14 @@ To Node_5  \  |  |
       </section>
     </section>
 
-    <section anchor="roll-sec-features" title="ROLL Security Features">
+    <section anchor="roll-sec-features" title="RPL Security Features">
       <t>The assessments and analysis in <xref target="roll-threats"/>
       examined all areas of threats and attacks that could impact routing, and
       the countermeasures presented in <xref target="counter-measur"/> were
       reached without confining the consideration to means only available to
       routing. This section puts the results into perspective and provides a
       framework for addressing the derived set of security objectives that
-      must be met by the routing protocol(s) specified by the ROLL Working
+      must be met by the routing protocol(s) specified by the RPL Working
       Group. It bears emphasizing that the target here is a generic, universal
       form of the protocol(s) specified and the normative keywords are mainly
       to convey the relative level of importance or urgency of the features
@@ -1628,7 +1632,7 @@ To Node_5  \  |  |
       at other system communications layers.</t>
 
       <t>The first part of this section, <xref target="conff"/> to <xref
-      target="avaf"/>, is a prescription of ROLL security features of measures
+      target="avaf"/>, is a prescription of RPL security features of measures
       that can be addressed as part of the routing protocol itself. As routing
       is one component of an LLN system, the actual strength of the security
       services afforded to it should be made to conform to each system's
@@ -1656,7 +1660,7 @@ To Node_5  \  |  |
         target="confident-threat"/>) but does not of itself directly undermine
         the operation of the routing function. However, to protect against,
         and reduce consequences from other more direct attacks, routing
-        information should be protected. Thus, a secured ROLL protocol:
+        information should be protected. Thus, a secured RPL protocol:
         <list style="symbols">
           <t>MUST implement payload encryption;</t>
 
@@ -1734,7 +1738,7 @@ To Node_5  \  |  |
 
       <section anchor="keymanage" title="Key Management">
         <t>The functioning of the routing security services requires keys and
-        credentials. Therefore, even though not directly a ROLL security
+        credentials. Therefore, even though not directly a RPL security
         requirement, an LLN MUST have a process for initial key and credential
         configuration, as well as secure storage within the associated devices.
         Anti-tampering SHOULD be a consideration in physical design.
@@ -1763,19 +1767,19 @@ To Node_5  \  |  |
         target="RFC5548"/>, <xref target="RFC5673"/>, <xref
         target="RFC5826"/>, and <xref target="RFC5867"/>. The following two
         subsections first consider from an architectural perspective how the
-        security design of a ROLL protocol may be made to adapt to the four
+        security design of a RPL protocol may be made to adapt to the four
         application domains, and then examine mechanisms and protocol
         operations issues.</t>
 
         <section anchor="roll-sec-arch" title="Security Architecture">
-          <t>The first challenge for a ROLL protocol security design is to
+          <t>The first challenge for a RPL protocol security design is to
           have an architecture that can adequately address a set of very
           diverse needs. It is mainly a consequence of the fact that there are
           both common and non-overlapping requirements from the four
           application domains, while, conceivably, each individual application
           will present yet its own unique constraints.</t>
 
-          <t>For a ROLL protocol, the security requirements defined in <xref
+          <t>For a RPL protocol, the security requirements defined in <xref
           target="conff"/> to <xref target="keymanage"/> can be addressed at
           two levels: 1) through measures implemented directly within the
           routing protocol itself and initiated and controlled by the routing
@@ -1813,7 +1817,7 @@ To Node_5  \  |  |
           discussion in <xref target="counter-byzantine"/>).</t>
 
           <t>On the other hand, it is more desirable from an LLN device
-          perspective that the ROLL protocol is integrated into the framework
+          perspective that the RPL protocol is integrated into the framework
           of an overall system architecture where the security facility may be
           shared by different applications and/or across layers for
           efficiency, and where security policy and configurations can be
@@ -1844,7 +1848,7 @@ To Node_5  \  |  |
           considered appropriate for protecting the network within the given
           environment.</t>
 
-          <t>A ROLL protocol MUST be made flexible by a design that offers the
+          <t>A RPL protocol MUST be made flexible by a design that offers the
           configuration facility so that the user (network administrator) can
           choose the security settings that match the application's needs.
           Furthermore, in the case of LLNs, that flexibility SHOULD extend to
@@ -1854,13 +1858,13 @@ To Node_5  \  |  |
 
           <t>Since Byzantine attackers that can affect the validity of the
           information content exchanged between routing entities can only be
-          directly countered at the routing protocol level, the ROLL protocol
+          directly countered at the routing protocol level, the RPL protocol
           MAY support mechanisms for verifying routing data validity that
           extend beyond the chain of trust created through device
           authentication. This protocol-specific security mechanism SHOULD be
           made optional within the protocol allowing it to be invoked
           according to the given routing protocol and application domain and
-          as selected by the system user. All other ROLL security mechanisms
+          as selected by the system user. All other RPL security mechanisms
           needed to meet the above identified routing security requirements
           can be flexibly implemented within the transport network (at the IP
           network layer or higher or lower protocol layers(s)) according to
@@ -1870,7 +1874,7 @@ To Node_5  \  |  |
           <t>Based on device capabilities and the spectrum of operating
           environments it would be difficult for a single fixed security
           design to be applied to address the diversified needs of the urban,
-          industrial, home, and building ROLL application domains, and
+          industrial, home, and building RPL application domains, and
           foreseeable others, without forcing a very low common denominator
           set of requirements. On the other hand, providing four individual
           domain designs that attempt to a priori match each individual domain
@@ -1911,11 +1915,11 @@ To Node_5  \  |  |
           recent update of security material. Similarly, the issues of minimal
           manual configuration, prolonged rollout and delayed addition of
           nodes, and network topology changes also complicate security
-          management. In many cases the ROLL protocol may need to bootstrap
+          management. In many cases the RPL protocol may need to bootstrap
           the authentication process and allow for a flexible expiration
           scheme of authentication credentials. This exemplifies the need for
           the coordination and interoperation between the requirements of the
-          ROLL routing protocol and that of the system security elements.</t>
+          RPL routing protocol and that of the system security elements.</t>
 
           <t>Similarly, the vulnerability brought forth by some
           special-function nodes, e.g., LBRs requires the assurance,
@@ -1923,7 +1927,7 @@ To Node_5  \  |  |
           resources, or that the neighbor discovery process operates without
           undermining routing availability.</t>
 
-          <t>There are other factors which are not part of a ROLL routing
+          <t>There are other factors which are not part of a RPL routing
           protocol but which can still affect its operation. These include
           elements such as weaker barrier to accessing the data or security
           material stored on the nodes through physical means; therefore, the
@@ -1933,7 +1937,7 @@ To Node_5  \  |  |
           generation processes.</t>
 
           <t><xref target="Fig5"/> provides an overview of the larger context
-          of system security and the relationship between ROLL requirements
+          of system security and the relationship between RPL requirements
           and measures and those that relate to the LLN system.</t>
 
           <figure align="center" anchor="Fig5"
@@ -1943,7 +1947,7 @@ To Node_5  \  |  |
             <artwork align="left">
               <![CDATA[
                         Security Services for
-                          ROLL-Addressable
+                          RPL-Addressable
                         Security Requirements
                              |        |
                          +---+        +---+
@@ -1955,7 +1959,7 @@ To Node_5  \  |  |
          |         | Entity  |        | Entity  |         |
          |         \_________/        \_________/         |
          |               |                |               |
-         |ROLL-Specified |                | ROLL-Specified|
+         |RPL-Specified |                | RPL-Specified|
         ---Interface     |                |     Interface---
          |     ......................................     |
          |     :         |                |         :     |
@@ -1991,8 +1995,8 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
 
     <section anchor="Security" title="Security Considerations">
       <t>The analysis presented in this document provides security analysis
-      and design guidelines with a scope limited to ROLL. Security services
-      are identified as requirements for securing ROLL. The specific
+      and design guidelines with a scope limited to RPL. Security services
+      are identified as requirements for securing RPL. The specific
       mechanisms to be used to deal with each threat is specified in
       link-layer and deployment specific applicability statements.</t>
     </section>
@@ -2002,12 +2006,12 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
     <section anchor="Acknowledgements" title="Acknowledgments">
       <t>The authors would like to acknowledge the review and comments from
       Rene Struik and JP Vasseur. The authors would also like to acknowledge
-      the guidance and input provided by the ROLL Chairs, David Culler, and JP
+      the guidance and input provided by the RPL Chairs, David Culler, and JP
       Vasseur, and the Area Director Adrian Farrel.</t>
 
       <t>This document started out as a combined threat and solutions
       document.  As a result of security review, the document was split up by
-      ROLL co-Chair Michael Richardson and security Area Director Sean Turner
+      RPL co-Chair Michael Richardson and security Area Director Sean Turner
       as it went through the IETF publication process.  The solutions to the
       threads are application and layer-2 specific, and have therefore
       been moved to the relevant applicability statements.</t>
