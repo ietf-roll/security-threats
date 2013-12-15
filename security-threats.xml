@@ -39,7 +39,7 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY I-D.ietf-rpsec-ospf-vuln SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-rpsec-ospf-vuln-02.xml">
 <!ENTITY I-D.ietf-roll-terminology SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-roll-terminology-04.xml">
 <!ENTITY ISO.7498-2.1988 SYSTEM "http://xml.resource.org/public/rfc/bibxml-misc/reference.ISO.7498-2.1988.xml">
-<!ENTITY ZigBeeIP SYSTEM "reference.ZigBeeIP.xml">
+<!ENTITY ZigBeeIP SYSTEM "http://www.sandelman.ca/rfc/xml/reference.ZigBeeIP.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- used by XSLT processors -->
@@ -279,7 +279,7 @@ An alternate method (rfc include) is described in the references. -->
 
       <t>All of this document concerns itself with securing the control plane traffic.
       As such it does not address authorization or authentication of application traffic,
-      nor does it deal with multicast traffic controls.  Mechanisms used to secure 
+      nor does it deal with multicast traffic controls.  Mechanisms used to secure
       RPL traffic SHOULD be leveraged to secure other protocols.
       </t>
     </section>
@@ -822,7 +822,7 @@ ________
         of access. In other words, the integrity threat space is defined by
         the potential for exploitation introduced by access to assets
         available through routing exchanges and the on-device storage.</t>
-        
+
         <section anchor="manipul" title="Routing Information Manipulation">
           <t>
             Manipulation of routing information that range from neighbor
@@ -846,25 +846,25 @@ ________
           <t>In addition, being able to attract network traffic can
           make a blackhole attack more damaging.
           </t>
-          
+
           <t>The forms of attack that allow manipulation to compromise the
           content and validity of routing information include<list
           style="symbols">
           <t>Falsification, including overclaiming and misclaiming;</t>
-          
+
           <t>Routing information replay;</t>
-          
+
           <t>Byzantine (internal) attacks that permit corruption of
           routing information in the node even where the node continues to
           be a validated entity within the network (see, for example,
           <xref target="RFC4593"/> for further discussions on Byzantine
           attacks);</t>
-          
+
           <t>Physical device compromise or remote device access
           attacks.</t>
           </list></t>
         </section>
-        
+
         <section anchor="id-misappr" title="Node Identity Misappropriation">
           <t>
             Falsification or misappropriation of node identity between
@@ -882,12 +882,12 @@ ________
             include<list style="symbols">
             <t>Identity attacks, including Sybil attacks in which a
             malicious node illegitimately assumes multiple identities;</t>
-            
+
             <t>Routing information replay.</t>
           </list></t>
         </section>
       </section>
-      
+
       <section anchor="avail-threat"
                title="Threats and Attacks on Availability">
         <t>The assessment in <xref target="iso"/> indicates that the process
@@ -895,27 +895,27 @@ ________
         attacks in this category may exploit directly or indirectly
         information exchange or forwarding (see <xref target="RFC4732"/> for a
         general discussion).</t>
-        
+
         <section anchor="route-exch-intrpt"
                  title="Routing Exchange Interference or Disruption">
           <t>Interference is the threat action and disruption is threat
           consequence that allows attackers to influence the operation and
           convergence of the routing protocols by impeding the routing
           information exchange.</t>
-          
+
           <t>The forms of attack that allow interference or disruption of
           routing exchange include:<list style="symbols">
           <t>Routing information replay;</t>
-          
+
           <t>ACK spoofing;</t>
-          
+
           <t><xref target="overload-attack">Overload attacks.</xref></t>
           </list></t>
-          
+
           <t>In addition, attacks may also be directly conducted at the
           physical layer in the form of jamming or interfering.</t>
         </section>
-        
+
         <section anchor="disrupt-forward"
                  title="Network Traffic Forwarding Disruption">
           <t>The disruption of the network traffic forwarding capability will
@@ -923,16 +923,16 @@ ________
           handle user traffic. This affects the availability of the network
           because of the potential to impair the primary capability of the
           network.</t>
-          
+
           <t>In addition to physical layer obstructions, the forms of attack
           that allows disruption of network traffic forwarding include <xref
           target="Karlof2003"/><list style="symbols">
           <t>Selective forwarding attacks;
-          
+
           <figure align="center" anchor="Fig2"
                   title="Selective Forwarding">
             <preamble/>
-            
+
             <artwork align="left">
               <![CDATA[
 |Node_1|--(msg1|msg2|msg3)-->|Attacker|--(msg1|msg3)-->|Node_2|
@@ -943,13 +943,13 @@ ________
               <postamble/>
           </figure>
           </t>
-          
+
           <t>Wormhole attacks;
-          
+
           <figure align="center" anchor="Fig3"
                   title="Wormhole Attacks">
             <preamble/>
-            
+
             <artwork align="left">
               <![CDATA[
 |Node_1|-------------Unreachable---------x|Node_2|
@@ -960,17 +960,17 @@ ________
 
 (b) Wormhole
               ]]>            </artwork>
-              
+
               <postamble/>
           </figure>
           </t>
-          
+
           <t>Sinkhole attacks.
-          
+
           <figure align="center" anchor="Fig4"
                   title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
             <preamble/>
-            
+
             <artwork align="left">
               <![CDATA[
 |Node_1|     |Node_4|
@@ -1002,9 +1002,9 @@ To Node_5  \  |  |
             A system that prevents control plane traffic (RPL messages) from being diverted in these ways will also
             prevent actual data from being diverted.
           </t>
-          
+
         </section>
-        
+
         <section anchor="disrpt-comm-resourse"
                  title="Communications Resource Disruption">
           <t>Attacks mounted against the communication channel resource assets
@@ -1020,7 +1020,7 @@ To Node_5  \  |  |
           be directly addressed within the underlying subsystem and its
           implemented protocol layers.</t>
         </section>
-        
+
         <section anchor="exhaust-resource" title="Node Resource Exhaustion">
           <t>A potential threat consequence can arise from attempts to
           overload the node resource asset by initiating exchanges that can
@@ -1032,7 +1032,7 @@ To Node_5  \  |  |
           to periodically update and reassess the associations. An introduced
           proliferation of apparent routing peers can therefore have a
           negative impact on node resources.</t>
-          
+
           <t>Node resources may also be unduly consumed by attackers
           attempting uncontrolled topology peering or routing exchanges,
           routing replays, or the generating of other data traffic floods.
@@ -1043,11 +1043,11 @@ To Node_5  \  |  |
           adversely impacted by node resources exhaustion that stems from
           attacks that include:<list style="symbols">
           <t>Identity (including Sybil) attacks;</t>
-          
+
           <t>Routing information replay attacks;</t>
-          
+
           <t>HELLO flood attacks;</t>
-          
+
           <t><xref target="overload-attack">Overload attacks.</xref></t>
           </list></t>
         </section>
@@ -1083,7 +1083,7 @@ To Node_5  \  |  |
           <t>For instance, due to mis-configuration
           or inappropriate enabling of a diagnostic interface, an entity might be
           copying ("bridging") traffic from a secured ESSID/PAN to an
-          unsecured interface.</t> 
+          unsecured interface.</t>
 
           <!-- BULLSHIT? -->
           <t>A prerequisite to countering this attack is to ensure that the
@@ -1148,9 +1148,9 @@ To Node_5  \  |  |
           algorithms capable of ensuring robust confidentiality for routing
           exchanges. </t>
 
-          <t>Section 10.9 of <xref target="RFC6550" /> specifies AES-128 in 
+          <t>Section 10.9 of <xref target="RFC6550" /> specifies AES-128 in
           CCM mode with a 32-bit MAC.</t>
-          <t>Section 5.6 Zigbee IP <xref target="ZigBeeIP" /> specifies 
+          <t>Section 5.6 Zigbee IP <xref target="ZigBeeIP" /> specifies
           use of CCM, with PANA and EAP-TLS for key management.</t>
         </section>
 
@@ -1167,7 +1167,7 @@ To Node_5  \  |  |
 
           <t>One way in which passive traffic analysis attacks can be muted is
           through the support of load balancing that allows traffic to a given
-          destination to be sent along diverse routing paths. 
+          destination to be sent along diverse routing paths.
           RPL does not generally support multi-path routing within a
           single DODAG.  Multiple DODAGs are supported in the protocol,
           but few deployments will have space for more than half a dozen,
@@ -1293,14 +1293,14 @@ To Node_5  \  |  |
           routes.  This is often counted with some kind of counter to ensure the freshness
           of the message.  Replay of a current, literal RPL message are in general idempotent
           to the topology.   An older (lower DODAGVersionNumber) message, if replayed
-          would be rejected as being stale.  The trickle algorithm further dampens the 
+          would be rejected as being stale.  The trickle algorithm further dampens the
           affect of any such replay, as if the message was current, then it would contain
           the same information as before, and it would cause no network changes.
           </t>
           <t>Replays may well occur in some radio technologies (not very likely, 802.15.4) as
           a result of echos or reflections, and so some replays must be assumed to occur naturally.
           </t>
-          <t>Note that for there to be no affect at all, the replay must be done with the 
+          <t>Note that for there to be no affect at all, the replay must be done with the
           same apparent power for all nodes receiving the replay.  A change in apparent power
           might change the metrics through changes to the ETX and therefore might affect the routing even
           though the contents of the packet were never changed.  Any replay which appears to
@@ -1335,7 +1335,7 @@ To Node_5  \  |  |
           routing information validity; see Chapter 2 of <xref
           target="Perlman1988"/> for a discussion on flooding attacks.</t>
 
-          <t>For distance vector protocols, such as RPL, where information 
+          <t>For distance vector protocols, such as RPL, where information
           is aggregated at
           each routing node it is not possible for nodes to directly detect
           Byzantine information manipulation attacks from the routing
@@ -1349,7 +1349,7 @@ To Node_5  \  |  |
           initiating confirmation exchanges directly between nodes that are
           not routing neighbors.</t>
           <t>
-            RPL does not provide any direct mechanisms like S-RIP. 
+            RPL does not provide any direct mechanisms like S-RIP.
             It does listen to multiple parents, and may switch parents if it
             begins to suspect that it is being lied to.
           </t>
@@ -1407,7 +1407,7 @@ To Node_5  \  |  |
           <t>
           These attacks are also all easily defended against using either layer-2
           or layer-3 authentication.  Such an attack could only be made against
-          a completely open network (such as might be used for provisioning new nodes), 
+          a completely open network (such as might be used for provisioning new nodes),
           or by a compromised node.
           </t>
         </section>
@@ -1563,8 +1563,8 @@ To Node_5  \  |  |
         </section>
 
         <section title="Countering Wormhole Attacks">
-          <t>In wormhole attacks at least two malicious nodes 
-          claim to have a short path between themselves <xref target="Karlof2003"/>. 
+          <t>In wormhole attacks at least two malicious nodes
+          claim to have a short path between themselves <xref target="Karlof2003"/>.
           This changes the availability
           of certain routing paths and hence constitutes a serious security
           breach.</t>
@@ -1585,15 +1585,15 @@ To Node_5  \  |  |
 
           <t>A pure Wormhole attack is nearly impossible to detect.  A wormhole
           which is used in order to subsequently mount another kind of attack
-          would be defeated by defeating the other attack.  A perfect wormhole, 
+          would be defeated by defeating the other attack.  A perfect wormhole,
           in which there is nothing adverse that occurs to the traffic, would
           be difficult to call an attack.  The worst thing that a benign wormhole
           can do in such a situation is to cease to operate (become unstable),
-          causing the network to have to recalculate routes.  
+          causing the network to have to recalculate routes.
           </t>
           <t>A highly unstable wormhole is no different than a radio opaque (i.e. metal)
           door that opens and closes a lot.  RPL includes
-          hystersis in its objective functions 
+          hystersis in its objective functions
           <xref target="RFC6719" />
           in an attempt to deal with frequent
           changes to the ETX between nodes.
@@ -2050,6 +2050,8 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
       &I-D.ietf-roll-terminology;
 
       &RFC6719;
+
+      &ZigBeeIP;
 
     </references>
 
