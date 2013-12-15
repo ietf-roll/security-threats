@@ -53,6 +53,7 @@ An alternate method (rfc include) is described in the references. -->
 <!-- the number of levels of subsections in ToC. default: 3 -->
 <!-- control references -->
 <?rfc symrefs="yes"?>
+<?rfc autobreaks="yes"?>
 <!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
 <?rfc sortrefs="yes" ?>
 <!-- sort the reference entries alphabetically -->
@@ -287,7 +288,7 @@ An alternate method (rfc include) is described in the references. -->
       target="RFC6550"/>, in <xref target="RFC4949"/>, and in
       <xref target="I-D.ietf-roll-terminology" />.
       </t>
-      <t>The terms control plane and forwarding plane are used 
+      <t>The terms control plane and forwarding plane are used
       consistently with section 1 of <xref target="RFC6192"/>.
       </t>
     </section>
@@ -572,7 +573,7 @@ ________
           occupy positions of lower rank and provision them with stronger
           security mechanisms, in the absense of a strong authorization model,
           any node could advertise an incorrect preferred route.</t>
-          
+
 
           <t hangText="Unattended locations and limited physical security"><vspace/>Many
           applications have the nodes deployed in unattended or remote
