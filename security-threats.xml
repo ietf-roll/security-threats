@@ -1986,12 +1986,12 @@ value="National Institute of Standards and Technology" />
       <reference anchor="AceCharterProposal"
                  target="http://www.ietf.org/mail-archive/web/ace/current/msg00007.html">
         <front>
+          <title>Authentication and Authorization for Constrained Environment
+          Charter (work-in-progress)</title>
+
           <author initials="L." role="editor" surname="Kepeng">
             <organization/>
           </author>
-
-          <title>Authentication and Authorization for Constrained Environment
-          Charter (work-in-progress)</title>
 
           <date month="December" year="2013"/>
         </front>
