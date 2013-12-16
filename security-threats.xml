@@ -10,6 +10,7 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC2453 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2453.xml">
 <!ENTITY RFC2080 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2080.xml">
 <!ENTITY RFC3029 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3029.xml">
+<!ENTITY RFC3610 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3610.xml">
 <!ENTITY RFC3830 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3830.xml">
 <!ENTITY RFC4046 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4046.xml">
 <!ENTITY RFC5197 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5197.xml">
@@ -28,12 +29,14 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC5751 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5751.xml">
 <!ENTITY RFC5826 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5826.xml">
 <!ENTITY RFC5867 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5867.xml">
+<!ENTITY RFC6192 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6192.xml">
 <!ENTITY RFC6550 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6550.xml">
 <!ENTITY RFC6553 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6553.xml">
 <!ENTITY RFC6554 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6554.xml">
 <!ENTITY I-D.alexander-roll-mikey-lln-key-mgmt SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-alexander-roll-mikey-lln-key-mgmt-04.xml">
-<!ENTITY RFC6192 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6192.xml">
+<!ENTITY RFC6574 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6574.xml">
 <!ENTITY RFC6719 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6719.xml">
+<!ENTITY RFC6824 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6824.xml">
 <!ENTITY I-D.suhopark-hello-wsn SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-suhopark-hello-wsn-00.xml">
 <!ENTITY I-D.kelsey-intarea-mesh-link-establishment SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.kelsey-intarea-mesh-link-establishment.xml">
 <!ENTITY I-D.ietf-rpsec-ospf-vuln SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-rpsec-ospf-vuln-02.xml">
@@ -74,7 +77,8 @@ An alternate method (rfc include) is described in the references. -->
     <!-- The abbreviated title is used in the page header - it is only necessary if the full title is longer than 39 characters -->
 
     <title abbrev="Security Threat Analysis for ROLL RPL">A Security Threat
-    Analysis for Routing Protocol for Low-power and lossy networks (RPL)</title>
+    Analysis for Routing Protocol for Low-power and lossy networks
+    (RPL)</title>
 
     <!-- add 'role="editor"' below for the editors if appropriate -->
 
@@ -197,15 +201,20 @@ An alternate method (rfc include) is described in the references. -->
       </address>
     </author>
 
-    <author fullname="Michael Richardson (ed)" initials="M." surname="Richardson">
+    <author fullname="Michael Richardson (ed)" initials="M."
+            surname="Richardson">
       <organization>Sandelman Software Works</organization>
 
       <address>
         <postal>
           <street>470 Dawson Avenue</street>
+
           <city>Ottawa</city>
+
           <region>ON</region>
+
           <code>K1Z5V7</code>
+
           <country>Canada</country>
         </postal>
 
@@ -230,13 +239,13 @@ An alternate method (rfc include) is described in the references. -->
     <!-- Keywords will be incorporated into HTML output files in a meta tag but they have no effect on text or nroff output. If you submit your draft to the RFC Editor, the keywords will be used for the search engine. -->
 
     <abstract>
-      <t>This document presents a security threat
-      analysis for the Routing Protocol for Low-power and lossy networks (RPL, ROLL).
-      The development builds upon previous work on routing security and adapts the
-      assessments to the issues and constraints specific to low-power and
-      lossy networks. A systematic approach is used in defining and evaluating
-      the security threats. Applicable countermeasures are application
-      specific and are addressed in relevant applicability statements. </t>
+      <t>This document presents a security threat analysis for the Routing
+      Protocol for Low-power and lossy networks (RPL, ROLL). The development
+      builds upon previous work on routing security and adapts the assessments
+      to the issues and constraints specific to low-power and lossy networks.
+      A systematic approach is used in defining and evaluating the security
+      threats. Applicable countermeasures are application specific and are
+      addressed in relevant applicability statements.</t>
     </abstract>
 
     <note title="Requirements Language">
@@ -265,33 +274,32 @@ An alternate method (rfc include) is described in the references. -->
       connectivity among these deployed devices becomes one of these key
       challenges.</t>
 
-      <t>This document presents a threat analysis for securing the
-      Routing Protocol for LLNs (RPL). The process requires two steps.
-      First, the analysis will be used to identify pertinent security issues.
-      The second step is to identify necessary countermeasures to secure RPL.
-      As there are multiple ways to solve the problem and
-      the specific tradeoffs are deployment specific, the specific
-      countermeasure to be used is detailed in applicatbility statements.</t>
+      <t>This document presents a threat analysis for securing the Routing
+      Protocol for LLNs (RPL). The process requires two steps. First, the
+      analysis will be used to identify pertinent security issues. The second
+      step is to identify necessary countermeasures to secure RPL. As there
+      are multiple ways to solve the problem and the specific tradeoffs are
+      deployment specific, the specific countermeasure to be used is detailed
+      in applicatbility statements.</t>
 
       <t>This document uses [IS07498-2] model, which includes Authentication,
       Access Control, Data Confidentiality, Data Integrity, and
       Non-Repudiation but to which Availability is added.</t>
 
-      <t>All of this document concerns itself with securing the control plane traffic.
-      As such it does not address authorization or authentication of application traffic,
-      nor does it deal with multicast traffic controls.  Mechanisms used to secure
-      RPL traffic SHOULD be leveraged to secure other protocols.
-      </t>
+      <t>All of this document concerns itself with securing the control plane
+      traffic. As such it does not address authorization or authentication of
+      application traffic, nor does it deal with multicast traffic controls.
+      Mechanisms used to secure RPL traffic SHOULD be leveraged to secure
+      other protocols.</t>
     </section>
 
     <section title="Terminology">
       <t>This document adopts the terminology defined in <xref
-      target="RFC6550"/>, in <xref target="RFC4949"/>, and in
-      <xref target="I-D.ietf-roll-terminology" />.
-      </t>
-      <t>The terms control plane and forwarding plane are used
-      consistently with section 1 of <xref target="RFC6192"/>.
-      </t>
+      target="RFC6550"/>, in <xref target="RFC4949"/>, and in <xref
+      target="I-D.ietf-roll-terminology"/>.</t>
+
+      <t>The terms control plane and forwarding plane are used consistently
+      with section 1 of <xref target="RFC6192"/>.</t>
     </section>
 
     <section anchor="cons-on-roll-sec" title="Considerations on RPL Security">
@@ -302,16 +310,15 @@ An alternate method (rfc include) is described in the references. -->
       (physical security of device itself and parameters maintained by the
       device, including, e.g., clock). State changes would thereby involve not
       only authorization of injector's actions, authentication of injectors,
-      and potentially confidentiality of routing
-      data, but also proper order of state changes through timeliness, since
-      seriously delayed state changes, such as commands or updates of routing
-      tables, may negatively impact system operation. A security assesment can
-      therefore begin with a focus on the assets <xref target="RFC4949" />
-      that may be the target of the state
-      changes and the access points in terms of interfaces and protocol
-      exchanges through which such changes may occur. In the case of routing
-      security the focus is directed towards the elements associated with the
-      establishment and maintenance of network connectivity.</t>
+      and potentially confidentiality of routing data, but also proper order
+      of state changes through timeliness, since seriously delayed state
+      changes, such as commands or updates of routing tables, may negatively
+      impact system operation. A security assesment can therefore begin with a
+      focus on the assets <xref target="RFC4949"/> that may be the target of
+      the state changes and the access points in terms of interfaces and
+      protocol exchanges through which such changes may occur. In the case of
+      routing security the focus is directed towards the elements associated
+      with the establishment and maintenance of network connectivity.</t>
 
       <t>This section sets the stage for the development of the analysis by
       applying the systematic approach proposed in <xref
@@ -320,11 +327,11 @@ An alternate method (rfc include) is described in the references. -->
       particularly, <xref target="RFC4593"/> and <xref target="Karlof2003"/>.
       The subsequent subsections begin with a focus on the elements of a
       generic routing process that is used to establish routing assets and
-      points of access to the routing functionality. Next, the
-      <xref target="ISO.7498-2.1988"/>
-      security model is briefly described. Then, consideration is given to
-      issues specific to or amplified in LLNs. This section concludes with the
-      formulation of a set of security objectives for RPL.</t>
+      points of access to the routing functionality. Next, the <xref
+      target="ISO.7498-2.1988"/> security model is briefly described. Then,
+      consideration is given to issues specific to or amplified in LLNs. This
+      section concludes with the formulation of a set of security objectives
+      for RPL.</t>
 
       <section anchor="routing-assets"
                title="Routing Assets and Points of Access">
@@ -359,73 +366,48 @@ An alternate method (rfc include) is described in the references. -->
                 title="Data Flow Diagram of a Generic Routing Process">
           <preamble/>
 
-          <artwork align="left">
-            <![CDATA[
-                 ...................................................
-                 :                                                 :
-                 :                                                 :
-     |Node_i|<------->(Routing Neighbor       _________________    :
-                 :     Discovery)------------>Neighbor Topology    :
-                 :                            -------+---------    :
-                 :                                   |             :
-     |Node_j|<------->(Route/Topology       +--------+             :
-                 :     Exchange)            |                      :
-                 :           |              V            ______    :
-                 :           +---->(Route Generation)--->Routes    :
-                 :                                       ---+--    :
-                 :                                          |      :
-                 : Routing on a Node Node_k                 |      :
-                 ...................................................
-                                                            |
-     |Forwarding                                            |
-     |On Node_l|<-------------------------------------------+
-
-
-Notation:
-
-(Proc)     A process Proc
-
-________
-topology   A structure storing neighbor adjacency (parent/child)
---------
-________
- routes    A structure storing the forwarding information base (FIB)
---------
-
-|Node_n|   An external entity Node_n
-
-------->   Data flow
-
-            ]]>
-          </artwork>
+          <artwork
+          align="left">................................................... : :
+          : : |Node_i|&lt;-------&gt;(Routing Neighbor _________________ : :
+          Discovery)------------&gt;Neighbor Topology : : -------+--------- :
+          : | : |Node_j|&lt;-------&gt;(Route/Topology +--------+ : :
+          Exchange) | : : | V ______ : : +----&gt;(Route
+          Generation)---&gt;Routes : : ---+-- : : | : : Routing on a Node
+          Node_k | : ................................................... |
+          |Forwarding | |On
+          Node_l|&lt;-------------------------------------------+ Notation:
+          (Proc) A process Proc ________ topology A structure storing neighbor
+          adjacency (parent/child) -------- ________ routes A structure
+          storing the forwarding information base (FIB) -------- |Node_n| An
+          external entity Node_n -------&gt; Data flow</artwork>
 
           <postamble/>
         </figure>
 
         <t>It is seen from <xref target="Fig1"/> that <list style="symbols">
-        <t>Assets include<list style="symbols">
-        <t>routing and/or topology information;</t>
+            <t>Assets include<list style="symbols">
+                <t>routing and/or topology information;</t>
 
-        <t>route generation process;</t>
+                <t>route generation process;</t>
 
-        <t>communication channel resources (bandwidth);</t>
+                <t>communication channel resources (bandwidth);</t>
 
-        <t>node resources (computing capacity, memory, and remaining
-        energy);</t>
+                <t>node resources (computing capacity, memory, and remaining
+                energy);</t>
 
-        <t>node identifiers (including node identity and ascribed
-        attributes such as relative or absolute node location).</t>
-        </list></t>
+                <t>node identifiers (including node identity and ascribed
+                attributes such as relative or absolute node location).</t>
+              </list></t>
 
-        <t>Points of access include<list style="symbols">
-        <t>neighbor discovery;</t>
+            <t>Points of access include<list style="symbols">
+                <t>neighbor discovery;</t>
 
-        <t>route/topology exchange;</t>
+                <t>route/topology exchange;</t>
 
-        <t>node physical interfaces (including access to data
-        storage).</t>
-        </list></t>
-        </list>A focus on the above list of assets and points of access
+                <t>node physical interfaces (including access to data
+                storage).</t>
+              </list></t>
+          </list>A focus on the above list of assets and points of access
         enables a more directed assessment of routing security; for example,
         it is readily understood that some routing attacks are in the form of
         attempts to misrepresent routing topology. Indeed, the intention of
@@ -438,77 +420,71 @@ ________
 
       <section anchor="iso" title="The ISO 7498-2 Security Reference Model">
         <t>At the conceptual level, security within an information system in
-        general and applied to RPL in particular is concerned with the
-        primary issues of authentication, access control, data
-        confidentiality, data integrity, and non-repudiation. In the context
-        of RPL</t>
+        general and applied to RPL in particular is concerned with the primary
+        issues of authentication, access control, data confidentiality, data
+        integrity, and non-repudiation. In the context of RPL</t>
 
         <t><list hangIndent="6" style="hanging">
-          <t hangText="Authentication"><vspace/>Authentication involves the
-          mutual authentication of the routing peers prior to exchanging
-          route information (i.e., peer authentication) as well as ensuring
-          that the source of the route data is from the peer (i.e., data
-          origin authentication).
+            <t hangText="Authentication"><vspace/>Authentication involves the
+            mutual authentication of the routing peers prior to exchanging
+            route information (i.e., peer authentication) as well as ensuring
+            that the source of the route data is from the peer (i.e., data
+            origin authentication). <xref target="RFC5548"/> points out that
+            LLNs can be drained by unauthenticated peers before configuration.
+            <xref target="RFC5673"/> requires availability of open and
+            untrusted side channels for new joiners, and it requires strong
+            and automated authentication so that networks can automatically
+            accept or reject new joiners.</t>
 
-          <xref target="RFC5548" /> points out that LLNs can be drained by
-          unauthenticated peers before configuration.
+            <t hangText="Access Control"><vspace/>Access Control provides
+            protection against unauthorized use of the asset, and deals with
+            the authorization of a node.</t>
 
-          <xref target="RFC5673" /> requires
-          availability of open and untrusted side channels for new joiners,
-          and it requires strong and automated authentication so that
-          networks can automatically accept or reject new joiners.</t>
+            <t hangText="Confidentiality"><vspace/>Confidentiality involves
+            the protection of routing information as well as routing neighbor
+            maintenance exchanges so that only authorized and intended network
+            entities may view or access it. Because LLNs are most commonly
+            found on a publicly accessible shared medium, e.g., air or wiring
+            in a building, and sometimes formed ad hoc, confidentiality also
+            extends to the neighbor state and database information within the
+            routing device since the deployment of the network creates the
+            potential for unauthorized access to the physical devices
+            themselves.</t>
 
-          <t hangText="Access Control"><vspace/>Access Control provides
-          protection against unauthorized use of the asset, and deals with the
-          authorization of a node.</t>
+            <t hangText="Integrity"><vspace/>Integrity entails the protection
+            of routing information and routing neighbor maintenance exchanges,
+            as well as derived information maintained in the database, from
+            unauthorized modification, insertions, deletions or replays. to be
+            addressed beyond the routing protocol.</t>
 
-          <t hangText="Confidentiality"><vspace/>Confidentiality involves
-          the protection of routing information as well as routing neighbor
-          maintenance exchanges so that only authorized and intended network
-          entities may view or access it. Because LLNs are most commonly
-          found on a publicly accessible shared medium, e.g., air or wiring
-          in a building, and sometimes formed ad hoc, confidentiality also
-          extends to the neighbor state and database information within the
-          routing device since the deployment of the network creates the
-          potential for unauthorized access to the physical devices
-          themselves.</t>
-
-          <t hangText="Integrity"><vspace/>Integrity entails the protection
-          of routing information and routing neighbor maintenance exchanges,
-          as well as derived information maintained in the database, from
-          unauthorized modification, insertions, deletions or replays. to be
-          addressed beyond the routing protocol.</t>
-
-          <t hangText="Non-repudiation"><vspace/>Non-repudiation is the
-          assurance that the transmission and/or reception of a message
-          cannot later be denied. The service of non-repudiation applies
-          after-the-fact and thus relies on the logging or other capture of
-          on-going message exchanges and signatures. Applied to routing,
-          non-repudiation is not an issue because it does not apply to
-          routing protocols, which are machine-to-machine protocols.
-          Further, with the LLN application domains as described in
-          <xref target="RFC5867" /> and
-          <xref target="RFC5548" />,
-          proactive measures are much more
-          critical than retrospective protections. Finally, given the
-          significant practical limits to on-going routing transaction
-          logging and storage and individual device digital signature
-          verification for each exchange, non-repudiation in the context of
-          routing is an unsupportable burden that bears no further
-          considered as an RPL security issue.</t>
-        </list></t>
+            <t hangText="Non-repudiation"><vspace/>Non-repudiation is the
+            assurance that the transmission and/or reception of a message
+            cannot later be denied. The service of non-repudiation applies
+            after-the-fact and thus relies on the logging or other capture of
+            on-going message exchanges and signatures. Applied to routing,
+            non-repudiation is not an issue because it does not apply to
+            routing protocols, which are machine-to-machine protocols.
+            Further, with the LLN application domains as described in <xref
+            target="RFC5867"/> and <xref target="RFC5548"/>, proactive
+            measures are much more critical than retrospective protections.
+            Finally, given the significant practical limits to on-going
+            routing transaction logging and storage and individual device
+            digital signature verification for each exchange, non-repudiation
+            in the context of routing is an unsupportable burden that bears no
+            further considered as an RPL security issue.</t>
+          </list></t>
 
         <t>It is recognized that, besides those security issues captured in
         the ISO 7498-2 model, availability, is a security requirement:<list
-        hangIndent="6" style="hanging">
-        <t hangText="Availability"><vspace/>Availability ensures that
-        routing information exchanges and forwarding services need to be
-        available when they are required for the functioning of the
-        serving network. Availability will apply to maintaining efficient
-        and correct operation of routing and neighbor discovery exchanges
-        (including needed information) and forwarding services so as not
-        to impair or limit the network's central traffic flow function</t>
-        </list></t>
+            hangIndent="6" style="hanging">
+            <t hangText="Availability"><vspace/>Availability ensures that
+            routing information exchanges and forwarding services need to be
+            available when they are required for the functioning of the
+            serving network. Availability will apply to maintaining efficient
+            and correct operation of routing and neighbor discovery exchanges
+            (including needed information) and forwarding services so as not
+            to impair or limit the network's central traffic flow function</t>
+          </list></t>
 
         <t>It should be emphasized here that for RPL security the above
         requirements must be complemented by the proper security policies and
@@ -526,82 +502,85 @@ ________
         evaluation of their impact on routing security considerations.</t>
 
         <t><list hangIndent="6" style="hanging">
-          <t
-              hangText="Limited energy, memory, and processing node resources"><vspace/>As
-          a consequence of these constraints, there is an even more critical
-          need than usual for a careful study of trade-offs on which and
-          what level of security services are to be afforded during the
-          system design process. The chosen security mechanisms also needs
-          to work within these constraints. Synchronization of security
-          states with sleepy nodes is yet another issue.</t>
+            <t
+            hangText="Limited energy, memory, and processing node resources"><vspace/>As
+            a consequence of these constraints, there is an even more critical
+            need than usual for a careful study of trade-offs on which and
+            what level of security services are to be afforded during the
+            system design process. The chosen security mechanisms also needs
+            to work within these constraints. Synchronization of security
+            states with sleepy nodes is yet another issue.</t>
 
-          <t hangText="Large scale of rolled out network"><vspace/>The
-          possibly numerous nodes to be deployed make manual on-site
-          configuration unlikely. For example, an urban deployment
-          can see several hundreds of thousands of nodes being installed
-          by many installers with a low level of expertise.
-          Nodes may be installed and not activated for many years,
-          and additional nodes may be added later on, which may be
-          from old inventory. The lifetime of the network is measured in
-          decades, and this complicates the operation of key management.</t>
+            <t hangText="Large scale of rolled out network"><vspace/>The
+            possibly numerous nodes to be deployed make manual on-site
+            configuration unlikely. For example, an urban deployment can see
+            several hundreds of thousands of nodes being installed by many
+            installers with a low level of expertise. Nodes may be installed
+            and not activated for many years, and additional nodes may be
+            added later on, which may be from old inventory. The lifetime of
+            the network is measured in decades, and this complicates the
+            operation of key management.</t>
 
-          <t hangText="Autonomous operations"><vspace/>Self-forming and
-          self-organizing are commonly prescribed requirements of LLNs. In
-          other words, a routing protocol designed for LLNs needs to contain
-          elements of ad hoc networking and in most cases cannot rely on
-          manual configuration for initialization or local filtering rules.
-          Network topology/ownership changes, partitioning or merging, as
-          well as node replacement, can all contribute to complicating the
-          operations of key management.</t>
+            <t hangText="Autonomous operations"><vspace/>Self-forming and
+            self-organizing are commonly prescribed requirements of LLNs. In
+            other words, a routing protocol designed for LLNs needs to contain
+            elements of ad hoc networking and in most cases cannot rely on
+            manual configuration for initialization or local filtering rules.
+            Network topology/ownership changes, partitioning or merging, as
+            well as node replacement, can all contribute to complicating the
+            operations of key management.</t>
 
-          <t hangText="Highly directional traffic"><vspace/>Some types of
-          LLNs see a high percentage of their total traffic traverse between
-          the nodes and the LLN Border Routers (LBRs) where the LLNs connect
-          to non-LLNs. The special routing status of and the greater volume
-          of traffic near the LBRs have routing security consequences as a
-          higher valued attack target. In fact, when Point-to-MultiPoint
-          (P2MP) and MultiPoint-to-Point (MP2P) traffic represents a
-          majority of the traffic, routing attacks consisting of advertising
-          incorrect preferred routes can cause serious damage.</t>
-          <t>
-          While it might seem that nodes higher up in the cyclic graph (i.e. those
-          with lower rank) should be secured in a stronger fashion,  it is not
-          in general easy to predict which nodes will occupy those positions
-          until after deployment.  Issues of redundancy and inventory control
-          suggests that any node might wind up in such a sensitive attack position,
-          so all nodes need to be equally secure.</t>
-          <t>In addition, even if it were possible to predict which nodes will
-          occupy positions of lower rank and provision them with stronger
-          security mechanisms, in the absense of a strong authorization model,
-          any node could advertise an incorrect preferred route.</t>
+            <t hangText="Highly directional traffic"><vspace/>Some types of
+            LLNs see a high percentage of their total traffic traverse between
+            the nodes and the LLN Border Routers (LBRs) where the LLNs connect
+            to non-LLNs. The special routing status of and the greater volume
+            of traffic near the LBRs have routing security consequences as a
+            higher valued attack target. In fact, when Point-to-MultiPoint
+            (P2MP) and MultiPoint-to-Point (MP2P) traffic represents a
+            majority of the traffic, routing attacks consisting of advertising
+            incorrect preferred routes can cause serious damage.</t>
 
+            <t>While it might seem that nodes higher up in the cyclic graph
+            (i.e. those with lower rank) should be secured in a stronger
+            fashion, it is not in general easy to predict which nodes will
+            occupy those positions until after deployment. Issues of
+            redundancy and inventory control suggests that any node might wind
+            up in such a sensitive attack position, so all nodes need to be
+            equally secure.</t>
 
-          <t hangText="Unattended locations and limited physical security"><vspace/>Many
-          applications have the nodes deployed in unattended or remote
-          locations; furthermore, the nodes themselves are often built with
-          minimal physical protection. These constraints lower the barrier
-          of accessing the data or security material stored on the nodes
-          through physical means.</t>
+            <t>In addition, even if it were possible to predict which nodes
+            will occupy positions of lower rank and provision them with
+            stronger security mechanisms, in the absense of a strong
+            authorization model, any node could advertise an incorrect
+            preferred route.</t>
 
-          <t hangText="Support for mobility"><vspace/>On the one hand, only
-          a limited number of applications require the support of mobile nodes,
-          e.g., a home LLN that includes nodes on wearable health care
-          devices or an industry LLN that includes nodes on cranes and
-          vehicles. On the other hand, if a routing protocol is indeed used
-          in such applications, it will clearly need to have corresponding
-          security mechanisms.</t>
+            <t
+            hangText="Unattended locations and limited physical security"><vspace/>Many
+            applications have the nodes deployed in unattended or remote
+            locations; furthermore, the nodes themselves are often built with
+            minimal physical protection. These constraints lower the barrier
+            of accessing the data or security material stored on the nodes
+            through physical means.</t>
 
-          <t>Additionally nodes may appear to move from one side of a wall
-          to another without any actual motion involved, the result of changes
-          to electromagnetic properties, such as opening and closing of a
-          metal door. </t>
+            <t hangText="Support for mobility"><vspace/>On the one hand, only
+            a limited number of applications require the support of mobile
+            nodes, e.g., a home LLN that includes nodes on wearable health
+            care devices or an industry LLN that includes nodes on cranes and
+            vehicles. On the other hand, if a routing protocol is indeed used
+            in such applications, it will clearly need to have corresponding
+            security mechanisms.</t>
 
-          <t hangText="Support for multicast and anycast"><vspace/>Support
-          for multicast and anycast is called out chiefly for large-scale
-          networks. Since application of these routing mechanisms in
-          autonomous operations of many nodes is new, the consequence on
-          security requires careful consideration.</t>
-        </list></t>
+            <t>Additionally nodes may appear to move from one side of a wall
+            to another without any actual motion involved, the result of
+            changes to electromagnetic properties, such as opening and closing
+            of a metal door.</t>
+
+            <t hangText="Support for multicast and anycast"><vspace/>Support
+            for multicast and anycast is called out chiefly for large-scale
+            networks. Since application of these routing mechanisms in
+            autonomous operations of many nodes is new, the consequence on
+            security requires careful consideration.</t>
+          </list></t>
 
         <t>The above list considers how an LLN's physical constraints, size,
         operations, and variety of application areas may impact security.
@@ -620,25 +599,23 @@ ________
         RPL security objectives.</t>
 
         <t>Since the fundamental function of a routing protocol is to build
-        routes for forwarding packets, it is essential to ensure that:
-        <list style="symbols">
-          <t>routing/topology information iintegrity remains intact during
-          transfer and in storage;</t>
+        routes for forwarding packets, it is essential to ensure that: <list
+            style="symbols">
+            <t>routing/topology information iintegrity remains intact during
+            transfer and in storage;</t>
 
-          <t>routing/topology information is used by authorized
-          entities;</t>
+            <t>routing/topology information is used by authorized
+            entities;</t>
 
-          <t>routing/topology information is available when needed.</t>
-        </list>
-        In conjunction, it is necessary to be assured that
-        <list style="symbols">
-          <t>authorized peers authenticate themselves during the routing
-          neighbor discovery process;</t>
+            <t>routing/topology information is available when needed.</t>
+          </list> In conjunction, it is necessary to be assured that <list
+            style="symbols">
+            <t>authorized peers authenticate themselves during the routing
+            neighbor discovery process;</t>
 
-          <t>the routing/topology information received is generated
-          according to the protocol design.</t>
-        </list>
-        However, when trust cannot be fully vested through
+            <t>the routing/topology information received is generated
+            according to the protocol design.</t>
+          </list> However, when trust cannot be fully vested through
         authentication of the principals alone, i.e., concerns of insider
         attack, assurance of the truthfulness and timeliness of the received
         routing/topology information is necessary. With regard to
@@ -658,18 +635,17 @@ ________
 
         <t>The vulnerability brought forth by some special-function nodes,
         e.g., LBRs, requires the assurance, particularly in a security
-        context,
-        <list style="symbols">
-          <t>of the availability of communication channels and node
-          resources;</t>
+        context, <list style="symbols">
+            <t>of the availability of communication channels and node
+            resources;</t>
 
-          <t>that the neighbor discovery process operates without
-          undermining routing availability.</t>
-        </list></t>
+            <t>that the neighbor discovery process operates without
+            undermining routing availability.</t>
+          </list></t>
 
-        <t>There are other factors which are not part of RPL but
-        directly affecting its function. These factors include weaker barrier
-        of accessing the data or security material stored on the nodes through
+        <t>There are other factors which are not part of RPL but directly
+        affecting its function. These factors include weaker barrier of
+        accessing the data or security material stored on the nodes through
         physical means; therefore, the internal and external interfaces of a
         node need to be adequate for guarding the integrity, and possibly the
         confidentiality, of stored information, as well as the integrity of
@@ -685,9 +661,8 @@ ________
     </section>
 
     <section anchor="threat-sources" title="Threat Sources">
-      <t><xref target="RFC4593" /> provides a detailed review of the threat
-      sources: outsiders and byzantine. RPL has the same threat
-      sources.</t>
+      <t><xref target="RFC4593"/> provides a detailed review of the threat
+      sources: outsiders and byzantine. RPL has the same threat sources.</t>
     </section>
 
     <section anchor="roll-threats" title="Threats and Attacks">
@@ -698,12 +673,10 @@ ________
       circumstance, capability, action, or event that could breach security
       and cause harm."</t>
 
-      <t>An attack is "an assault on system security that
-      derives from an intelligent threat, i.e., an intelligent act that is a
-      deliberate attempt (especially in the sense of a method or technique) to
-      evade security services and violate the security policy of a
-      system."
-      </t>
+      <t>An attack is "an assault on system security that derives from an
+      intelligent threat, i.e., an intelligent act that is a deliberate
+      attempt (especially in the sense of a method or technique) to evade
+      security services and violate the security policy of a system."</t>
 
       <t>The subsequent subsections consider the threats and the attacks that
       can cause security breaches under the ISO 7498-2 model to the routing
@@ -714,56 +687,50 @@ ________
       on the routing model analysis and associated review of the existing
       literature. The source of the attacks is assumed to be from either
       inside or outside attackers. The capability these attackes may be
-      limited to node-equivalent, but also to more sophisticated
-      computing platforms.</t>
+      limited to node-equivalent, but also to more sophisticated computing
+      platforms.</t>
 
       <section anchor="authorization-threat"
                title="Threats due to failures to Authenticate">
-
         <section anchor="any-identity" title="Node Impersonation">
-          <t>If an attacker can join a network with any identify,
-          then it may be able to assume the role of a legitimate
-          (and existing node).  It may be able to report false readings
-          (in metering applications), or provide inappropriate control
-          messages (in control systems involving actuators) if the
-          security of the application is leveraged from the security
-          of the routing system.</t>
+          <t>If an attacker can join a network with any identify, then it may
+          be able to assume the role of a legitimate (and existing node). It
+          may be able to report false readings (in metering applications), or
+          provide inappropriate control messages (in control systems involving
+          actuators) if the security of the application is leveraged from the
+          security of the routing system.</t>
+
           <t>In other systems where there is separate application layer
           security, the ability to impersonate a node would permit an attacker
           to direct traffic to itself, which facilitates on-path attacks
-          including replaying, delaying, or duplicating control messages.
-          </t>
+          including replaying, delaying, or duplicating control messages.</t>
         </section>
 
         <section anchor="extra-node" title="Dummy Node">
-          <t>If an attacker can join a network with any identify,
-          then it can pretend to be a legitimate node, receiving any
-          service legitimate nodes receive.  It may also be able to report false
-          readings (in metering applications),
-          or provide inappropriate authorizations (in control systems involving
-          actuators), or perform any other attacks that are facilitated
-          by being able to direct traffic towards itself.
-          </t>
+          <t>If an attacker can join a network with any identify, then it can
+          pretend to be a legitimate node, receiving any service legitimate
+          nodes receive. It may also be able to report false readings (in
+          metering applications), or provide inappropriate authorizations (in
+          control systems involving actuators), or perform any other attacks
+          that are facilitated by being able to direct traffic towards
+          itself.</t>
         </section>
 
         <section anchor="spam-resource" title="Node Resource Spam">
-          <t>If an attacker can join a network with any identify,
-          then it can continously do so, draining down the resources of
-          the network to store identity and routing information, potentionally
-          forcing legitimate nodes of the network.</t>
+          <t>If an attacker can join a network with any identify, then it can
+          continously do so, draining down the resources of the network to
+          store identity and routing information, potentionally forcing
+          legitimate nodes of the network.</t>
         </section>
-
       </section>
 
       <section anchor="confident-threat"
                title="Threats and Attacks on Confidentiality">
         <t>The assessment in <xref target="iso"/> indicates that there are
         threat actions against the confidentiality of routing information at
-        all points of access. The confidentiality threat consequences is
-        disclosure, see Section 3.1.2 of <xref target="RFC4593"/>. For RPL
-        this is the disclosure of routing information either by eavesdropping
-        on the communication exchanges between routing nodes or by direct
-        access of node's information.</t>
+        all points of access. This threat results in disclosure, as described
+        in Section 3.1.2 of <xref target="RFC4593"/>, and it involves a
+        disclosure of routing information.</t>
 
         <section anchor="route-exch-expo" title="Routing Exchange Exposure">
           <t>Routing exchanges include both routing information as well as
@@ -774,13 +741,11 @@ ________
           memory, remaining power, etc., that may be metrics of the routing
           protocol.</t>
 
-          <t>The routing exchanges will contain
-          reachability information, which would identify the relative
-          importance of different nodes in the network.  Nodes higher up in
-          the DODAG, to which more streams of information flow, would be more
-          interesting targets for other attacks, and routing exchange
-          exposures can identify them.
-          </t>
+          <t>The routing exchanges will contain reachability information,
+          which would identify the relative importance of different nodes in
+          the network. Nodes higher up in the DODAG, to which more streams of
+          information flow, would be more interesting targets for other
+          attacks, and routing exchange exposures can identify them.</t>
         </section>
 
         <section anchor="route-info-expo"
@@ -800,19 +765,19 @@ ________
 
           <t>The forms of attack that allow unauthorized access or disclosure
           of the routing information (other than occurring through explicit
-          node exchanges) will include:
-          <list style="symbols">
-            <t>Physical device compromise;</t>
-            <t>Remote device access attacks (including those occurring
-            through remote network management or software/field upgrade
-            interfaces).</t>
-          </list>
-          </t>
-          <t>Both of these attack vectors are considered a device specific issue, and are
-          out of scope for RPL to defend against.  In some applications,
-          physical device compromise may be a real threat and it may be necessary to
-          provide for other devices to react quickly to exclude a compromised device.
-          </t>
+          node exchanges) will include: <list style="symbols">
+              <t>Physical device compromise;</t>
+
+              <t>Remote device access attacks (including those occurring
+              through remote network management or software/field upgrade
+              interfaces).</t>
+            </list></t>
+
+          <t>Both of these attack vectors are considered a device specific
+          issue, and are out of scope for RPL to defend against. In some
+          applications, physical device compromise may be a real threat and it
+          may be necessary to provide for other devices to react quickly to
+          exclude a compromised device.</t>
         </section>
       </section>
 
@@ -824,67 +789,63 @@ ________
         available through routing exchanges and the on-device storage.</t>
 
         <section anchor="manipul" title="Routing Information Manipulation">
-          <t>
-            Manipulation of routing information that range from neighbor
-            states to derived routes will allow unauthorized sources to
-            influence the operation and convergence of the routing protocols and
-            ultimately impact the forwarding decisions made in the network.
-          </t>
-          <t>
-            Manipulation of topology and reachability information will allow
-            unauthorized sources to influence the nodes with which routing
-            information is exchanged and updated. The consequence of
-            manipulating routing exchanges can thus lead to sub-optimality and
-            fragmentation or partitioning of the network by restricting the
-            universe of routers with which associations can be established and
-            maintained.
-          </t>
-          <t>A sub-optimal network may use too much power and/or may congest some
-          routes leading to premature failure of a node, and a denial of service
-          on the entire network.
-          </t>
-          <t>In addition, being able to attract network traffic can
-          make a blackhole attack more damaging.
-          </t>
+          <t>Manipulation of routing information that range from neighbor
+          states to derived routes will allow unauthorized sources to
+          influence the operation and convergence of the routing protocols and
+          ultimately impact the forwarding decisions made in the network.</t>
+
+          <t>Manipulation of topology and reachability information will allow
+          unauthorized sources to influence the nodes with which routing
+          information is exchanged and updated. The consequence of
+          manipulating routing exchanges can thus lead to sub-optimality and
+          fragmentation or partitioning of the network by restricting the
+          universe of routers with which associations can be established and
+          maintained.</t>
+
+          <t>A sub-optimal network may use too much power and/or may congest
+          some routes leading to premature failure of a node, and a denial of
+          service on the entire network.</t>
+
+          <t>In addition, being able to attract network traffic can make a
+          blackhole attack more damaging.</t>
 
           <t>The forms of attack that allow manipulation to compromise the
           content and validity of routing information include<list
-          style="symbols">
-          <t>Falsification, including overclaiming and misclaiming;</t>
+              style="symbols">
+              <t>Falsification, including overclaiming and misclaiming;</t>
 
-          <t>Routing information replay;</t>
+              <t>Routing information replay;</t>
 
-          <t>Byzantine (internal) attacks that permit corruption of
-          routing information in the node even where the node continues to
-          be a validated entity within the network (see, for example,
-          <xref target="RFC4593"/> for further discussions on Byzantine
-          attacks);</t>
+              <t>Byzantine (internal) attacks that permit corruption of
+              routing information in the node even where the node continues to
+              be a validated entity within the network (see, for example,
+              <xref target="RFC4593"/> for further discussions on Byzantine
+              attacks);</t>
 
-          <t>Physical device compromise or remote device access
-          attacks.</t>
-          </list></t>
+              <t>Physical device compromise or remote device access
+              attacks.</t>
+            </list></t>
         </section>
 
         <section anchor="id-misappr" title="Node Identity Misappropriation">
-          <t>
-            Falsification or misappropriation of node identity between
-            routing participants opens the door for other attacks; it can also
-            cause incorrect routing relationships to form and/or topologies to
-            emerge. Routing attacks may also be mounted through less
-            sophisticated node identity misappropriation in which the valid
-            information broadcast or exchanged by a node is replayed without
-            modification. The receipt of seemingly valid information that is
-            however no longer current can result in routing disruption, and
-            instability (including failure to converge). Without measures to
-            authenticate the routing participants and to ensure the freshness
-            and validity of the received information the protocol operation can
-            be compromised. The forms of attack that misuse node identity
-            include<list style="symbols">
-            <t>Identity attacks, including Sybil attacks in which a
-            malicious node illegitimately assumes multiple identities;</t>
+          <t>Falsification or misappropriation of node identity between
+          routing participants opens the door for other attacks; it can also
+          cause incorrect routing relationships to form and/or topologies to
+          emerge. Routing attacks may also be mounted through less
+          sophisticated node identity misappropriation in which the valid
+          information broadcast or exchanged by a node is replayed without
+          modification. The receipt of seemingly valid information that is
+          however no longer current can result in routing disruption, and
+          instability (including failure to converge). Without measures to
+          authenticate the routing participants and to ensure the freshness
+          and validity of the received information the protocol operation can
+          be compromised. The forms of attack that misuse node identity
+          include<list style="symbols">
+              <t>Identity attacks, including Sybil attacks in which a
+              malicious node illegitimately assumes multiple identities;</t>
 
-            <t>Routing information replay.</t>
-          </list></t>
+              <t>Routing information replay.</t>
+            </list></t>
         </section>
       </section>
 
@@ -905,12 +866,12 @@ ________
 
           <t>The forms of attack that allow interference or disruption of
           routing exchange include:<list style="symbols">
-          <t>Routing information replay;</t>
+              <t>Routing information replay;</t>
 
-          <t>ACK spoofing;</t>
+              <t>ACK spoofing;</t>
 
-          <t><xref target="overload-attack">Overload attacks.</xref></t>
-          </list></t>
+              <t><xref target="overload-attack">Overload attacks.</xref></t>
+            </list></t>
 
           <t>In addition, attacks may also be directly conducted at the
           physical layer in the form of jamming or interfering.</t>
@@ -1042,14 +1003,14 @@ To Node_5  \  |  |
           Routing operation and network forwarding functions can thus be
           adversely impacted by node resources exhaustion that stems from
           attacks that include:<list style="symbols">
-          <t>Identity (including Sybil) attacks;</t>
+              <t>Identity (including Sybil) attacks;</t>
 
-          <t>Routing information replay attacks;</t>
+              <t>Routing information replay attacks;</t>
 
-          <t>HELLO flood attacks;</t>
+              <t>HELLO-type flood attacks;</t>
 
-          <t><xref target="overload-attack">Overload attacks.</xref></t>
-          </list></t>
+              <t><xref target="overload-attack">Overload attacks.</xref></t>
+            </list></t>
         </section>
       </section>
     </section>
@@ -1057,11 +1018,11 @@ To Node_5  \  |  |
     <section anchor="counter-measur" title="Countermeasures">
       <t>By recognizing the characteristics of LLNs that may impact routing,
       this analysis provides the basis for understanding the capabilities
-      within RPL used to deter the identified attacks and mitigate the threats. The
-      following subsections consider such countermeasures by grouping the
-      attacks according to the classification of the ISO 7498-2 model so that
-      associations with the necessary security services are more readily
-      visible.  </t>
+      within RPL used to deter the identified attacks and mitigate the
+      threats. The following subsections consider such countermeasures by
+      grouping the attacks according to the classification of the ISO 7498-2
+      model so that associations with the necessary security services are more
+      readily visible.</t>
 
       <section anchor="counter-confident-atk"
                title="Confidentiality Attack Countermeasures">
@@ -1080,12 +1041,12 @@ To Node_5  \  |  |
           routing/topology information or generated route information to be
           exposed to an unauthorized entity.</t>
 
-          <t>For instance, due to mis-configuration
-          or inappropriate enabling of a diagnostic interface, an entity might be
-          copying ("bridging") traffic from a secured ESSID/PAN to an
-          unsecured interface.</t>
+          <t>For instance, due to mis-configuration or inappropriate enabling
+          of a diagnostic interface, an entity might be copying ("bridging")
+          traffic from a secured ESSID/PAN to an unsecured interface.</t>
 
           <!-- BULLSHIT? -->
+
           <t>A prerequisite to countering this attack is to ensure that the
           communicating nodes are authenticated prior to data encryption
           applied in the routing exchange. Authentication ensures that the
@@ -1110,48 +1071,37 @@ To Node_5  \  |  |
         </section>
 
         <section title="Countering Passive Wiretapping Attacks">
-          <t>A passive wiretap attack seeks to breach routing confidentiality through
-          passive, direct analysis and processing of the information exchanges
-          between nodes. </t>
+          <t>A passive wiretap attack seeks to breach routing confidentiality
+          through passive, direct analysis and processing of the information
+          exchanges between nodes.</t>
 
-          <t>Passive wiretap attacks can be directly countered through the use of
-          data encryption for all routing exchanges. Only when a validated and
-          authenticated node association is completed will routing exchange be
-          allowed to proceed using established session keys and an agreed
-          encryption algorithm. The strength of the encryption algorithm and
-          session key sizes will determine the minimum requirement for an
-          attacker mounting this passive security attack. The possibility of
-          incorporating options for security level and algorithms is further
-          considered in <xref target="match-needs"/>. Because of the resource
-          constraints of LLN devices, symmetric (private) key encryption will
-          provide the best trade-off in terms of node and channel resource
-          overhead and the level of security achieved. This will of course not
-          preclude the use of asymmetric (public) key encryption during the
-          session key establishment phase.</t>
+          <t>Passive wiretap attacks can be directly countered through the use
+          of data encryption for all routing exchanges. Only when a validated
+          and authenticated node association is completed will routing
+          exchange be allowed to proceed using established session keys and an
+          agreed encryption algorithm. The mandatory to implement CCM mode
+          AES-128 method, is described in <xref target="RFC3610"/>, and is
+          believed to be secure against a brute force attack by even the most
+          well equiped adversary.</t>
 
-          <t>As with the key establishment process, data encryption must
-          include an authentication prerequisite to ensure that each node is
-          implementing a level of security that prevents deliberate or
-          inadvertent exposure. The authenticated key establishment will
-          ensure that confidentiality is not compromised by providing the
-          information to an unauthorized entity (see also <xref
-          target="Huang2003"/>).</t>
+          <t>The significant challenge for RPL is in the provisioning of the
+          key, which in some modes of RFC6550 is used network-wide. RFC6550
+          does not solve this problem, and it is the subject of significant
+          future work: see, for instance: <xref target="AceCharterProposal"/>,
+          <xref target="SolaceProposal"/>, <xref
+          target="SmartObjectSecurityWorkshop"/>.</t>
 
-          <t>Based on the current state of the art, a minimum 128-bit key
-          length SHOULD be applied.  This session key shall be applied in
-          conjunction with an encryption algorithm that has been publicly
-          vetted and where applicable approved for the level of security
-          desired. Algorithms such as the Advanced Encryption Standard (AES)
-          <xref target="FIPS197"/>, adopted by the U.S. government, or
-          Kasumi-Misty <xref target="Kasumi3gpp"/>, adopted by the 3GPP 3rd
-          generation wireless mobile consortium, are examples of symmetric-key
-          algorithms capable of ensuring robust confidentiality for routing
-          exchanges. </t>
+          <t>A number of deployments, such as <xref target="ZigBeeIP"/>
+          specify no layer-3/RPL encryption or authentication and rely upon
+          similiar security at layer-2. These networks are immune to outside
+          wiretapping attacks, but are particularly vulnerable to passive (and
+          active) attacks through compromises of nodes.</t>
 
-          <t>Section 10.9 of <xref target="RFC6550" /> specifies AES-128 in
-          CCM mode with a 32-bit MAC.</t>
-          <t>Section 5.6 Zigbee IP <xref target="ZigBeeIP" /> specifies
-          use of CCM, with PANA and EAP-TLS for key management.</t>
+          <t>Section 10.9 of <xref target="RFC6550"/> specifies AES-128 in CCM
+          mode with a 32-bit MAC.</t>
+
+          <t>Section 5.6 Zigbee IP <xref target="ZigBeeIP"/> specifies use of
+          CCM, with PANA and EAP-TLS for key management.</t>
         </section>
 
         <section title="Countering Traffic Analysis">
@@ -1159,34 +1109,36 @@ To Node_5  \  |  |
           confidentiality and gaining access to routing information by
           allowing an attacker to indirectly map the connectivity or flow
           patterns (including link-load) of the network from which other
-          attacks can be mounted.   The traffic analysis attack on an LLN,
+          attacks can be mounted. The traffic analysis attack on an LLN,
           especially one founded on shared medium, is passive and relies on
-          the ability to read the immutable source/destination layer-2 and/or layer-3
-          routing information that must remain unencrypted to permit network routing.
-          </t>
+          the ability to read the immutable source/destination layer-2 and/or
+          layer-3 routing information that must remain unencrypted to permit
+          network routing.</t>
 
           <t>One way in which passive traffic analysis attacks can be muted is
           through the support of load balancing that allows traffic to a given
-          destination to be sent along diverse routing paths.
-          RPL does not generally support multi-path routing within a
-          single DODAG.  Multiple DODAGs are supported in the protocol,
-          but few deployments will have space for more than half a dozen,
-          and there are at present no clear ways to multiplex traffic
-          for a single application across multiple DODAGs.
-          </t>
-          <t>
-          Another approach to countering
-          passive traffic analysis could be for nodes to maintain constant
-          amount of traffic to different destinations through the generation
-          of arbitrary traffic flows; the drawback of course would be the
-          consequent overhead and energy expenditure. </t>
+          destination to be sent along diverse routing paths. RPL does not
+          generally support multi-path routing within a single DODAG. Multiple
+          DODAGs are supported in the protocol, and an implementation could
+          make use of that. RPL does not have any inherent or standard way to
+          guarantee that the different DODAGs would have significantly diverse
+          paths. Having the diverse DODAGs routed at different border routers
+          might work in some instances, and this could be combined with a
+          multipath technology like MPTCP (<xref target="RFC6824"/>. It is
+          unlikely that it will be affordable in many LLNs, as few deployments
+          will have memory space for more than a few sets of DODAG tables.</t>
+
+          <t>Another approach to countering passive traffic analysis could be
+          for nodes to maintain constant amount of traffic to different
+          destinations through the generation of arbitrary traffic flows; the
+          drawback of course would be the consequent overhead and energy
+          expenditure.</t>
 
           <t>The only means of fully countering a traffic analysis attack is
           through the use of tunneling (encapsulation) where encryption is
           applied across the entirety of the original packet
-          source/destination addresses.  Deployments which use layer-2
-          security that includes encryption already do this for all traffic.
-          </t>
+          source/destination addresses. Deployments which use layer-2 security
+          that includes encryption already do this for all traffic.</t>
         </section>
 
         <section anchor="counter-remote"
@@ -1201,10 +1153,10 @@ To Node_5  \  |  |
 
           <t>To ensure confidentiality of the node routing information against
           attacks through remote access, any local or remote device requesting
-          routing information must be authenticated, and must be authorized for that
-          access.  Since remote access is not invoked as part of a routing
-          protocol security of routing information stored on the node against
-          remote access will not be addressable as part of the routing
+          routing information must be authenticated, and must be authorized
+          for that access. Since remote access is not invoked as part of a
+          routing protocol security of routing information stored on the node
+          against remote access will not be addressable as part of the routing
           protocol.</t>
         </section>
       </section>
@@ -1235,36 +1187,35 @@ To Node_5  \  |  |
           Therefore, the protocol needs to ensure the integrity of the
           sequence of the exchange sequence.</t>
 
-          <t>The countermeasure to unauthorized modifications needs to:
-          <list style="symbols">
-            <t>implement access control on storage;</t>
+          <t>The countermeasure to unauthorized modifications needs to: <list
+              style="symbols">
+              <t>implement access control on storage;</t>
 
-            <t>provide data integrity service to transferred messages and
-            stored data;</t>
+              <t>provide data integrity service to transferred messages and
+              stored data;</t>
 
-            <t>include sequence number under integrity protection.</t>
-          </list>
-          </t>
+              <t>include sequence number under integrity protection.</t>
+            </list></t>
         </section>
 
         <section title="Countering Overclaiming and Misclaiming Attacks">
           <t>Both overclaiming and misclaiming aim to introduce false routes
           or topology that would not be generated by the network otherwise,
           while there are not necessarily unauthorized modifications to the
-          routing messages or information.  In order to counter overclaiming, the
-          capability to determine unreasonable routes or topology is required.</t>
+          routing messages or information. In order to counter overclaiming,
+          the capability to determine unreasonable routes or topology is
+          required.</t>
 
-          <t>The counter to overclaiming and misclaiming may employ:
-          <list style="symbols">
-            <t>comparison with historical routing/topology data;</t>
+          <t>The counter to overclaiming and misclaiming may employ: <list
+              style="symbols">
+              <t>comparison with historical routing/topology data;</t>
 
-            <t>designs which restrict realizable network topologies.</t>
-          </list>
-          </t>
-          <t>
-            RPL includes no specific mechanisms in the protocol to counter overlaims.
-            An implementation could have specific heuristics implemented locally.
-          </t>
+              <t>designs which restrict realizable network topologies.</t>
+            </list></t>
+
+          <t>RPL includes no specific mechanisms in the protocol to counter
+          overlaims. An implementation could have specific heuristics
+          implemented locally.</t>
         </section>
 
         <section anchor="counter-sybil"
@@ -1280,33 +1231,36 @@ To Node_5  \  |  |
           extension to new areas, e.g., where geographic distribution is
           explicitly or implicitly an asset to an application running on the
           LLN, for example, the LBR in a P2MP or MP2P LLN.</t>
-          <t>
-            RPL includes specific public key based authentication at layer-3 that
-            provide for authorization.   Many deployments use layer-2 security that
-            includes admission controls at layer-2 using mechanisms such as PANA.
-          </t>
+
+          <t>RPL includes specific public key based authentication at layer-3
+          that provide for authorization. Many deployments use layer-2
+          security that includes admission controls at layer-2 using
+          mechanisms such as PANA.</t>
         </section>
 
         <section anchor="counter-replay"
                  title="Countering Routing Information Replay Attacks">
-          <t>In many routing protocols, message replay can result in false topology and/or
-          routes.  This is often counted with some kind of counter to ensure the freshness
-          of the message.  Replay of a current, literal RPL message are in general idempotent
-          to the topology.   An older (lower DODAGVersionNumber) message, if replayed
-          would be rejected as being stale.  The trickle algorithm further dampens the
-          affect of any such replay, as if the message was current, then it would contain
-          the same information as before, and it would cause no network changes.
-          </t>
-          <t>Replays may well occur in some radio technologies (not very likely, 802.15.4) as
-          a result of echos or reflections, and so some replays must be assumed to occur naturally.
-          </t>
-          <t>Note that for there to be no affect at all, the replay must be done with the
-          same apparent power for all nodes receiving the replay.  A change in apparent power
-          might change the metrics through changes to the ETX and therefore might affect the routing even
-          though the contents of the packet were never changed.  Any replay which appears to
-          be different should be analyzed as a Selective Forwarding Attack, Sinkhole Attack or
-          Wormhole Attack.
-          </t>
+          <t>In many routing protocols, message replay can result in false
+          topology and/or routes. This is often counted with some kind of
+          counter to ensure the freshness of the message. Replay of a current,
+          literal RPL message are in general idempotent to the topology. An
+          older (lower DODAGVersionNumber) message, if replayed would be
+          rejected as being stale. The trickle algorithm further dampens the
+          affect of any such replay, as if the message was current, then it
+          would contain the same information as before, and it would cause no
+          network changes.</t>
+
+          <t>Replays may well occur in some radio technologies (not very
+          likely, 802.15.4) as a result of echos or reflections, and so some
+          replays must be assumed to occur naturally.</t>
+
+          <t>Note that for there to be no affect at all, the replay must be
+          done with the same apparent power for all nodes receiving the
+          replay. A change in apparent power might change the metrics through
+          changes to the ETX and therefore might affect the routing even
+          though the contents of the packet were never changed. Any replay
+          which appears to be different should be analyzed as a Selective
+          Forwarding Attack, Sinkhole Attack or Wormhole Attack.</t>
         </section>
 
         <section anchor="counter-byzantine"
@@ -1335,12 +1289,11 @@ To Node_5  \  |  |
           routing information validity; see Chapter 2 of <xref
           target="Perlman1988"/> for a discussion on flooding attacks.</t>
 
-          <t>For distance vector protocols, such as RPL, where information
-          is aggregated at
-          each routing node it is not possible for nodes to directly detect
-          Byzantine information manipulation attacks from the routing
-          information exchange. In such cases, the routing protocol must
-          include and support indirect communications exchanges between
+          <t>For distance vector protocols, such as RPL, where information is
+          aggregated at each routing node it is not possible for nodes to
+          directly detect Byzantine information manipulation attacks from the
+          routing information exchange. In such cases, the routing protocol
+          must include and support indirect communications exchanges between
           non-adjacent routing peers to provide a secondary channel for
           performing routing information validation. S-RIP <xref
           target="Wan2004"/> is an example of the implementation of this type
@@ -1348,11 +1301,10 @@ To Node_5  \  |  |
           aggregate distance vector information can only be validated by
           initiating confirmation exchanges directly between nodes that are
           not routing neighbors.</t>
-          <t>
-            RPL does not provide any direct mechanisms like S-RIP.
-            It does listen to multiple parents, and may switch parents if it
-            begins to suspect that it is being lied to.
-          </t>
+
+          <t>RPL does not provide any direct mechanisms like S-RIP. It does
+          listen to multiple parents, and may switch parents if it begins to
+          suspect that it is being lied to.</t>
         </section>
       </section>
 
@@ -1378,38 +1330,36 @@ To Node_5  \  |  |
           even though they are not and hence constitute a serious availability
           attack.</t>
 
-          <t>A HELLO attack mounted against RPL would involve sending out
-          (or replaying) DIO messages by the attacker.  Lower power LLN nodes
-          might then attempt to join the DODAG at a lower rank than they would
-          otherwise.
-          </t>
+          <t>A HELLO attack mounted against RPL would involve sending out (or
+          replaying) DIO messages by the attacker. Lower power LLN nodes might
+          then attempt to join the DODAG at a lower rank than they would
+          otherwise.</t>
 
-          <t>The most effective method from <xref target="I-D.suhopark-hello-wsn"/>
-          is the verify bidirectionality.  A number of layer-2 links are arranged
-          in controller/spoke arrangements, and continuously are validating connectivity
-          at layer 2.</t>
-          <t>In addition, in order to calculate metrics, the ETX must be computed,
-          and this involves, in general, sending a number of messages between nodes
-          which are believed to be adjacent. <xref target="I-D.kelsey-intarea-mesh-link-establishment"/>
-          is one such protocol.
-          </t>
+          <t>The most effective method from <xref
+          target="I-D.suhopark-hello-wsn"/> is the verify bidirectionality. A
+          number of layer-2 links are arranged in controller/spoke
+          arrangements, and continuously are validating connectivity at layer
+          2.</t>
 
-          <t>In order to join the DODAG, a DAO message is sent upwards.
-          In RPL the DAO is acknowledged by the DAO-ACK message.  This clearly
-          checks bidirectionality at the control plane.
-          </t>
+          <t>In addition, in order to calculate metrics, the ETX must be
+          computed, and this involves, in general, sending a number of
+          messages between nodes which are believed to be adjacent. <xref
+          target="I-D.kelsey-intarea-mesh-link-establishment"/> is one such
+          protocol.</t>
 
-          <t>As discussed in section 5.1, <xref target="I-D.suhopark-hello-wsn"/>
-          a receiver with a sensitive receiver could well hear the DAOs, and even
-          send DAO-ACKs as well.  Such a node is a form of WormHole attack.
-          </t>
+          <t>In order to join the DODAG, a DAO message is sent upwards. In RPL
+          the DAO is acknowledged by the DAO-ACK message. This clearly checks
+          bidirectionality at the control plane.</t>
 
-          <t>
-          These attacks are also all easily defended against using either layer-2
-          or layer-3 authentication.  Such an attack could only be made against
-          a completely open network (such as might be used for provisioning new nodes),
-          or by a compromised node.
-          </t>
+          <t>As discussed in section 5.1, <xref
+          target="I-D.suhopark-hello-wsn"/> a receiver with a sensitive
+          receiver could well hear the DAOs, and even send DAO-ACKs as well.
+          Such a node is a form of WormHole attack.</t>
+
+          <t>These attacks are also all easily defended against using either
+          layer-2 or layer-3 authentication. Such an attack could only be made
+          against a completely open network (such as might be used for
+          provisioning new nodes), or by a compromised node.</t>
         </section>
 
         <section anchor="overload-attack" title="Countering Overload Attacks">
@@ -1424,31 +1374,28 @@ To Node_5  \  |  |
           targeting its availability is a fairly obvious attack. Another way
           of depleting the energy of an LLN node is to have the malicious node
           overload the network with irrelevant traffic. This impacts
-          availability since certain routes get congested which:
-          <list style="symbols">
-            <t>renders them useless for affected nodes and data can hence
-            not be delivered;</t>
+          availability since certain routes get congested which: <list
+              style="symbols">
+              <t>renders them useless for affected nodes and data can hence
+              not be delivered;</t>
 
-            <t>makes routes longer as shortest path algorithms work with the
-            congested network;</t>
+              <t>makes routes longer as shortest path algorithms work with the
+              congested network;</t>
 
-            <t>depletes battery and energy scavenging nodes more quickly and thus
-            shortens the network's availability at large.</t>
-          </list>
-          </t>
+              <t>depletes battery and energy scavenging nodes more quickly and
+              thus shortens the network's availability at large.</t>
+            </list></t>
 
           <t>Overload attacks can be countered by deploying a series of
-          mutually non-exclusive security measures:
-          <list style="symbols">
-            <t>introduce quotas on the traffic rate each node is allowed to
-            send;</t>
+          mutually non-exclusive security measures: <list style="symbols">
+              <t>introduce quotas on the traffic rate each node is allowed to
+              send;</t>
 
-            <t>isolate nodes which send traffic above a certain threshold
-            based on system operation characteristics;</t>
+              <t>isolate nodes which send traffic above a certain threshold
+              based on system operation characteristics;</t>
 
-            <t>allow only trusted data to be received and forwarded.</t>
-          </list>
-          </t>
+              <t>allow only trusted data to be received and forwarded.</t>
+            </list></t>
 
           <t>As for the first one, a simple approach to minimize the harmful
           impact of an overload attack is to introduce traffic quotas. This
@@ -1478,12 +1425,11 @@ To Node_5  \  |  |
           <t>Selective forwarding attacks are a form of DoS attack which
           impacts the availability of the generated routing paths.</t>
 
-          <t>A selective forwarding attack may be done by a node involved
-          with the routing process, or it may be done by what
-          otherwise appears to be a passive antenna or other RF
-          feature or device, but is in fact an active (and selective)
-          device.  An RF antenna/repeater which is not selective, is
-          not a threat.</t>
+          <t>A selective forwarding attack may be done by a node involved with
+          the routing process, or it may be done by what otherwise appears to
+          be a passive antenna or other RF feature or device, but is in fact
+          an active (and selective) device. An RF antenna/repeater which is
+          not selective, is not a threat.</t>
 
           <t>An insider malicious node basically blends neatly in with the
           network but then may decide to forward and/or manipulate certain
@@ -1496,15 +1442,14 @@ To Node_5  \  |  |
           where the thus caused collisions incur selective forwarding.</t>
 
           <t>Selective Forwarding attacks can be countered by deploying a
-          series of mutually non-exclusive security measures:
-          <list style="symbols">
-            <t>multipath routing of the same message over disjoint
-            paths;</t>
+          series of mutually non-exclusive security measures: <list
+              style="symbols">
+              <t>multipath routing of the same message over disjoint
+              paths;</t>
 
-            <t>dynamically selecting the next hop from a set of
-            candidates.</t>
-          </list>
-          </t>
+              <t>dynamically selecting the next hop from a set of
+              candidates.</t>
+            </list></t>
 
           <t>The first measure basically guarantees that if a message gets
           lost on a particular routing path due to a malicious selective
@@ -1536,38 +1481,35 @@ To Node_5  \  |  |
           flow control.</t>
 
           <t>Sinkhole attacks can be countered by deploying a series of
-          mutually non-exclusive security measures:
-          <list style="symbols">
-            <t>use geographical insights for flow control;</t>
+          mutually non-exclusive security measures: <list style="symbols">
+              <t>use geographical insights for flow control;</t>
 
-            <t>isolate nodes which receive traffic above a certain
-            threshold;</t>
+              <t>isolate nodes which receive traffic above a certain
+              threshold;</t>
 
-            <t>dynamically pick up next hop from set of candidates;</t>
+              <t>dynamically pick up next hop from set of candidates;</t>
 
-            <t>allow only trusted data to be received and forwarded.</t>
-          </list>
-          </t>
+              <t>allow only trusted data to be received and forwarded.</t>
+            </list></t>
 
           <t>Some LLNs may provide for geolocation services, often derived
           from solving triangulation equations from radio delay calculations,
           such calculations could in theory be subverted by a sinkhole that
-          transmitted at precisely the right power in a node to node fashion.
-          </t>
+          transmitted at precisely the right power in a node to node
+          fashion.</t>
+
           <t>While geographic knowledge could help assure that traffic always
-          went in the physical direction desired, it would not assure that
-          the traffic was taking the most efficient route, as the lowest
-          cost real route might be match the physical topology; such as when
-          different parts of an LLN are connected by high-speed wired networks.
-          </t>
+          went in the physical direction desired, it would not assure that the
+          traffic was taking the most efficient route, as the lowest cost real
+          route might be match the physical topology; such as when different
+          parts of an LLN are connected by high-speed wired networks.</t>
         </section>
 
         <section title="Countering Wormhole Attacks">
-          <t>In wormhole attacks at least two malicious nodes
-          claim to have a short path between themselves <xref target="Karlof2003"/>.
-          This changes the availability
-          of certain routing paths and hence constitutes a serious security
-          breach.</t>
+          <t>In wormhole attacks at least two malicious nodes claim to have a
+          short path between themselves <xref target="Karlof2003"/>. This
+          changes the availability of certain routing paths and hence
+          constitutes a serious security breach.</t>
 
           <t>Essentially, two malicious insider nodes use another, more
           powerful, transmitter to communicate with each other and thereby
@@ -1575,29 +1517,26 @@ To Node_5  \  |  |
           involve shortcutting and hence paralyzing a large part of the
           network; it could also involve tunneling the information to another
           region of the network where there are, e.g., more malicious nodes
-          available to aid the intrusion or where messages are replayed, etc.
-          </t>
-          <t>
-          In conjunction with selective forwarding, wormhole attacks can
+          available to aid the intrusion or where messages are replayed,
+          etc.</t>
+
+          <t>In conjunction with selective forwarding, wormhole attacks can
           create race conditions which impact topology maintenance, routing
           protocols as well as any security suits built on "time of check" and
           "time of use".</t>
 
-          <t>A pure Wormhole attack is nearly impossible to detect.  A wormhole
+          <t>A pure Wormhole attack is nearly impossible to detect. A wormhole
           which is used in order to subsequently mount another kind of attack
-          would be defeated by defeating the other attack.  A perfect wormhole,
+          would be defeated by defeating the other attack. A perfect wormhole,
           in which there is nothing adverse that occurs to the traffic, would
-          be difficult to call an attack.  The worst thing that a benign wormhole
-          can do in such a situation is to cease to operate (become unstable),
-          causing the network to have to recalculate routes.
-          </t>
-          <t>A highly unstable wormhole is no different than a radio opaque (i.e. metal)
-          door that opens and closes a lot.  RPL includes
-          hystersis in its objective functions
-          <xref target="RFC6719" />
-          in an attempt to deal with frequent
-          changes to the ETX between nodes.
-          </t>
+          be difficult to call an attack. The worst thing that a benign
+          wormhole can do in such a situation is to cease to operate (become
+          unstable), causing the network to have to recalculate routes.</t>
+
+          <t>A highly unstable wormhole is no different than a radio opaque
+          (i.e. metal) door that opens and closes a lot. RPL includes
+          hystersis in its objective functions <xref target="RFC6719"/> in an
+          attempt to deal with frequent changes to the ETX between nodes.</t>
         </section>
       </section>
     </section>
@@ -1660,15 +1599,14 @@ To Node_5  \  |  |
         target="confident-threat"/>) but does not of itself directly undermine
         the operation of the routing function. However, to protect against,
         and reduce consequences from other more direct attacks, routing
-        information should be protected. Thus, a secured RPL protocol:
-        <list style="symbols">
-          <t>MUST implement payload encryption;</t>
+        information should be protected. Thus, a secured RPL protocol: <list
+            style="symbols">
+            <t>MUST implement payload encryption;</t>
 
-          <t>MAY provide tunneling;</t>
+            <t>MAY provide tunneling;</t>
 
-          <t>MAY provide load balancing.</t>
-        </list>
-        </t>
+            <t>MAY provide load balancing.</t>
+          </list></t>
 
         <t>Where confidentiality is incorporated into the routing exchanges,
         encryption algorithms and key lengths need to be specified in
@@ -1701,15 +1639,13 @@ To Node_5  \  |  |
       <section anchor="intf" title="Integrity Features">
         <t>The integrity of routing information provides the basis for
         ensuring that the function of the routing protocol is achieved and
-        maintained.  To protect integrity, RPL must either run using
-        only the Secure versions of the messages, or must run over
-        a layer-2 that uses channel binding between node identity
-        and transmissions.  (i.e.: a layer-2 which has an identical
-        network-wide transmission key can not defend against many attacks)
-        </t>
+        maintained. To protect integrity, RPL must either run using only the
+        Secure versions of the messages, or must run over a layer-2 that uses
+        channel binding between node identity and transmissions. (i.e.: a
+        layer-2 which has an identical network-wide transmission key can not
+        defend against many attacks)</t>
 
-        <t>XXX. Logging is critical, but presently impossible. </t>
-
+        <t>XXX. Logging is critical, but presently impossible.</t>
       </section>
 
       <section anchor="avaf" title="Availability Features">
@@ -1719,40 +1655,36 @@ To Node_5  \  |  |
         target="match-needs"/>). Where availability of the network is
         compromised, routing information availability will be accordingly
         affected. However, to specifically assist in protecting routing
-        availability:
-        <list style="symbols">
-          <t>MAY restrict neighborhood cardinality;</t>
+        availability: <list style="symbols">
+            <t>MAY restrict neighborhood cardinality;</t>
 
-          <t>MAY use multiple paths;</t>
+            <t>MAY use multiple paths;</t>
 
-          <t>MAY use multiple destinations;</t>
+            <t>MAY use multiple destinations;</t>
 
-          <t>MAY choose randomly if multiple paths are available;</t>
+            <t>MAY choose randomly if multiple paths are available;</t>
 
-          <t>MAY set quotas to limit transmit or receive volume;</t>
+            <t>MAY set quotas to limit transmit or receive volume;</t>
 
-          <t>MAY use geographic information for flow control.</t>
-        </list>
-        </t>
+            <t>MAY use geographic information for flow control.</t>
+          </list></t>
       </section>
 
       <section anchor="keymanage" title="Key Management">
         <t>The functioning of the routing security services requires keys and
         credentials. Therefore, even though not directly a RPL security
         requirement, an LLN MUST have a process for initial key and credential
-        configuration, as well as secure storage within the associated devices.
-        Anti-tampering SHOULD be a consideration in physical design.
-        Beyond initial credential
-        configuration, an LLN is also encouraged to have automatic procedures
-        for the revocation and replacement of the maintained security
-        credentials.</t>
+        configuration, as well as secure storage within the associated
+        devices. Anti-tampering SHOULD be a consideration in physical design.
+        Beyond initial credential configuration, an LLN is also encouraged to
+        have automatic procedures for the revocation and replacement of the
+        maintained security credentials.</t>
 
-        <t> While RPL has secure modes, but some modes are impractical
-        without use of public key cryptography believed to be too expensive
-        by many.  RPL layer-3 security will often depend upon existing LLN
-        layer-2 security mechanisms, which provides for node authentication,
-        but little in the way of node authorization.
-        </t>
+        <t>While RPL has secure modes, but some modes are impractical without
+        use of public key cryptography believed to be too expensive by many.
+        RPL layer-3 security will often depend upon existing LLN layer-2
+        security mechanisms, which provides for node authentication, but
+        little in the way of node authorization.</t>
       </section>
 
       <section anchor="match-needs"
@@ -1771,174 +1703,10 @@ To Node_5  \  |  |
         application domains, and then examine mechanisms and protocol
         operations issues.</t>
 
-        <section anchor="roll-sec-arch" title="Security Architecture">
-          <t>The first challenge for a RPL protocol security design is to
-          have an architecture that can adequately address a set of very
-          diverse needs. It is mainly a consequence of the fact that there are
-          both common and non-overlapping requirements from the four
-          application domains, while, conceivably, each individual application
-          will present yet its own unique constraints.</t>
-
-          <t>For a RPL protocol, the security requirements defined in <xref
-          target="conff"/> to <xref target="keymanage"/> can be addressed at
-          two levels: 1) through measures implemented directly within the
-          routing protocol itself and initiated and controlled by the routing
-          protocol entities; or 2) through measures invoked on behalf of the
-          routing protocol entities but implemented within the part of the
-          network over which the protocol exchanges occur.</t>
-
-          <t>Where security is directly implemented as part of the routing
-          protocol the security requirements configured by the user (system
-          administrator) will operate independently of the lower layers.
-          OSPFv2 <xref target="RFC2328"/> is an example of such an approach in
-          which security parameters are exchanged and assessed within the
-          routing protocol messages. In this case, the mechanism may be, e.g.,
-          a header containing security material of configurable security
-          primitives in the fashion of OSPFv2 or RIPv2 <xref
-          target="RFC2453"/>. Where IPsec <xref target="RFC4301"/> is employed
-          to secure the network, the included protocol-specific (OSPF or RIP)
-          security elements are in addition to and independent of those at the
-          network layer. In the case of LLNs or other networks where system
-          security mandates protective mechanisms at other lower layers of the
-          network, security measures implemented as part of the routing
-          protocol will be redundant to security measures implemented
-          elsewhere as part of the protocol stack.</t>
-
-          <t>Security mechanisms built into the routing protocol can ensure
-          that all desired countermeasures can be directly addressed by the
-          protocol all the way to the endpoint of the routing exchange. In
-          particular, routing protocol Byzantine attacks by a compromised node
-          that retains valid network security credentials can only be detected
-          at the level of the information exchanged within the routing
-          protocol. Such attacks aimed at the manipulation of the routing
-          information can only be fully addressed through measures operating
-          directly between the routing entities themselves or external
-          entities able to access and analyze the routing information (see
-          discussion in <xref target="counter-byzantine"/>).</t>
-
-          <t>On the other hand, it is more desirable from an LLN device
-          perspective that the RPL protocol is integrated into the framework
-          of an overall system architecture where the security facility may be
-          shared by different applications and/or across layers for
-          efficiency, and where security policy and configurations can be
-          consistently specified. See, for example, considerations made in
-          RIPng <xref target="RFC2080"/> or the approach presented in <xref
-          target="Messerges2003"/>.</t>
-
-          <t>Where the routing protocol is able to rely on security measures
-          configured within other layers of the protocol stack, greater system
-          efficiency can be realized by avoiding potentially redundant
-          security. Relying on an open trust model <xref
-          target="Messerges2003"/>, the security requirements of the routing
-          protocol can be more flexibly met at different layers of the
-          transport network; measures that must be applied to protect the
-          communications network are concurrently able to provide the needed
-          routing protocol protection.</t>
-
-          <t>For example, where a given security encryption scheme is deemed
-          the appropriate standard for network confidentiality of data
-          exchanges at the link layer, that level of security is directly
-          provided to routing protocol exchanges across the local link.
-          Similarly, where a given authentication procedure is stipulated as
-          part of the standard required for authenticating network traffic,
-          that security provision can then meet the requirement needed for
-          authentication of routing exchanges. In addition, in the context of
-          the different LLN application domains, the level of security
-          specified for routing can and should be consistent with that
-          considered appropriate for protecting the network within the given
-          environment.</t>
-
-          <t>A RPL protocol MUST be made flexible by a design that offers the
-          configuration facility so that the user (network administrator) can
-          choose the security settings that match the application's needs.
-          Furthermore, in the case of LLNs, that flexibility SHOULD extend to
-          allowing the routing protocol security requirements to be met by
-          measures applied at different protocol layers, provided the
-          identified requirements are collectively met.</t>
-
-          <t>Since Byzantine attackers that can affect the validity of the
-          information content exchanged between routing entities can only be
-          directly countered at the routing protocol level, the RPL protocol
-          MAY support mechanisms for verifying routing data validity that
-          extend beyond the chain of trust created through device
-          authentication. This protocol-specific security mechanism SHOULD be
-          made optional within the protocol allowing it to be invoked
-          according to the given routing protocol and application domain and
-          as selected by the system user. All other RPL security mechanisms
-          needed to meet the above identified routing security requirements
-          can be flexibly implemented within the transport network (at the IP
-          network layer or higher or lower protocol layers(s)) according to
-          the particular application domain and user network
-          configuration.</t>
-
-          <t>Based on device capabilities and the spectrum of operating
-          environments it would be difficult for a single fixed security
-          design to be applied to address the diversified needs of the urban,
-          industrial, home, and building RPL application domains, and
-          foreseeable others, without forcing a very low common denominator
-          set of requirements. On the other hand, providing four individual
-          domain designs that attempt to a priori match each individual domain
-          is also very unlikely to provide a suitable answer given the degree
-          of network variability even within a given domain; furthermore, the
-          type of link layers in use within each domain also influences the
-          overall security.</t>
-
-          <t>Instead, the framework implementation approach recommended is for
-          optional, routing protocol-specific measures that can be applied
-          separately from, or together with, flexible transport network
-          mechanisms. Protocol-specific measures include the specification of
-          valid parameter ranges, increments and/or event frequencies that can
-          be verified by individual routing devices. In addition to deliberate
-          attacks this allows basic protocol sanity checks against
-          unintentional mis-configuration. Transport network mechanisms would
-          include out-of-band communications that may be defined to allow an
-          external entity to request and process individual device information
-          as a means to effecting an external verification of the derived
-          network routing information to identify the existence of intentional
-          or unintentional network anomalies.</t>
-
-          <t>This approach allows countermeasures against byzantine attackers
-          to be applied in environments where applicable threats exist. At the
-          same time, it allows routing protocol security to be supported
-          through measures implemented within the transport network that are
-          consistent with available system resources and commensurate and
-          consistent with the security level and strength applied in the
-          particular application domain networks.</t>
-        </section>
-
         <section anchor="roll-sec-mech" title="Mechanisms and Operations">
-          <t>With an architecture allowing different configurations to meet
-          the application domain needs, the task is then to find suitable
-          mechanisms. For example, one of the main problems of synchronizing
-          security states of sleepy nodes lies in difficulties in
-          authentication; these nodes may not have received in time the most
-          recent update of security material. Similarly, the issues of minimal
-          manual configuration, prolonged rollout and delayed addition of
-          nodes, and network topology changes also complicate security
-          management. In many cases the RPL protocol may need to bootstrap
-          the authentication process and allow for a flexible expiration
-          scheme of authentication credentials. This exemplifies the need for
-          the coordination and interoperation between the requirements of the
-          RPL routing protocol and that of the system security elements.</t>
-
-          <t>Similarly, the vulnerability brought forth by some
-          special-function nodes, e.g., LBRs requires the assurance,
-          particularly, of the availability of communication channels and node
-          resources, or that the neighbor discovery process operates without
-          undermining routing availability.</t>
-
-          <t>There are other factors which are not part of a RPL routing
-          protocol but which can still affect its operation. These include
-          elements such as weaker barrier to accessing the data or security
-          material stored on the nodes through physical means; therefore, the
-          internal and external interfaces of a node need to be adequate for
-          guarding the integrity, and possibly the confidentiality, of stored
-          information, as well as the integrity of routing and route
-          generation processes.</t>
-
           <t><xref target="Fig5"/> provides an overview of the larger context
-          of system security and the relationship between RPL requirements
-          and measures and those that relate to the LLN system.</t>
+          of system security and the relationship between RPL requirements and
+          measures and those that relate to the LLN system.</t>
 
           <figure align="center" anchor="Fig5"
                   title="LLN Device Security Model">
@@ -1995,10 +1763,10 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
 
     <section anchor="Security" title="Security Considerations">
       <t>The analysis presented in this document provides security analysis
-      and design guidelines with a scope limited to RPL. Security services
-      are identified as requirements for securing RPL. The specific
-      mechanisms to be used to deal with each threat is specified in
-      link-layer and deployment specific applicability statements.</t>
+      and design guidelines with a scope limited to RPL. Security services are
+      identified as requirements for securing RPL. The specific mechanisms to
+      be used to deal with each threat is specified in link-layer and
+      deployment specific applicability statements.</t>
     </section>
 
     <!-- Possibly a 'Contributors' section ... -->
@@ -2010,11 +1778,12 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
       Vasseur, and the Area Director Adrian Farrel.</t>
 
       <t>This document started out as a combined threat and solutions
-      document.  As a result of security review, the document was split up by
+      document. As a result of security review, the document was split up by
       RPL co-Chair Michael Richardson and security Area Director Sean Turner
-      as it went through the IETF publication process.  The solutions to the
-      threads are application and layer-2 specific, and have therefore
-      been moved to the relevant applicability statements.</t>
+      as it went through the IETF publication process. The solutions to the
+      threads are application and layer-2 specific, and have therefore been
+      moved to the relevant applicability statements.</t>
+
       <t>Ines Robles kept track of the many issues that were raised during the
       development of this document</t>
     </section>
@@ -2052,7 +1821,6 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
       &RFC6719;
 
       &ZigBeeIP;
-
     </references>
 
     <references title="Informative References">
@@ -2069,6 +1837,8 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
       &RFC2453;
 
       &RFC5055;
+
+      &RFC3610;
 
       &RFC3830;
 
@@ -2087,6 +1857,10 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
       &RFC5996;
 
       &RFC6192;
+
+      &RFC6574;
+
+      &RFC6824;
 
       <reference anchor="IEEE1149.1">
         <front>
@@ -2203,9 +1977,53 @@ value="National Institute of Standards and Technology" />
         <seriesInfo name="in the Proceedings of the Third IEEE International Conference on Pervasive Computing and Communications"
                     value="pp. 324-328"/>
       </reference>
-      <reference anchor="Szcze2008" target="http://www.ic.unicamp.br/~leob/publications/ewsn/NanoECC.pdf">
+
+      <reference anchor="AceCharterProposal"
+                 target="http://www.ietf.org/mail-archive/web/ace/current/msg00007.html">
         <front>
-          <title>NanoECC: testing the limits of elliptic curve cryptography in sensor networks</title>
+          <author initials="L." role="editor" surname="Kepeng">
+            <organization/>
+          </author>
+
+          <title>Authentication and Authorization for Constrained Environment
+          Charter (work-in-progress)</title>
+
+          <date month="December" year="2013"/>
+        </front>
+      </reference>
+
+      <reference anchor="SolaceProposal"
+                 target="http://www.ietf.org/mail-archive/web/solace/current/msg00015.html">
+        <front>
+          <title>Notes from the SOLACE ad-hoc at IETF85
+          (work-in-progress)</title>
+
+          <author initials="C." role="editor" surname="Bormann">
+            <organization/>
+          </author>
+
+          <date month="November" year="2012"/>
+        </front>
+      </reference>
+
+      <reference anchor="SmartObjectSecurityWorkshop"
+                 target="http://www.lix.polytechnique.fr/hipercom/SmartObjectSecurity">
+        <front>
+          <title>Workshop on Smart Object Security</title>
+
+          <author initials="T." role="editor" surname="Klausen">
+            <organization/>
+          </author>
+
+          <date month="March" year="2012"/>
+        </front>
+      </reference>
+
+      <reference anchor="Szcze2008"
+                 target="http://www.ic.unicamp.br/~leob/publications/ewsn/NanoECC.pdf">
+        <front>
+          <title>NanoECC: testing the limits of elliptic curve cryptography in
+          sensor networks</title>
 
           <author initials="P." surname="Szczechowiak1">
             <organization/>
@@ -2229,6 +2047,7 @@ value="National Institute of Standards and Technology" />
 
           <date year="2008"/>
         </front>
+
         <seriesInfo name="" value="pp. 324-328"/>
       </reference>
 
@@ -2265,6 +2084,7 @@ value="National Institute of Standards and Technology" />
       &I-D.kelsey-intarea-mesh-link-establishment;
 
       &ISO.7498-2.1988;
+
       <!--      &I-D.ietf-rpsec-ospf-vuln; -->
 
       <reference anchor="Myagmar2005">
