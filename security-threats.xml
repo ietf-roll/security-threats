@@ -366,21 +366,44 @@ An alternate method (rfc include) is described in the references. -->
                 title="Data Flow Diagram of a Generic Routing Process">
           <preamble/>
 
-          <artwork
-          align="left">................................................... : :
-          : : |Node_i|&lt;-------&gt;(Routing Neighbor _________________ : :
-          Discovery)------------&gt;Neighbor Topology : : -------+--------- :
-          : | : |Node_j|&lt;-------&gt;(Route/Topology +--------+ : :
-          Exchange) | : : | V ______ : : +----&gt;(Route
-          Generation)---&gt;Routes : : ---+-- : : | : : Routing on a Node
-          Node_k | : ................................................... |
-          |Forwarding | |On
-          Node_l|&lt;-------------------------------------------+ Notation:
-          (Proc) A process Proc ________ topology A structure storing neighbor
-          adjacency (parent/child) -------- ________ routes A structure
-          storing the forwarding information base (FIB) -------- |Node_n| An
-          external entity Node_n -------&gt; Data flow</artwork>
+          <artwork align="left">
+            <![CDATA[
+                ...................................................
+                 :                                                 :
+                 :                                                 :
+     |Node_i|<------->(Routing Neighbor       _________________    :
+                 :     Discovery)------------>Neighbor Topology    :
+                 :                            -------+---------    :
+                 :                                   |             :
+     |Node_j|<------->(Route/Topology       +--------+             :
+                 :     Exchange)            |                      :
+                 :           |              V            ______    :
+                 :           +---->(Route Generation)--->Routes    :
+                 :                                       ---+--    :
+                 :                                          |      :
+                 : Routing on a Node Node_k                 |      :
+                 ...................................................
+                                                            |
+     |Forwarding                                            |
+     |On Node_l|<-------------------------------------------+
 
+
+Notation:
+
+(Proc)     A process Proc
+
+________
+topology   A structure storing neighbor adjacency (parent/child)
+--------
+________
+ routes    A structure storing the forwarding information base (FIB)
+--------
+
+|Node_n|   An external entity Node_n
+
+------->   Data flow
+            ]]>
+          </artwork>
           <postamble/>
         </figure>
 
@@ -888,82 +911,64 @@ An alternate method (rfc include) is described in the references. -->
           <t>In addition to physical layer obstructions, the forms of attack
           that allows disruption of network traffic forwarding include <xref
           target="Karlof2003"/><list style="symbols">
-          <t>Selective forwarding attacks;
+              <t>Selective forwarding attacks; <figure align="center"
+                  anchor="Fig2" title="Selective Forwarding">
+                  <preamble/>
 
-          <figure align="center" anchor="Fig2"
-                  title="Selective Forwarding">
-            <preamble/>
+                  <artwork align="left">
+                    <![CDATA[
+      |Node_1|--(msg1|msg2|msg3)-->|Attacker|--(msg1|msg3)-->|Node_2|
+                    ]]>
+                  </artwork>
+                  <postamble/>
+                </figure></t>
 
-            <artwork align="left">
-              <![CDATA[
-|Node_1|--(msg1|msg2|msg3)-->|Attacker|--(msg1|msg3)-->|Node_2|
-
-(a) Selective Forwarding
-            ]]>            </artwork>
-
-              <postamble/>
-          </figure>
-          </t>
-
-          <t>Wormhole attacks;
-
-          <figure align="center" anchor="Fig3"
+              <t>Wormhole attacks; <figure align="center" anchor="Fig3"
                   title="Wormhole Attacks">
-            <preamble/>
+                  <preamble/>
 
-            <artwork align="left">
-              <![CDATA[
-|Node_1|-------------Unreachable---------x|Node_2|
-   |                                         ^
-   |               Private Link              |
-   '-->|Attacker_1|===========>|Attacker_2|--'
+                  <artwork align="left">
+                    <![CDATA[
+            |Node_1|-------------Unreachable---------x|Node_2|
+               |                                         ^
+               |               Private Link              |
+               '-->|Attacker_1|===========>|Attacker_2|--'
+                    ]]>
+                  </artwork>
+                  <postamble/>
+                </figure></t>
 
-
-(b) Wormhole
-              ]]>            </artwork>
-
-              <postamble/>
-          </figure>
-          </t>
-
-          <t>Sinkhole attacks.
-
-          <figure align="center" anchor="Fig4"
+              <t>Sinkhole attacks. <figure align="center" anchor="Fig4"
                   title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
-            <preamble/>
+                  <preamble/>
 
-            <artwork align="left">
-              <![CDATA[
-|Node_1|     |Node_4|
-    |            |
-    `--------.   |
-Falsify as    \  |
-Good Link \   |  |
-To Node_5  \  |  |
-            \ V  V
-|Node_2|-->|Attacker|--Not Forwarded---x|Node_5|
-              ^  ^ \
-              |  |  \ Falsify as
-              |  |   \Good Link
-              /  |    To Node_5
-     ,-------'   |
-     |           |
-|Node_3|     |Node_i|
+          <artwork align="left">
+            <![CDATA[
+             |Node_1|     |Node_4|
+                 |            |
+                 `--------.   |
+             Falsify as    \  |
+             Good Link \   |  |
+             To Node_5  \  |  |
+                         \ V  V
+             |Node_2|-->|Attacker|--Not Forwarded---x|Node_5|
+                           ^  ^ \
+                           |  |  \ Falsify as
+                           |  |   \Good Link
+                           /  |    To Node_5
+                  ,-------'   |
+                  |           |
+             |Node_3|     |Node_i|
+            ]]>
+          </artwork>
+                  <postamble/>
+                </figure></t>
+            </list></t>
 
-(c) Sinkhole
-
-              ]]>            </artwork>
-
-              <postamble/>
-          </figure>
-          </t>
-          </list></t>
-          <t>
-            These attacks are generally done to both control plane and forwarding plane traffic.
-            A system that prevents control plane traffic (RPL messages) from being diverted in these ways will also
-            prevent actual data from being diverted.
-          </t>
-
+          <t>These attacks are generally done to both control plane and
+          forwarding plane traffic. A system that prevents control plane
+          traffic (RPL messages) from being diverted in these ways will also
+          prevent actual data from being diverted.</t>
         </section>
 
         <section anchor="disrpt-comm-resourse"
@@ -1645,7 +1650,7 @@ To Node_5  \  |  |
         layer-2 which has an identical network-wide transmission key can not
         defend against many attacks)</t>
 
-        <t>XXX. Logging is critical, but presently impossible.</t>
+        <t>While logging is critical, it is often impossible.</t>
       </section>
 
       <section anchor="avaf" title="Availability Features">
