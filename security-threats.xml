@@ -67,7 +67,7 @@ An alternate method (rfc include) is described in the references. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-roll-security-threats-06"
+<rfc category="info" docName="draft-ietf-roll-security-threats-07"
      ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic ipr values: full3667, noModification3667, noDerivatives3667 you can add the attributes updates="NNNN" and obsoletes="NNNN" hey will automatically be output with "(if approved)" -->
 
@@ -280,11 +280,11 @@ An alternate method (rfc include) is described in the references. -->
       step is to identify necessary countermeasures to secure RPL. As there
       are multiple ways to solve the problem and the specific tradeoffs are
       deployment specific, the specific countermeasure to be used is detailed
-      in applicatbility statements.</t>
+      in applicability statements.</t>
 
-      <t>This document uses [IS07498-2] model, which includes Authentication,
+      <t>This document uses [IS07498-2] model, which describes Authentication,
       Access Control, Data Confidentiality, Data Integrity, and
-      Non-Repudiation but to which Availability is added.</t>
+      Non-Repudiation security services and to which Availability is added.</t>
 
       <t>All of this document concerns itself with securing the control plane
       traffic. As such it does not address authorization or authentication of
@@ -313,11 +313,11 @@ An alternate method (rfc include) is described in the references. -->
       and potentially confidentiality of routing data, but also proper order
       of state changes through timeliness, since seriously delayed state
       changes, such as commands or updates of routing tables, may negatively
-      impact system operation. A security assesment can therefore begin with a
+      impact system operation. A security assessment can therefore begin with a
       focus on the assets <xref target="RFC4949"/> that may be the target of
       the state changes and the access points in terms of interfaces and
       protocol exchanges through which such changes may occur. In the case of
-      routing security the focus is directed towards the elements associated
+      routing security, the focus is directed towards the elements associated
       with the establishment and maintenance of network connectivity.</t>
 
       <t>This section sets the stage for the development of the analysis by
@@ -343,7 +343,7 @@ An alternate method (rfc include) is described in the references. -->
         stored and manipulated. The corruption or loss of these assets may
         adversely impact the control plane of the network. Within the same
         context, a point of access is an interface or protocol that
-        facilitates interaction between control plane components. Identifying
+        facilitates interaction between control plane assets. Identifying
         these assets and points of access will provide a basis for enumerating
         the attack surface of the control plane.</t>
 
@@ -443,7 +443,7 @@ ________
 
       <section anchor="iso" title="The ISO 7498-2 Security Reference Model">
         <t>At the conceptual level, security within an information system in
-        general and applied to RPL in particular is concerned with the primary
+        general and applied to RPL; in particular is concerned with the primary
         issues of authentication, access control, data confidentiality, data
         integrity, and non-repudiation. In the context of RPL</t>
 
@@ -624,7 +624,7 @@ ________
         <t>Since the fundamental function of a routing protocol is to build
         routes for forwarding packets, it is essential to ensure that: <list
             style="symbols">
-            <t>routing/topology information iintegrity remains intact during
+            <t>routing/topology information integrity remains intact during
             transfer and in storage;</t>
 
             <t>routing/topology information is used by authorized
@@ -709,7 +709,7 @@ ________
       routing points of access. The threats and attacks identified are based
       on the routing model analysis and associated review of the existing
       literature. The source of the attacks is assumed to be from either
-      inside or outside attackers. The capability these attackes may be
+      inside or outside attackers. The capability these attackers may be
       limited to node-equivalent, but also to more sophisticated computing
       platforms.</t>
 
@@ -720,7 +720,7 @@ ________
           be able to assume the role of a legitimate (and existing node). It
           may be able to report false readings (in metering applications), or
           provide inappropriate control messages (in control systems involving
-          actuators) if the security of the application is leveraged from the
+          actuators) if the security of the application is implied by the
           security of the routing system.</t>
 
           <t>In other systems where there is separate application layer
@@ -742,7 +742,7 @@ ________
         <section anchor="spam-resource" title="Node Resource Spam">
           <t>If an attacker can join a network with any identify, then it can
           continously do so, draining down the resources of the network to
-          store identity and routing information, potentionally forcing
+          store identity and routing information, potentially forcing
           legitimate nodes of the network.</t>
         </section>
       </section>
@@ -750,9 +750,9 @@ ________
       <section anchor="confident-threat"
                title="Threats and Attacks on Confidentiality">
         <t>The assessment in <xref target="iso"/> indicates that there are
-        threat actions against the confidentiality of routing information at
+        attacks against the confidentiality of routing information at
         all points of access. This threat results in disclosure, as described
-        in Section 3.1.2 of <xref target="RFC4593"/>, and it involves a
+        in Section 3.1.2 of <xref target="RFC4593"/>, and may involve a
         disclosure of routing information.</t>
 
         <section anchor="route-exch-expo" title="Routing Exchange Exposure">
@@ -761,7 +761,7 @@ ________
           neighbor state information. As indicated in <xref
           target="routing-assets"/>, the associated routing information assets
           may also include device specific resource information, such as
-          memory, remaining power, etc., that may be metrics of the routing
+          available memory, remaining power, etc., that may be metrics of the routing
           protocol.</t>
 
           <t>The routing exchanges will contain reachability information,
@@ -778,17 +778,16 @@ ________
           of the routing process that are stored within the node device
           databases.</t>
 
-          <t>The exposure of this information will allow attachers to gain
+          <t>The exposure of this information will allow attackers to gain
           direct access to the configuration and connectivity of the network
           thereby exposing routing to targeted attacks on key nodes or links.
           Since routes and neighbor topology information is stored within the
-          node device, threats or attacks on the confidentiality of the
+          node device, attacks on the confidentiality of the
           information will apply to the physical device including specified
           and unspecified internal and external interfaces.</t>
 
           <t>The forms of attack that allow unauthorized access or disclosure
-          of the routing information (other than occurring through explicit
-          node exchanges) will include: <list style="symbols">
+          of the routing information will include: <list style="symbols">
               <t>Physical device compromise;</t>
 
               <t>Remote device access attacks (including those occurring
@@ -799,8 +798,8 @@ ________
           <t>Both of these attack vectors are considered a device specific
           issue, and are out of scope for RPL to defend against. In some
           applications, physical device compromise may be a real threat and it
-          may be necessary to provide for other devices to react quickly to
-          exclude a compromised device.</t>
+          may be necessary to provide for other devices to detect a compromised devise and react quickly to
+          exclude it.</t>
         </section>
       </section>
 
@@ -912,7 +911,7 @@ ________
           that allows disruption of network traffic forwarding include <xref
           target="Karlof2003"/><list style="symbols">
               <t>Selective forwarding attacks; <figure align="center"
-                  anchor="Fig2" title="Selective Forwarding">
+                  anchor="Fig2" title="Selective forwarding example">
                   <preamble/>
 
                   <artwork align="left">
@@ -939,7 +938,7 @@ ________
                 </figure></t>
 
               <t>Sinkhole attacks. <figure align="center" anchor="Fig4"
-                  title="Selective Forwarding, Wormhole, and Sinkhole Attacks">
+                  title="sinkhole attack example">
                   <preamble/>
 
           <artwork align="left">
@@ -1061,7 +1060,7 @@ ________
           <t>To mitigate the risk of deliberate exposure, the process that
           communicating nodes use to establish session keys must be
           peer-to-peer (i.e., between the routing initiating and responding
-          nodes). This helps ensure that neither node is exchaning routing
+          nodes). This helps ensure that neither node is exchanging routing
           information with another peer without the knowledge of both
           communicating peers. For a deliberate exposure attack to succeed,
           the comprised node will need to be more overt and take independent
@@ -1087,7 +1086,7 @@ ________
           agreed encryption algorithm. The mandatory to implement CCM mode
           AES-128 method, is described in <xref target="RFC3610"/>, and is
           believed to be secure against a brute force attack by even the most
-          well equiped adversary.</t>
+          well-equiped adversary.</t>
 
           <t>The significant challenge for RPL is in the provisioning of the
           key, which in some modes of RFC6550 is used network-wide. RFC6550
@@ -1160,7 +1159,7 @@ ________
           attacks through remote access, any local or remote device requesting
           routing information must be authenticated, and must be authorized
           for that access. Since remote access is not invoked as part of a
-          routing protocol security of routing information stored on the node
+          routing protocol, security of routing information stored on the node
           against remote access will not be addressable as part of the routing
           protocol.</t>
         </section>
@@ -1205,7 +1204,7 @@ ________
 
         <section title="Countering Overclaiming and Misclaiming Attacks">
           <t>Both overclaiming and misclaiming aim to introduce false routes
-          or topology that would not be generated by the network otherwise,
+          or a false topology that would not occur otherwise,
           while there are not necessarily unauthorized modifications to the
           routing messages or information. In order to counter overclaiming,
           the capability to determine unreasonable routes or topology is
@@ -1219,7 +1218,7 @@ ________
             </list></t>
 
           <t>RPL includes no specific mechanisms in the protocol to counter
-          overlaims. An implementation could have specific heuristics
+          overclaims or misclaims. An implementation could have specific heuristics
           implemented locally.</t>
         </section>
 
@@ -1251,7 +1250,7 @@ ________
           literal RPL message are in general idempotent to the topology. An
           older (lower DODAGVersionNumber) message, if replayed would be
           rejected as being stale. The trickle algorithm further dampens the
-          affect of any such replay, as if the message was current, then it
+          effect of any such replay, as if the message was current, then it
           would contain the same information as before, and it would cause no
           network changes.</t>
 
@@ -1359,7 +1358,7 @@ ________
           <t>As discussed in section 5.1, <xref
           target="I-D.suhopark-hello-wsn"/> a receiver with a sensitive
           receiver could well hear the DAOs, and even send DAO-ACKs as well.
-          Such a node is a form of WormHole attack.</t>
+          Such a node is a form of wormhole attack.</t>
 
           <t>These attacks are also all easily defended against using either
           layer-2 or layer-3 authentication. Such an attack could only be made
@@ -1530,7 +1529,7 @@ ________
           protocols as well as any security suits built on "time of check" and
           "time of use".</t>
 
-          <t>A pure Wormhole attack is nearly impossible to detect. A wormhole
+          <t>A pure wormhole attack is nearly impossible to detect. A wormhole
           which is used in order to subsequently mount another kind of attack
           would be defeated by defeating the other attack. A perfect wormhole,
           in which there is nothing adverse that occurs to the traffic, would
@@ -1540,7 +1539,7 @@ ________
 
           <t>A highly unstable wormhole is no different than a radio opaque
           (i.e. metal) door that opens and closes a lot. RPL includes
-          hystersis in its objective functions <xref target="RFC6719"/> in an
+          hysteresis in its objective functions <xref target="RFC6719"/> in an
           attempt to deal with frequent changes to the ETX between nodes.</t>
         </section>
       </section>
@@ -1553,7 +1552,7 @@ ________
       reached without confining the consideration to means only available to
       routing. This section puts the results into perspective and provides a
       framework for addressing the derived set of security objectives that
-      must be met by the routing protocol(s) specified by the RPL Working
+      must be met by the routing protocol(s) specified by the ROLL Working
       Group. It bears emphasizing that the target here is a generic, universal
       form of the protocol(s) specified and the normative keywords are mainly
       to convey the relative level of importance or urgency of the features
@@ -1655,7 +1654,7 @@ ________
 
       <section anchor="avaf" title="Availability Features">
         <t>Availability of routing information is linked to system and network
-        availability which in the case of LLNs require a broader security view
+        availability, which in the case of LLNs require a broader security view
         beyond the requirements of the routing entities (see <xref
         target="match-needs"/>). Where availability of the network is
         compromised, routing information availability will be accordingly
@@ -1786,7 +1785,7 @@ Configuration  :         |__Comm. Channel_|         :  Configuration
       document. As a result of security review, the document was split up by
       RPL co-Chair Michael Richardson and security Area Director Sean Turner
       as it went through the IETF publication process. The solutions to the
-      threads are application and layer-2 specific, and have therefore been
+      threats are application and layer-2 specific, and have therefore been
       moved to the relevant applicability statements.</t>
 
       <t>Ines Robles kept track of the many issues that were raised during the
