@@ -709,9 +709,12 @@ ________
       routing points of access. The threats and attacks identified are based
       on the routing model analysis and associated review of the existing
       literature. The source of the attacks is assumed to be from either
-      inside or outside attackers. The capability these attackers may be
-      limited to node-equivalent, but also to more sophisticated computing
-      platforms.</t>
+      inside or outside attackers.  While some attackers inside the network
+      will be using compromised nodes, and therefore are only able to do
+      what an ordinary node can ("node-equivalent"), other attacks may not
+      limited in memory, CPU, power consumption or long term storage. Moore's
+      law favours the attacker with access to the latest capabilities, while
+      the defenders will remain in place for years to decades.</t>
 
       <section anchor="authorization-threat"
                title="Threats due to failures to Authenticate">
