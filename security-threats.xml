@@ -747,18 +747,24 @@ ________
 
       <section anchor="authorization-threat"
                title="Threats due to failures to Authenticate">
+        <t>
+          An attacker can assert an arbitrary identity, including
+          the identity of another node is said to be able to assert
+          "any" identity.
+        </t>
         <section anchor="any-identity" title="Node Impersonation">
-          <t>If an attacker can join a network with any identify, then it may
+          <t>If an attacker can join a network using any identity, then it may
           be able to assume the role of a legitimate (and existing node). It
           may be able to report false readings (in metering applications), or
           provide inappropriate control messages (in control systems involving
           actuators) if the security of the application is implied by the
           security of the routing system.</t>
 
-          <t>In other systems where there is separate application layer
-          security, the ability to impersonate a node would permit an attacker
-          to direct traffic to itself, which facilitates on-path attacks
-          including replaying, delaying, or duplicating control messages.</t>
+          <t>Even in systems where there application layer security,
+          the ability to impersonate a node would permit an attacker
+          to direct traffic to itself.  This may permit various on-path attacks
+          which would otherwise be difficult, such replaying, delaying, or duplicating
+          (application) control messages.</t>
         </section>
 
         <section anchor="extra-node" title="Dummy Node">
@@ -773,9 +779,9 @@ ________
 
         <section anchor="spam-resource" title="Node Resource Spam">
           <t>If an attacker can join a network with any identify, then it can
-          continously do so, draining down the resources of the network to
-          store identity and routing information, potentially forcing
-          legitimate nodes of the network.</t>
+          continously do so with new (random) identities.  This act may drain down the resources
+          of the network (battery, ram, bandwidth). This may cause
+          legitimate nodes of the network to be unable to communicate.</t>
         </section>
       </section>
 
@@ -830,8 +836,8 @@ ________
           <t>Both of these attack vectors are considered a device specific
           issue, and are out of scope for RPL to defend against. In some
           applications, physical device compromise may be a real threat and it
-          may be necessary to provide for other devices to detect a compromised devise and react quickly to
-          exclude it.</t>
+          may be necessary to provide for other devices to securely detect a compromised
+          device and react quickly to exclude it.</t>
         </section>
       </section>
 
@@ -866,7 +872,8 @@ ________
           <t>The forms of attack that allow manipulation to compromise the
           content and validity of routing information include<list
               style="symbols">
-              <t>Falsification, including overclaiming and misclaiming;</t>
+              <t>Falsification, including overclaiming and misclaiming (claiming routes to devices
+              which the device can not in fact reach);</t>
 
               <t>Routing information replay;</t>
 
@@ -895,7 +902,7 @@ ________
           and validity of the received information the protocol operation can
           be compromised. The forms of attack that misuse node identity
           include<list style="symbols">
-              <t>Identity attacks, including Sybil attacks in which a
+              <t>Identity attacks, including Sybil attacks (see <xref target="Sybil2002" />) in which a
               malicious node illegitimately assumes multiple identities;</t>
 
               <t>Routing information replay.</t>
@@ -1039,7 +1046,7 @@ ________
           Routing operation and network forwarding functions can thus be
           adversely impacted by node resources exhaustion that stems from
           attacks that include:<list style="symbols">
-              <t>Identity (including Sybil) attacks;</t>
+              <t>Identity (including Sybil) attacks  (see <xref target="Sybil2002" />);</t>
 
               <t>Routing information replay attacks;</t>
 
@@ -1871,7 +1878,8 @@ value="National Institute of Standards and Technology" />
         <seriesInfo name="" value="pp. 324-328"/>
       </reference>
 
-      <reference anchor="Karlof2003">
+      <reference anchor="Karlof2003"
+                 target="http://nest.cs.berkeley.edu/papers/sensor-route-security.pdf">
         <front>
           <title>Secure routing in wireless sensor networks: attacks and
           countermeasures</title>
@@ -2027,6 +2035,18 @@ value="National Institute of Standards and Technology" />
 
         <seriesInfo name="pp." value="103-119"/>
       </reference>
+
+      <reference anchor="Sybil2002">
+        <front>
+          <title>The Sybil Attack</title>
+          <author initials="J." surname="Douceur">
+            <organization/>
+          </author>
+          <date month="March" year="2002" />
+        </front>
+        <seriesInfo name="First International Workshop on Peer-to-Peer Systems"/>
+      </reference>
+
 
       <reference anchor="Yourdon1979">
         <front>
