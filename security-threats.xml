@@ -2044,7 +2044,7 @@ value="National Institute of Standards and Technology" />
           </author>
           <date month="March" year="2002" />
         </front>
-        <seriesInfo name="First International Workshop on Peer-to-Peer Systems"/>
+        <seriesInfo name="First International Workshop on Peer-to-Peer Systems" value=""/>
       </reference>
 
 
