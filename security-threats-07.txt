@@ -5,14 +5,14 @@
 Routing Over Low-Power and Lossy Networks                        T. Tsao
 Internet-Draft                                              R. Alexander
 Intended status: Informational                      Cooper Power Systems
-Expires: November 16, 2014                                     M. Dohler
+Expires: December 12, 2014                                     M. Dohler
                                                                     CTTC
                                                                  V. Daza
                                                                A. Lozano
                                                 Universitat Pompeu Fabra
                                                            M. Richardson
                                                 Sandelman Software Works
-                                                            May 15, 2014
+                                                           June 10, 2014
 
 
 A Security Threat Analysis for Routing Protocol for Low-power and lossy
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Tsao, et al.            Expires November 16, 2014               [Page 1]
+Tsao, et al.            Expires December 12, 2014               [Page 1]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
 
 
    Internet-Drafts are draft documents valid for a maximum of six months
@@ -63,7 +63,7 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 16, 2014.
+   This Internet-Draft will expire on December 12, 2014.
 
 Copyright Notice
 
@@ -91,10 +91,10 @@ Table of Contents
      4.3.  Issues Specific to or Amplified in LLNs . . . . . . . . .   9
      4.4.  RPL Security Objectives . . . . . . . . . . . . . . . . .  11
    5.  Threat Sources  . . . . . . . . . . . . . . . . . . . . . . .  12
-   6.  Threats and Attacks . . . . . . . . . . . . . . . . . . . . .  12
+   6.  Threats and Attacks . . . . . . . . . . . . . . . . . . . . .  13
      6.1.  Threats due to failures to Authenticate . . . . . . . . .  13
        6.1.1.  Node Impersonation  . . . . . . . . . . . . . . . . .  13
-       6.1.2.  Dummy Node  . . . . . . . . . . . . . . . . . . . . .  13
+       6.1.2.  Dummy Node  . . . . . . . . . . . . . . . . . . . . .  14
        6.1.3.  Node Resource Spam  . . . . . . . . . . . . . . . . .  14
      6.2.  Threats and Attacks on Confidentiality  . . . . . . . . .  14
        6.2.1.  Routing Exchange Exposure . . . . . . . . . . . . . .  14
@@ -103,45 +103,50 @@ Table of Contents
      6.3.  Threats and Attacks on Integrity  . . . . . . . . . . . .  15
        6.3.1.  Routing Information Manipulation  . . . . . . . . . .  15
        6.3.2.  Node Identity Misappropriation  . . . . . . . . . . .  16
-     6.4.  Threats and Attacks on Availability . . . . . . . . . . .  16
-       6.4.1.  Routing Exchange Interference or Disruption . . . . .  16
+     6.4.  Threats and Attacks on Availability . . . . . . . . . . .  17
+       6.4.1.  Routing Exchange Interference or Disruption . . . . .  17
        6.4.2.  Network Traffic Forwarding Disruption . . . . . . . .  17
 
 
 
-Tsao, et al.            Expires November 16, 2014               [Page 2]
+Tsao, et al.            Expires December 12, 2014               [Page 2]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
 
 
        6.4.3.  Communications Resource Disruption  . . . . . . . . .  18
-       6.4.4.  Node Resource Exhaustion  . . . . . . . . . . . . . .  18
-   7.  Countermeasures . . . . . . . . . . . . . . . . . . . . . . .  19
-     7.1.  Confidentiality Attack Countermeasures  . . . . . . . . .  19
-       7.1.1.  Countering Deliberate Exposure Attacks  . . . . . . .  19
-       7.1.2.  Countering Passive Wiretapping Attacks  . . . . . . .  20
+       6.4.4.  Node Resource Exhaustion  . . . . . . . . . . . . . .  19
+   7.  Countermeasures . . . . . . . . . . . . . . . . . . . . . . .  20
+     7.1.  Confidentiality Attack Countermeasures  . . . . . . . . .  20
+       7.1.1.  Countering Deliberate Exposure Attacks  . . . . . . .  20
+       7.1.2.  Countering Passive Wiretapping Attacks  . . . . . . .  21
        7.1.3.  Countering Traffic Analysis . . . . . . . . . . . . .  21
-       7.1.4.  Countering Remote Device Access Attacks . . . . . . .  21
+       7.1.4.  Countering Remote Device Access Attacks . . . . . . .  22
      7.2.  Integrity Attack Countermeasures  . . . . . . . . . . . .  22
-       7.2.1.  Countering Unauthorized Modification Attacks  . . . .  22
-       7.2.2.  Countering Overclaiming and Misclaiming Attacks . . .  22
-       7.2.3.  Countering Identity (including Sybil) Attacks . . . .  23
-       7.2.4.  Countering Routing Information Replay Attacks . . . .  23
-       7.2.5.  Countering Byzantine Routing Information Attacks  . .  24
+       7.2.1.  Countering Unauthorized Modification Attacks  . . . .  23
+       7.2.2.  Countering Overclaiming and Misclaiming Attacks . . .  23
+       7.2.3.  Countering Identity (including Sybil) Attacks . . . .  24
+       7.2.4.  Countering Routing Information Replay Attacks . . . .  24
+       7.2.5.  Countering Byzantine Routing Information Attacks  . .  25
      7.3.  Availability Attack Countermeasures . . . . . . . . . . .  25
        7.3.1.  Countering HELLO Flood Attacks and ACK Spoofing
-               Attacks . . . . . . . . . . . . . . . . . . . . . . .  25
+               Attacks . . . . . . . . . . . . . . . . . . . . . . .  26
        7.3.2.  Countering Overload Attacks . . . . . . . . . . . . .  26
-       7.3.3.  Countering Selective Forwarding Attacks . . . . . . .  27
-       7.3.4.  Countering Sinkhole Attacks . . . . . . . . . . . . .  28
-       7.3.5.  Countering Wormhole Attacks . . . . . . . . . . . . .  28
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  29
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  29
-   10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  29
-   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  30
-     11.1.  Normative References . . . . . . . . . . . . . . . . . .  30
-     11.2.  Informative References . . . . . . . . . . . . . . . . .  30
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  34
+       7.3.3.  Countering Selective Forwarding Attacks . . . . . . .  28
+       7.3.4.  Countering Sinkhole Attacks . . . . . . . . . . . . .  29
+       7.3.5.  Countering Wormhole Attacks . . . . . . . . . . . . .  30
+   8.  RPL Security Features . . . . . . . . . . . . . . . . . . . .  30
+     8.1.  Confidentiality Features  . . . . . . . . . . . . . . . .  31
+     8.2.  Integrity Features  . . . . . . . . . . . . . . . . . . .  32
+     8.3.  Availability Features . . . . . . . . . . . . . . . . . .  33
+     8.4.  Key Management  . . . . . . . . . . . . . . . . . . . . .  33
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  33
+   10. Security Considerations . . . . . . . . . . . . . . . . . . .  34
+   11. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  34
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  34
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  34
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  35
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  39
 
 1.  Introduction
 
@@ -157,18 +162,17 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    consequence, the resulting networks are more prone to loss of traffic
    and other vulnerabilities.  The proliferation of these low-power and
    lossy networks (LLNs), however, are drawing efforts to examine and
+
+
+
+Tsao, et al.            Expires December 12, 2014               [Page 3]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    address their potential networking challenges.  Securing the
    establishment and maintenance of network connectivity among these
    deployed devices becomes one of these key challenges.
-
-
-
-
-
-Tsao, et al.            Expires November 16, 2014               [Page 3]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    This document presents a threat analysis for securing the Routing
    Protocol for LLNs (RPL).  The process requires two steps.  First, the
@@ -215,16 +219,15 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    This document adopts the terminology defined in [RFC6550], in
    [RFC4949], and in [I-D.ietf-roll-terminology].
 
+
+
+Tsao, et al.            Expires December 12, 2014               [Page 4]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    The terms control plane and forwarding plane are used consistently
    with section 1 of [RFC6192].
-
-
-
-
-Tsao, et al.            Expires November 16, 2014               [Page 4]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
 4.  Considerations on RPL Security
 
@@ -272,16 +275,15 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    these assets and points of access will provide a basis for
    enumerating the attack surface of the control plane.
 
+
+
+Tsao, et al.            Expires December 12, 2014               [Page 5]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    A level-0 data flow diagram [Yourdon1979] is used here to identify
    the assets and points of access within a generic routing process.
-
-
-
-Tsao, et al.            Expires November 16, 2014               [Page 5]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    The use of a data flow diagram allows for a clear and concise model
    of the way in which routing nodes interact and process information,
    and hence provides a context for threats and attacks.  The goal of
@@ -329,13 +331,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
    |Node_n|   An external entity Node_n
 
-   ------->   Data flow
 
 
-
-Tsao, et al.            Expires November 16, 2014               [Page 6]
+Tsao, et al.            Expires December 12, 2014               [Page 6]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
+   ------->   Data flow
 
 
          Figure 1: Data Flow Diagram of a Generic Routing Process
@@ -383,17 +386,17 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    of RPL
 
    Authentication
+
+
+
+Tsao, et al.            Expires December 12, 2014               [Page 7]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
          Authentication involves the mutual authentication of the
          routing peers prior to exchanging route information (i.e., peer
          authentication) as well as ensuring that the source of the
-
-
-
-Tsao, et al.            Expires November 16, 2014               [Page 7]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
          route data is from the peer (i.e., data origin authentication).
          [RFC5548] points out that LLNs can be drained by
          unauthenticated peers before configuration.  [RFC5673] requires
@@ -440,15 +443,15 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
          unsupportable burden that bears no further considered as an RPL
          security issue.
 
+
+
+Tsao, et al.            Expires December 12, 2014               [Page 8]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    It is recognized that, besides those security issues captured in the
    ISO 7498-2 model, availability, is a security requirement:
-
-
-
-Tsao, et al.            Expires November 16, 2014               [Page 8]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    Availability
          Availability ensures that routing information exchanges and
@@ -495,17 +498,17 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    Autonomous operations
          Self-forming and self-organizing are commonly prescribed
          requirements of LLNs.  In other words, a routing protocol
+
+
+
+Tsao, et al.            Expires December 12, 2014               [Page 9]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
          designed for LLNs needs to contain elements of ad hoc
          networking and in most cases cannot rely on manual
          configuration for initialization or local filtering rules.
-
-
-
-Tsao, et al.            Expires November 16, 2014               [Page 9]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
          Network topology/ownership changes, partitioning or merging, as
          well as node replacement, can all contribute to complicating
          the operations of key management.
@@ -550,17 +553,19 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
          routing protocol is indeed used in such applications, it will
          clearly need to have corresponding security mechanisms.
 
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 10]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
          Additionally nodes may appear to move from one side of a wall
          to another without any actual motion involved, the result of
          changes to electromagnetic properties, such as opening and
          closing of a metal door.
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 10]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    Support for multicast and anycast
          Support for multicast and anycast is called out chiefly for
@@ -605,18 +610,18 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    However, when trust cannot be fully vested through authentication of
    the principals alone, i.e., concerns of insider attack, assurance of
    the truthfulness and timeliness of the received routing/topology
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 11]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    information is necessary.  With regard to confidentiality, protecting
    the routing/topology information from unauthorized exposure may be
    desirable in certain cases but is in itself less pertinent in general
    to the routing function.
-
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 11]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    One of the main problems of synchronizing security states of sleepy
    nodes, as listed in the last subsection, lies in difficulties in
@@ -656,6 +661,19 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    [RFC4593] provides a detailed review of the threat sources: outsiders
    and byzantine.  RPL has the same threat sources.
 
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 12]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
 6.  Threats and Attacks
 
    This section outlines general categories of threats under the ISO
@@ -664,15 +682,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    potential for violation of security, which exists when there is a
    circumstance, capability, action, or event that could breach security
    and cause harm."
-
-
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 12]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    An attack is "an assault on system security that derives from an
    intelligent threat, i.e., an intelligent act that is a deliberate
@@ -709,6 +718,18 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    actuators) if the security of the application is implied by the
    security of the routing system.
 
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 13]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    Even in systems where there application layer security, the ability
    to impersonate a node would permit an attacker to direct traffic to
    itself.  This may permit various on-path attacks which would
@@ -716,19 +737,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    (application) control messages.
 
 6.1.2.  Dummy Node
-
-
-
-
-
-
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 13]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    If an attacker can join a network with any identify, then it can
    pretend to be a legitimate node, receiving any service legitimate
@@ -770,6 +778,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
 6.2.2.  Routing Information (Routes and Network Topology) Exposure
 
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 14]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    Routes (which may be maintained in the form of the protocol
    forwarding table) and neighbor topology information are the products
    of the routing process that are stored within the node device
@@ -778,14 +794,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    The exposure of this information will allow attackers to gain direct
    access to the configuration and connectivity of the network thereby
    exposing routing to targeted attacks on key nodes or links.  Since
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 14]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    routes and neighbor topology information is stored within the node
    device, attacks on the confidentiality of the information will apply
    to the physical device including specified and unspecified internal
@@ -820,6 +828,20 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    operation and convergence of the routing protocols and ultimately
    impact the forwarding decisions made in the network.
 
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 15]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    Manipulation of topology and reachability information will allow
    unauthorized sources to influence the nodes with which routing
    information is exchanged and updated.  The consequence of
@@ -834,13 +856,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
    In addition, being able to attract network traffic can make a
    blackhole attack more damaging.
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 15]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    The forms of attack that allow manipulation to compromise the content
    and validity of routing information include
@@ -875,6 +890,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    o  Identity attacks, including Sybil attacks (see [Sybil2002]) in
       which a malicious node illegitimately assumes multiple identities;
 
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 16]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    o  Routing information replay.
 
 6.4.  Threats and Attacks on Availability
@@ -890,13 +913,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    consequence that allows attackers to influence the operation and
    convergence of the routing protocols by impeding the routing
    information exchange.
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 16]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    The forms of attack that allow interference or disruption of routing
    exchange include:
@@ -932,6 +948,12 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    o  Wormhole attacks;
 
 
+
+Tsao, et al.            Expires December 12, 2014              [Page 17]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
                   |Node_1|-------------Unreachable---------x|Node_2|
                      |                                         ^
                      |               Private Link              |
@@ -946,14 +968,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
                     |Node_1|     |Node_4|
                         |            |
                         `--------.   |
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 17]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
                     Falsify as    \  |
                     Good Link \   |  |
                     To Node_5  \  |  |
@@ -976,6 +990,25 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    data from being diverted.
 
 6.4.3.  Communications Resource Disruption
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 18]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
 
    Attacks mounted against the communication channel resource assets
    needed by the routing protocol can be used as a means of disrupting
@@ -1003,13 +1036,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    proliferation of apparent routing peers can therefore have a negative
    impact on node resources.
 
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 18]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    Node resources may also be unduly consumed by attackers attempting
    uncontrolled topology peering or routing exchanges, routing replays,
    or the generating of other data traffic floods.  Beyond the
@@ -1026,6 +1052,19 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    o  HELLO-type flood attacks;
 
    o  Overload attacks.  (Section 7.3.2)
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 19]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
 
 7.  Countermeasures
 
@@ -1059,13 +1098,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    diagnostic interface, an entity might be copying ("bridging") traffic
    from a secured ESSID/PAN to an unsecured interface.
 
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 19]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    A prerequisite to countering this attack is to ensure that the
    communicating nodes are authenticated prior to data encryption
    applied in the routing exchange.  Authentication ensures that the
@@ -1080,6 +1112,15 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    For a deliberate exposure attack to succeed, the comprised node will
    need to be more overt and take independent actions in order to
    disclose the routing information to 3rd party.
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 20]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
 
    Note that the same measures which apply to securing routing/topology
    exchanges between operational nodes must also extend to field tools
@@ -1115,13 +1156,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    Section 10.9 of [RFC6550] specifies AES-128 in CCM mode with a 32-bit
    MAC.
 
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 20]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    Section 5.6 Zigbee IP [ZigBeeIP] specifies use of CCM, with PANA and
    EAP-TLS for key management.
 
@@ -1135,6 +1169,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    founded on shared medium, is passive and relies on the ability to
    read the immutable source/destination layer-2 and/or layer-3 routing
    information that must remain unencrypted to permit network routing.
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 21]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
 
    One way in which passive traffic analysis attacks can be muted is
    through the support of load balancing that allows traffic to a given
@@ -1170,14 +1212,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    tool.  In the case of network management a node can be directly
    requested to provide routing tables and neighbor information.
 
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 21]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    To ensure confidentiality of the node routing information against
    attacks through remote access, any local or remote device requesting
    routing information must be authenticated, and must be authorized for
@@ -1192,6 +1226,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    manipulation, as well as node identity and routing information
    misuse.  Manipulation can occur in the form of falsification attack
    and physical compromise.  To be effective, the following development
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 22]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    considers the two aspects of falsification, namely, the unauthorized
    modifications and the overclaiming and misclaiming content.  The
    countering of physical compromise was considered in the previous
@@ -1226,14 +1268,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
    Both overclaiming and misclaiming aim to introduce false routes or a
    false topology that would not occur otherwise, while there are not
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 22]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    necessarily unauthorized modifications to the routing messages or
    information.  In order to counter overclaiming, the capability to
    determine unreasonable routes or topology is required.
@@ -1247,6 +1281,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    RPL includes no specific mechanisms in the protocol to counter
    overclaims or misclaims.  An implementation could have specific
    heuristics implemented locally.
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 23]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
 
 7.2.3.  Countering Identity (including Sybil) Attacks
 
@@ -1283,13 +1325,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    802.15.4) as a result of echos or reflections, and so some replays
    must be assumed to occur naturally.
 
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 23]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    Note that for there to be no affect at all, the replay must be done
    with the same apparent power for all nodes receiving the replay.  A
    change in apparent power might change the metrics through changes to
@@ -1297,6 +1332,19 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    contents of the packet were never changed.  Any replay which appears
    to be different should be analyzed as a Selective Forwarding Attack,
    Sinkhole Attack or Wormhole Attack.
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 24]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
 
 7.2.5.  Countering Byzantine Routing Information Attacks
 
@@ -1339,13 +1387,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    listen to multiple parents, and may switch parents if it begins to
    suspect that it is being lied to.
 
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 24]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
 7.3.  Availability Attack Countermeasures
 
    As alluded to before, availability requires that routing information
@@ -1353,6 +1394,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    guarantee proper functioning of the network.  This may, e.g., include
    the correct operation of routing information and neighbor state
    information exchanges, among others.  We will highlight the key
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 25]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    features of the security threats along with typical countermeasures
    to prevent or at least mitigate them.  We will also note that an
    availability attack may be facilitated by an identity attack as well
@@ -1395,19 +1444,20 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    against a completely open network (such as might be used for
    provisioning new nodes), or by a compromised node.
 
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 25]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
 7.3.2.  Countering Overload Attacks
 
    Overload attacks are a form of DoS attack in that a malicious node
    overloads the network with irrelevant traffic, thereby draining the
    nodes' energy store more quickly, when the nodes rely on batteries or
    energy scavenging.  It thus significantly shortens the lifetime of
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 26]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    networks of energy-constrained nodes and constitutes another serious
    availability attack.
 
@@ -1447,17 +1497,26 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    communication is sufficiently secured, only trusted nodes can receive
    and forward traffic which also lowers the risk of an overload attack.
 
+
+
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 27]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    Receiving nodes that validate signatures and sending nodes that
    encrypt messages need to be cautious of cryptographic processing
    usage when validating signatures and encrypting messages.  Where
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 26]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    feasible, certificates should be validated prior to use of the
    associated keys to counter potential resource overloading attacks.
    The associated design decision needs to also consider that the
@@ -1494,6 +1553,23 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
    o  dynamically selecting the next hop from a set of candidates.
 
+
+
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 28]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    The first measure basically guarantees that if a message gets lost on
    a particular routing path due to a malicious selective forwarding
    attack, there will be another route which successfully delivers the
@@ -1504,15 +1580,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    chosen from a dynamic set in the hope that the number of malicious
    nodes in this set is negligible.  A routing protocol that allows for
    disjoint routing paths may also be useful.
-
-
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 27]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
 7.3.4.  Countering Sinkhole Attacks
 
@@ -1547,6 +1614,18 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    calculations could in theory be subverted by a sinkhole that
    transmitted at precisely the right power in a node to node fashion.
 
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 29]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    While geographic knowledge could help assure that traffic always went
    in the physical direction desired, it would not assure that the
    traffic was taking the most efficient route, as the lowest cost real
@@ -1562,14 +1641,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
    Essentially, two malicious insider nodes use another, more powerful,
    transmitter to communicate with each other and thereby distort the
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 28]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
    would-be-agreed routing path.  This distortion could involve
    shortcutting and hence paralyzing a large part of the network; it
    could also involve tunneling the information to another region of the
@@ -1594,11 +1665,194 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    its objective functions [RFC6719] in an attempt to deal with frequent
    changes to the ETX between nodes.
 
-8.  IANA Considerations
+8.  RPL Security Features
+
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 30]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
+   The assessments and analysis in Section 6 examined all areas of
+   threats and attacks that could impact routing, and the
+   countermeasures presented in Section 7 were reached without confining
+   the consideration to means only available to routing.  This section
+   puts the results into perspective; dealing with those threats which
+   are endemnic to this field, those which have been mitigated through
+   RPL protocol design, and those which require specific decisions to be
+   made as part of provisioning a network.
+
+   The first part of this section, Section 8.1 to Section 8.3, is a
+   description of RPL security features that address specific threats.
+   The second part of this section, Section 8.4, discusses issues of
+   provisioning of security aspects that may impact routing but that
+   also require considerations beyond the routing protocol, as well as
+   potential approaches.
+
+   RPL employs multicast and so these alternative communications modes
+   MUST be secured with the same routing security services specified in
+   this section.  Furthermore, irrespective of the modes of
+   communication, nodes MUST provide adequate physical tamper resistance
+   commensurate with the particular application domain environment to
+   ensure the confidentiality, integrity, and availability of stored
+   routing information.
+
+8.1.  Confidentiality Features
+
+   With regard to confidentiality, protecting the routing/topology
+   information from unauthorized disclosure is not directly essential to
+   maintaining the routing function.  Breaches of confidentiality may
+   lead to other attacks or the focusing of an attacker's resources (see
+   Section 6.2) but does not of itself directly undermine the operation
+   of the routing function.  However, to protect against, and reduce
+   consequences from other more direct attacks, routing information
+   should be protected.  Thus, to secure RPL:
+
+   o  implement payload encryption using layer-3 mechanisms described in
+      [RFC6550];
+
+   o  or: implement layer-2 confidentiality;
+
+   Where confidentiality is incorporated into the routing exchanges,
+   encryption algorithms and key lengths need to be specified in
+   accordance with the level of protection dictated by the routing
+   protocol and the associated application domain transport network.
+   For most networks, this means use of AES128 in CCM mode, but this
+   needs to be specified clearly in the applicability statement.
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 31]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
+   In terms of the life time of the keys, the opportunity to
+   periodically change the encryption key increases the offered level of
+   security for any given implementation.  However, where strong
+   cryptography is employed, physical, procedural, and logical data
+   access protection considerations may have more significant impact on
+   cryptoperiod selection than algorithm and key size factors.
+   Nevertheless, in general, shorter cryptoperiods, during which a
+   single key is applied, will enhance security.
+
+   Given the mandatory protocol requirement to implement routing node
+   authentication as part of routing integrity (see Section 8.2), key
+   exchanges may be coordinated as part of the integrity verification
+   process.  This provides an opportunity to increase the frequency of
+   key exchange and shorten the cryptoperiod as a complement to the key
+   length and encryption algorithm required for a given application
+   domain.
+
+8.2.  Integrity Features
+
+   The integrity of routing information provides the basis for ensuring
+   that the function of the routing protocol is achieved and maintained.
+   To protect integrity, RPL must either run using only the Secure
+   versions of the messages, or must run over a layer-2 that uses
+   channel binding between node identity and transmissions.
+
+   Some layer-2 security mechanisms use a single key for the entire
+   network, and these networks can not provide significant amount of
+   integrity protection, as any node that has that key may impersonate
+   any other node.  This mode of operation is likely acceptable when an
+   entire deployment is under the control of a single administrative
+   entity.
+
+   Other layer-2 security mechanisms form a unique session key for every
+   pair of nodes that needs to communicate; this is often called a per-
+   link key.  Such networks can provide a strong degree of origin
+   authentication and integrity on unicast messages.
+
+   However, some RPL messages are broadcast, and even when per-node
+   layer-2 security mechanisms are used, the integrity and origin
+   authentication of broadcast messages can not be as securely known.
+
+   RPL has two specific messages which are broadcast: the DODAG
+   Information Object (DIO), and the DODAG Information Solicitation
+   (DIS).  The purpose of the DIS is to cause potential parents to reply
+   with a DIO, so the integrity of the DIS is not of great concern.  The
+   DIS may also be unicast.
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 32]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
+   The DIO is a critical piece of routing and carries many critical
+   parameters.  RPL provides for assymetric authentication at layer-3 of
+   the DIO, and this may be waranteed in some deployments.  A node
+   could, if it felt that the DIO that it had received was suspicious,
+   send a unicast DIS message to the node in question, and that node
+   would reply with a unicast DIS.  Those messages could be protected
+   with the per-link key.
+
+8.3.  Availability Features
+
+   Availability of routing information is linked to system and network
+   availability which in the case of LLNs require a broader security
+   view beyond the requirements of the routing entities.  Where
+   availability of the network is compromised, routing information
+   availability will be accordingly affected.  However, to specifically
+   assist in protecting routing availability:
+
+   o  MAY restrict neighborhood cardinality;
+
+   o  MAY use multiple paths;
+
+   o  MAY use multiple destinations;
+
+   o  MAY choose randomly if multiple paths are available;
+
+   o  MAY set quotas to limit transmit or receive volume;
+
+   o  MAY use geographic information for flow control.
+
+8.4.  Key Management
+
+   The functioning of the routing security services requires keys and
+   credentials.  Therefore, even though not directly a RPL security
+   requirement, an LLN MUST have a process for initial key and
+   credential configuration, as well as secure storage within the
+   associated devices.  Anti-tampering SHOULD be a consideration in
+   physical design.  Beyond initial credential configuration, an LLN is
+   also encouraged to have automatic procedures for the revocation and
+   replacement of the maintained security credentials.
+
+   While RPL has secure modes, but some modes are impractical without
+   use of public key cryptography believed to be too expensive by many.
+   RPL layer-3 security will often depend upon existing LLN layer-2
+   security mechanisms, which provides for node authentication, but
+   little in the way of node authorization.
+
+9.  IANA Considerations
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 33]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
 
    This memo includes no request to IANA.
 
-9.  Security Considerations
+10.  Security Considerations
 
    The analysis presented in this document provides security analysis
    and design guidelines with a scope limited to RPL.  Security services
@@ -1606,25 +1860,12 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    mechanisms to be used to deal with each threat is specified in link-
    layer and deployment specific applicability statements.
 
-10.  Acknowledgments
+11.  Acknowledgments
 
    The authors would like to acknowledge the review and comments from
    Rene Struik and JP Vasseur.  The authors would also like to
    acknowledge the guidance and input provided by the RPL Chairs, David
    Culler, and JP Vasseur, and the Area Director Adrian Farrel.
-
-
-
-
-
-
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 29]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    This document started out as a combined threat and solutions
    document.  As a result of security review, the document was split up
@@ -1636,9 +1877,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    Ines Robles and Robert Craigie kept track of the many issues that
    were raised during the development of this document
 
-11.  References
+12.  References
 
-11.1.  Normative References
+12.1.  Normative References
 
    [I-D.ietf-roll-terminology]
               Vasseur, J., "Terminology in Low power And Lossy
@@ -1654,6 +1895,17 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    [RFC4301]  Kent, S. and K. Seo, "Security Architecture for the
               Internet Protocol", RFC 4301, December 2005.
 
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 34]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    [RFC6550]  Winter, T., Thubert, P., Brandt, A., Hui, J., Kelsey, R.,
               Levis, P., Pister, K., Struik, R., Vasseur, JP., and R.
               Alexander, "RPL: IPv6 Routing Protocol for Low-Power and
@@ -1666,21 +1918,13 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
               ZigBee Public Document 15-002r00, "ZigBee IP
               Specification", 2013.
 
-11.2.  Informative References
+12.2.  Informative References
 
    [AceCharterProposal]
               Li, Kepeng., Ed., "Authentication and Authorization for
               Constrained Environment Charter (work-in-progress)",
               December 2013, <http://trac.tools.ietf.org/wg/core/trac/
               wiki/ACE_charter>.
-
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 30]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    [FIPS197]  , "Federal Information Processing Standards Publication
               197: Advanced Encryption Standard (AES)", US National
@@ -1711,6 +1955,13 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
               Attack and Defense", draft-suhopark-hello-wsn-00 (work in
               progress), December 2005.
 
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 35]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    [IEEE1149.1]
               , "IEEE Standard Test Access Port and Boundary Scan
               Architecture", IEEE-SA Standards Board, Jun. 14 2001.
@@ -1730,14 +1981,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
               security.pdf>.
 
    [Kasumi3gpp]
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 31]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
-
               , "3GPP TS 35.202 Specification of the 3GPP
               confidentiality and integrity algorithms; Document 2:
               Kasumi specification", 3GPP TSG SA3, 2009.
@@ -1768,6 +2011,13 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
    [RFC2328]  Moy, J., "OSPF Version 2", STD 54, RFC 2328, April 1998.
 
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 36]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    [RFC2453]  Malkin, G., "RIP Version 2", STD 56, RFC 2453, November
               1998.
 
@@ -1784,15 +2034,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
    [RFC4593]  Barbir, A., Murphy, S., and Y. Yang, "Generic Threats to
               Routing Protocols", RFC 4593, October 2006.
-
-
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 32]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    [RFC4732]  Handley, M., Rescorla, E., IAB, "Internet Denial-of-
               Service Considerations", RFC 4732, December 2006.
@@ -1824,6 +2065,15 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
               Routing Requirements in Low-Power and Lossy Networks", RFC
               5826, April 2010.
 
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 37]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    [RFC5867]  Martocci, J., De Mil, P., Riou, N., and W. Vermeylen,
               "Building Automation Routing Requirements in Low-Power and
               Lossy Networks", RFC 5867, June 2010.
@@ -1841,14 +2091,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    [RFC6824]  Ford, A., Raiciu, C., Handley, M., and O. Bonaventure,
               "TCP Extensions for Multipath Operation with Multiple
               Addresses", RFC 6824, January 2013.
-
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 33]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
-
 
    [SmartObjectSecurityWorkshop]
               Klausen, T., Ed., "Workshop on Smart Object Security",
@@ -1880,6 +2122,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    [Wander2005]
               Wander, A., Gura, N., Eberle, H., Gupta, V., and S.
               Shantz, "Energy analysis of public-key cryptography for
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 38]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
               wireless sensor networ", in the Proceedings of the Third
               IEEE International Conference on Pervasive Computing and
               Communications pp. 324-328, March 8-12 2005.
@@ -1897,13 +2147,6 @@ Authors' Addresses
    USA
 
    Email: tzeta.tsao@cooperindustries.com
-
-
-
-
-Tsao, et al.            Expires November 16, 2014              [Page 34]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
 
    Roger K. Alexander
@@ -1933,6 +2176,16 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
    Email: vanesa.daza@upf.edu
 
 
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 39]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL        June 2014
+
+
    Angel Lozano
    Universitat Pompeu Fabra
    P/ Circumval.lacio 8, Oficina 309
@@ -1957,4 +2210,31 @@ Internet-Draft    Security Threat Analysis for ROLL RPL         May 2014
 
 
 
-Tsao, et al.            Expires November 16, 2014              [Page 35]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires December 12, 2014              [Page 40]

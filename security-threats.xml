@@ -1584,49 +1584,28 @@ ________
       </section>
     </section>
 
+    <!-- this is section 7 -->
     <section anchor="roll-sec-features" title="RPL Security Features">
       <t>The assessments and analysis in <xref target="roll-threats"/>
       examined all areas of threats and attacks that could impact routing, and
       the countermeasures presented in <xref target="counter-measur"/> were
       reached without confining the consideration to means only available to
-      routing. This section puts the results into perspective and provides a
-      framework for addressing the derived set of security objectives that
-      must be met by the routing protocol(s) specified by the RPL Working
-      Group. It bears emphasizing that the target here is a generic, universal
-      form of the protocol(s) specified and the normative keywords are mainly
-      to convey the relative level of importance or urgency of the features
-      specified.</t>
-
-      <t>In this view, 'MUST' is used to define the requirements that are
-      specific to the routing protocol and that are essential for an LLN
-      routing protocol to ensure that routing operation can be maintained.
-      Adherence to MUST requirements is needed to directly counter attacks
-      that can affect the routing operation (such as those that can impact
-      maintained or derived routing/forwarding tables). 'SHOULD' is used to
-      define requirements that counter indirect routing attacks where such
-      attacks do not of themselves affect routing but can assist an attacker
-      in focusing its attack resources to impact network operation (such as
-      DoS targeting of key forwarding nodes). 'MAY' covers optional
-      requirements that can further enhance security by increasing the space
-      over which an attacker must operate or the resources that must be
-      applied. While in support of routing security, where appropriate, these
-      requirements may also be addressed beyond the network routing protocol
-      at other system communications layers.</t>
+      routing. This section puts the results into perspective; dealing with
+      those threats which are endemnic to this field, those which have been
+      mitigated through RPL protocol design, and those which require specific
+      decisions to be made as part of provisioning a network.
+      </t>
 
       <t>The first part of this section, <xref target="conff"/> to <xref
-      target="avaf"/>, is a prescription of RPL security features of measures
-      that can be addressed as part of the routing protocol itself. As routing
-      is one component of an LLN system, the actual strength of the security
-      services afforded to it should be made to conform to each system's
-      security policy; how a design may address the needs of the urban,
-      industrial, home automation, and building automation application domains
-      also needs to be considered. The second part of this section, <xref
-      target="keymanage"/> and <xref target="match-needs"/>, discusses system
+      target="avaf"/>, is a description of RPL security features that address
+      specific threats.
+      The second part of this section, <xref
+      target="keymanage"/>, discusses issues of provisioning of
       security aspects that may impact routing but that also require
       considerations beyond the routing protocol, as well as potential
       approaches.</t>
 
-      <t>If an LLN employs multicast and/or anycast, these alternative
+      <t>RPL employs multicast and so these alternative
       communications modes MUST be secured with the same routing security
       services specified in this section. Furthermore, irrespective of the
       modes of communication, nodes MUST provide adequate physical tamper
@@ -1642,20 +1621,20 @@ ________
         target="confident-threat"/>) but does not of itself directly undermine
         the operation of the routing function. However, to protect against,
         and reduce consequences from other more direct attacks, routing
-        information should be protected. Thus, a secured RPL protocol: <list
+        information should be protected. Thus, to secure RPL: <list
             style="symbols">
-            <t>MUST implement payload encryption;</t>
-
-            <t>MAY provide tunneling;</t>
-
-            <t>MAY provide load balancing.</t>
+            <t>implement payload encryption using layer-3 mechanisms described in <xref target="RFC6550" />;</t>
+            <t>or: implement layer-2 confidentiality;</t>
           </list></t>
 
         <t>Where confidentiality is incorporated into the routing exchanges,
         encryption algorithms and key lengths need to be specified in
         accordance with the level of protection dictated by the routing
-        protocol and the associated application domain transport network. In
-        terms of the life time of the keys, the opportunity to periodically
+        protocol and the associated application domain transport network.
+        For most networks, this means use of AES128 in CCM mode, but this
+        needs to be specified clearly in the applicability statement.</t>
+        <t>
+        In terms of the life time of the keys, the opportunity to periodically
         change the encryption key increases the offered level of security for
         any given implementation. However, where strong cryptography is
         employed, physical, procedural, and logical data access protection
@@ -1670,13 +1649,7 @@ ________
         integrity verification process. This provides an opportunity to
         increase the frequency of key exchange and shorten the cryptoperiod as
         a complement to the key length and encryption algorithm required for a
-        given application domain. For LLNs, the coordination of
-        confidentiality key management with the implementation of node device
-        authentication can thus reduce the overhead associated with supporting
-        data confidentiality. If a new ciphering key is concurrently generated
-        or updated in conjunction with the mandatory authentication exchange
-        occurring with each routing peer association, signaling exchange
-        overhead can be reduced.</t>
+        given application domain. </t>
       </section>
 
       <section anchor="intf" title="Integrity Features">
@@ -1691,6 +1664,7 @@ ________
         of integrity protection, as any node that has that key may impersonate
         any other node.   This mode of operation is likely acceptable when an
         entire deployment is under the control of a single administrative entity.</t>
+
         <t>Other layer-2 security mechanisms form a unique session key for every
         pair of nodes that needs to communicate; this is often called a per-link key.
         Such networks can provide a strong
@@ -1717,8 +1691,8 @@ ________
       <section anchor="avaf" title="Availability Features">
         <t>Availability of routing information is linked to system and network
         availability which in the case of LLNs require a broader security view
-        beyond the requirements of the routing entities (see <xref
-        target="match-needs"/>). Where availability of the network is
+        beyond the requirements of the routing entities.
+        Where availability of the network is
         compromised, routing information availability will be accordingly
         affected. However, to specifically assist in protecting routing
         availability: <list style="symbols">
