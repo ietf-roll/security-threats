@@ -1684,11 +1684,34 @@ ________
         ensuring that the function of the routing protocol is achieved and
         maintained. To protect integrity, RPL must either run using only the
         Secure versions of the messages, or must run over a layer-2 that uses
-        channel binding between node identity and transmissions. (i.e.: a
-        layer-2 which has an identical network-wide transmission key can not
-        defend against many attacks)</t>
+        channel binding between node identity and transmissions.
+        </t>
+        <t>Some layer-2 security mechanisms use a single key for the
+        entire network, and these networks can not provide significant amount
+        of integrity protection, as any node that has that key may impersonate
+        any other node.   This mode of operation is likely acceptable when an
+        entire deployment is under the control of a single administrative entity.</t>
+        <t>Other layer-2 security mechanisms form a unique session key for every
+        pair of nodes that needs to communicate; this is often called a per-link key.
+        Such networks can provide a strong
+        degree of origin authentication and integrity on unicast messages.</t>
 
-        <t>While logging is critical, it is often impossible.</t>
+        <t>However, some RPL messages are broadcast, and even when per-node
+        layer-2 security mechanisms are used, the integrity and origin authentication
+        of broadcast messages can not be as securely known.  </t>
+        <t>RPL has two specific
+        messages which are broadcast: the DODAG Information Object (DIO), and the
+        DODAG Information Solicitation (DIS).    The purpose of the DIS is to cause
+        potential parents to reply with a DIO, so the integrity of the DIS is not
+        of great concern.  The DIS may also be unicast.
+        </t>
+        <t>The DIO is a critical piece of routing and carries many critical parameters.
+        RPL provides for assymetric authentication at layer-3 of the DIO, and this
+        may be waranteed in some deployments.  A node could, if it felt that the
+        DIO that it had received was suspicious, send a unicast DIS message to the
+        node in question, and that node would reply with a unicast DIS.  Those messages
+        could be protected with the per-link key.
+        </t>
       </section>
 
       <section anchor="avaf" title="Availability Features">
