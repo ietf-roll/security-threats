@@ -201,7 +201,7 @@ An alternate method (rfc include) is described in the references. -->
       </address>
     </author>
 
-    <author fullname="Michael Richardson (ed)" initials="M."
+    <author fullname="Michael Richardson (ed)" initials="M." role="editor"
             surname="Richardson">
       <organization>Sandelman Software Works</organization>
 
