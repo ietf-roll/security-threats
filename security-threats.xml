@@ -67,7 +67,7 @@ An alternate method (rfc include) is described in the references. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-roll-security-threats-07"
+<rfc category="info" docName="draft-ietf-roll-security-threats-08"
      ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic ipr values: full3667, noModification3667, noDerivatives3667 you can add the attributes updates="NNNN" and obsoletes="NNNN" hey will automatically be output with "(if approved)" -->
 
@@ -470,9 +470,9 @@ ________
 
       <section anchor="iso" title="The ISO 7498-2 Security Reference Model">
         <t>At the conceptual level, security within an information system in
-        general and applied to RPL; in particular is concerned with the primary
+        general and applied to RPL in particular is concerned with the primary
         issues of authentication, access control, data confidentiality, data
-        integrity, and non-repudiation. In the context of RPL</t>
+        integrity, and non-repudiation. In the context of RPL:</t>
 
         <t><list hangIndent="6" style="hanging">
             <t hangText="Authentication"><vspace/>Authentication involves the
@@ -747,11 +747,6 @@ ________
 
       <section anchor="authorization-threat"
                title="Threats due to failures to Authenticate">
-        <t>
-          An attacker can assert an arbitrary identity, including
-          the identity of another node is said to be able to assert
-          "any" identity.
-        </t>
         <section anchor="any-identity" title="Node Impersonation">
           <t>If an attacker can join a network using any identity, then it may
           be able to assume the role of a legitimate (and existing node). It
@@ -768,7 +763,7 @@ ________
         </section>
 
         <section anchor="extra-node" title="Dummy Node">
-          <t>If an attacker can join a network with any identify, then it can
+          <t>If an attacker can join a network using any identify, then it can
           pretend to be a legitimate node, receiving any service legitimate
           nodes receive. It may also be able to report false readings (in
           metering applications), or provide inappropriate authorizations (in
@@ -780,7 +775,7 @@ ________
         <section anchor="spam-resource" title="Node Resource Spam">
           <t>If an attacker can join a network with any identify, then it can
           continously do so with new (random) identities.  This act may drain down the resources
-          of the network (battery, ram, bandwidth). This may cause
+          of the network (battery, RAM, bandwidth). This may cause
           legitimate nodes of the network to be unable to communicate.</t>
         </section>
       </section>
@@ -789,7 +784,7 @@ ________
                title="Threats and Attacks on Confidentiality">
         <t>The assessment in <xref target="iso"/> indicates that there are
         attacks against the confidentiality of routing information at
-        all points of access. This threat results in disclosure, as described
+        all points of access. This threat may result in disclosure, as described
         in Section 3.1.2 of <xref target="RFC4593"/>, and may involve a
         disclosure of routing information.</t>
 
@@ -1125,7 +1120,7 @@ ________
           agreed encryption algorithm. The mandatory to implement CCM mode
           AES-128 method, is described in <xref target="RFC3610"/>, and is
           believed to be secure against a brute force attack by even the most
-          well-equiped adversary.</t>
+          well-equipped adversary.</t>
 
           <t>The significant challenge for RPL is in the provisioning of the
           key, which in some modes of RFC6550 is used network-wide. RFC6550
@@ -1137,8 +1132,10 @@ ________
           <t>A number of deployments, such as <xref target="ZigBeeIP"/>
           specify no layer-3/RPL encryption or authentication and rely upon
           similiar security at layer-2. These networks are immune to outside
-          wiretapping attacks, but are particularly vulnerable to passive (and
-          active) attacks through compromises of nodes.</t>
+          wiretapping attacks, but are vulnerable to passive (and
+          active) routing attacks through compromises of nodes.
+          (see <xref target="intf" />).
+          </t>
 
           <t>Section 10.9 of <xref target="RFC6550"/> specifies AES-128 in CCM
           mode with a 32-bit MAC.</t>
@@ -1591,7 +1588,7 @@ ________
       the countermeasures presented in <xref target="counter-measur"/> were
       reached without confining the consideration to means only available to
       routing. This section puts the results into perspective; dealing with
-      those threats which are endemnic to this field, those which have been
+      those threats which are endemic to this field, those which have been
       mitigated through RPL protocol design, and those which require specific
       decisions to be made as part of provisioning a network.
       </t>
@@ -1672,16 +1669,19 @@ ________
 
         <t>However, some RPL messages are broadcast, and even when per-node
         layer-2 security mechanisms are used, the integrity and origin authentication
-        of broadcast messages can not be as securely known.  </t>
-        <t>RPL has two specific
-        messages which are broadcast: the DODAG Information Object (DIO), and the
-        DODAG Information Solicitation (DIS).    The purpose of the DIS is to cause
+        of broadcast messages can not be as trusted due to the proliferation of the key used
+        to secure them.</t>
+        <t>RPL has two specific options which are broadcast in RPL Control Messages: the DODAG
+        Information Object (DIO), and the DODAG Information Solicitation (DIS).
+        The purpose of the DIS is to cause
         potential parents to reply with a DIO, so the integrity of the DIS is not
         of great concern.  The DIS may also be unicast.
         </t>
         <t>The DIO is a critical piece of routing and carries many critical parameters.
-        RPL provides for assymetric authentication at layer-3 of the DIO, and this
-        may be waranteed in some deployments.  A node could, if it felt that the
+
+        RPL provides for asymmetric authentication at layer 3 of the RPL Control Message
+        carrying the DIO and this may be warranted in some deployments.
+        A node could, if it felt that the
         DIO that it had received was suspicious, send a unicast DIS message to the
         node in question, and that node would reply with a unicast DIS.  Those messages
         could be protected with the per-link key.
@@ -1695,7 +1695,7 @@ ________
         Where availability of the network is
         compromised, routing information availability will be accordingly
         affected. However, to specifically assist in protecting routing
-        availability: <list style="symbols">
+        availability, nodes: <list style="symbols">
             <t>MAY restrict neighborhood cardinality;</t>
 
             <t>MAY use multiple paths;</t>
@@ -1755,7 +1755,7 @@ ________
       threats are application and layer-2 specific, and have therefore been
       moved to the relevant applicability statements.</t>
 
-      <t>Ines Robles and Robert Craigie kept track of the many issues that were raised
+      <t>Ines Robles and Robert Cragie kept track of the many issues that were raised
       during the development of this document</t>
     </section>
   </middle>
