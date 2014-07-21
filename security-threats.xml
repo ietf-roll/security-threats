@@ -40,7 +40,6 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY I-D.suhopark-hello-wsn SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-suhopark-hello-wsn-00.xml">
 <!ENTITY I-D.kelsey-intarea-mesh-link-establishment SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.kelsey-intarea-mesh-link-establishment.xml">
 <!ENTITY I-D.ietf-rpsec-ospf-vuln SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-rpsec-ospf-vuln-02.xml">
-<!ENTITY I-D.ietf-roll-terminology SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-roll-terminology-04.xml">
 <!ENTITY ISO.7498-2.1988 SYSTEM "http://xml.resource.org/public/rfc/bibxml-misc/reference.ISO.7498-2.1988.xml">
 <!ENTITY ZigBeeIP SYSTEM "http://www.sandelman.ca/rfc/xml/reference.ZigBeeIP.xml">
 ]>
@@ -323,7 +322,7 @@ An alternate method (rfc include) is described in the references. -->
     <section title="Terminology">
       <t>This document adopts the terminology defined in <xref
       target="RFC6550"/>, in <xref target="RFC4949"/>, and in <xref
-      target="I-D.ietf-roll-terminology"/>.</t>
+      target="RFC7102"/>.</t>
 
       <t>The terms control plane and forwarding plane are used consistently
       with section 1 of <xref target="RFC6192"/>.</t>
@@ -1787,7 +1786,7 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
       &RFC6550;
 
-      &I-D.ietf-roll-terminology;
+      <?rfc include="reference.RFC.7102" ?>
 
       &RFC6719;
 
