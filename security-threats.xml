@@ -242,12 +242,6 @@ An alternate method (rfc include) is described in the references. -->
       addressed in relevant applicability statements.</t>
     </abstract>
 
-    <note title="Requirements Language">
-      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-      "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-      "OPTIONAL" in this document are to be interpreted as described in <xref
-      target="RFC2119">RFC 2119</xref>.</t>
-    </note>
   </front>
 
   <middle>
@@ -288,10 +282,10 @@ An alternate method (rfc include) is described in the references. -->
 
       <t>All of this document concerns itself with securing the control plane
       traffic. As such it does not address authorization or authentication of
-      application traffic.  RPL uses multicast as part of it's protocol, and
-      therefore mechanisms which RPL uses to secure this traffic MAY be applicable
+      application traffic.  RPL uses multicast as part of its protocol, and
+      therefore mechanisms which RPL uses to secure this traffic might also be applicable
       to MPL control traffic as well:  the important part is that the threats
-      are similiar.</t>
+      are similar.</t>
     </section>
 
     <section title="Relationship to other documents">
@@ -327,6 +321,13 @@ An alternate method (rfc include) is described in the references. -->
 
       <t>The terms control plane and forwarding plane are used consistently
       with section 1 of <xref target="RFC6192"/>.</t>
+
+      <t>The term DODAG is from <xref target="RFC6550"/>.</t>
+      <t>EAP-TLS is defined in <xref target="RFC5216"/>.</t>
+      <t>PANA is defined in <xref target="RFC5191"/>.</t>
+      <t>CCM mode is defined in <xref target="RFC3610"/>.</t>
+      <t>The terms SSID, ESSID and PAN refer to network identifiers, defined in
+      <xref target="IEEE.802.11"/> and <xref target="IEEE.802.15.4" />.</t>
     </section>
 
     <section anchor="cons-on-roll-sec" title="Considerations on RPL Security">
@@ -560,7 +561,10 @@ ________
             what level of security services are to be afforded during the
             system design process. The chosen security mechanisms also needs
             to work within these constraints. Synchronization of security
-            states with sleepy nodes is yet another issue.</t>
+            states with sleepy nodes is yet another issue.  A non-rechargeable battery powered
+            node may well be limited in energy for it's lifetime: once exchausted, it may well
+            never function again.</t>
+
 
             <t hangText="Large scale of rolled out network"><vspace/>The
             possibly numerous nodes to be deployed make manual on-site
@@ -1811,6 +1815,8 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
       &RFC5751;
 
+      <?rfc include="reference.RFC.5216" ?>
+      <?rfc include="reference.RFC.5191" ?>
       &RFC6192;
 
       &RFC6574;
@@ -2002,6 +2008,37 @@ value="National Institute of Standards and Technology" />
         <seriesInfo name="First International Workshop on Peer-to-Peer Systems" value=""/>
       </reference>
 
+
+      <reference anchor="IEEE.802.15.4" target="http://standards.ieee.org/getieee802/802.15.html">
+        <front>
+          <title>
+            Information technology - Telecommunications and information exchange between systems -
+            Local and metropolitan area networks - Specific requirements -
+            Part 15.4: Wireless Medium Access Control (MAC) and Physical Layer (PHY) Specifications for Low Rate Wireless Personal Area Networks (LR-WPANs)
+          </title>
+          <author />
+          <date year="2006" month="June"/>
+        </front>
+        <seriesInfo name="IEEE" value="Std 802.15.4-2006"/>
+      </reference>
+
+     <reference anchor="IEEE.802.11">
+        <front>
+          <title>
+            Draft Standard for
+            Information Technology -
+            Telecommunications and information
+            exchange between systems -
+            Local and metropolitan area networks
+            Specific requirements -
+            Part 11: Wireless LAN Medium Access Control (MAC)
+            and Physical Layer (PHY) specifications
+          </title>
+          <author />
+          <date year="2006" />
+        </front>
+        <seriesInfo name="IEEE" value="802.11-REVma" />
+      </reference>
 
       <reference anchor="Yourdon1979">
         <front>
