@@ -8,15 +8,12 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2328 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2328.xml">
 <!ENTITY RFC2453 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2453.xml">
-<!ENTITY RFC2080 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2080.xml">
 <!ENTITY RFC3029 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3029.xml">
 <!ENTITY RFC3610 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3610.xml">
 <!ENTITY RFC3830 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3830.xml">
 <!ENTITY RFC4046 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4046.xml">
-<!ENTITY RFC5197 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5197.xml">
 <!ENTITY RFC5340 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5340.xml">
 <!ENTITY RFC5673 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5673.xml">
-<!ENTITY RFC5996 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5996.xml">
 <!ENTITY RFC4301 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4301.xml">
 <!ENTITY RFC4949 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4949.xml">
 <!ENTITY RFC3654 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3654.xml">
@@ -24,7 +21,6 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC4732 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4732.xml">
 <!ENTITY RFC4822 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4822.xml">
 <!ENTITY RFC4107 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4107.xml">
-<!ENTITY RFC5055 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5055.xml">
 <!ENTITY RFC5548 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5548.xml">
 <!ENTITY RFC5751 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5751.xml">
 <!ENTITY RFC5826 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5826.xml">
@@ -33,7 +29,6 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC6550 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6550.xml">
 <!ENTITY RFC6553 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6553.xml">
 <!ENTITY RFC6554 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6554.xml">
-<!ENTITY I-D.alexander-roll-mikey-lln-key-mgmt SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-alexander-roll-mikey-lln-key-mgmt-04.xml">
 <!ENTITY RFC6574 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6574.xml">
 <!ENTITY RFC6719 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6719.xml">
 <!ENTITY RFC6824 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6824.xml">
@@ -66,7 +61,7 @@ An alternate method (rfc include) is described in the references. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-roll-security-threats-08"
+<rfc category="info" docName="draft-ietf-roll-security-threats-09"
      ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic ipr values: full3667, noModification3667, noDerivatives3667 you can add the attributes updates="NNNN" and obsoletes="NNNN" hey will automatically be output with "(if approved)" -->
 
@@ -281,9 +276,15 @@ An alternate method (rfc include) is described in the references. -->
       deployment specific, the specific countermeasure to be used is detailed
       in applicability statements.</t>
 
-      <t>This document uses [IS07498-2] model, which describes Authentication,
+      <t>This document uses <xref target="ISO.7498-2.1988"/>] model, which describes Authentication,
       Access Control, Data Confidentiality, Data Integrity, and
       Non-Repudiation security services and to which Availability is added.</t>
+
+      <t>
+        Many of the issues in this document were also covered in The IAB Smart Object Workshop
+        <xref target="RFC6574" />, and
+        The IAB Smart Object Security Workshop <xref target="I-D.gilger-smart-object-security-workshop"/>.
+      </t>
 
       <t>All of this document concerns itself with securing the control plane
       traffic. As such it does not address authorization or authentication of
@@ -1093,7 +1094,9 @@ ________
           <t>To mitigate the risk of deliberate exposure, the process that
           communicating nodes use to establish session keys must be
           peer-to-peer (i.e., between the routing initiating and responding
-          nodes). This helps ensure that neither node is exchanging routing
+          nodes).  As is pointed out in <xref target="RFC4107" />, automatic key
+          management is critical for good security.
+          This helps ensure that neither node is exchanging routing
           information with another peer without the knowledge of both
           communicating peers. For a deliberate exposure attack to succeed,
           the comprised node will need to be more overt and take independent
@@ -1320,7 +1323,7 @@ ________
 
           <t>For link state routing protocols where information is flooded
           with, for example, areas (OSPF <xref target="RFC2328"/>) or levels
-          (ISIS <xref target="RFC1142"/>), countermeasures can be directly
+          (ISIS <xref target="RFC7142"/>), countermeasures can be directly
           applied by the routing entities through the processing and
           comparison of link state information received from different peers.
           By comparing the link information from multiple sources decisions
@@ -1780,8 +1783,6 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
       &RFC2119;
 
-      &RFC4301;
-
       &RFC4107;
 
       &RFC6550;
@@ -1796,23 +1797,11 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
     <references title="Informative References">
       <!-- Here we use entities that we defined at the beginning. -->
 
-      &I-D.alexander-roll-mikey-lln-key-mgmt;
-
-      &RFC1142;
-
-      &RFC2080;
+      <?rfc include="reference.RFC.7142" ?>
 
       &RFC2328;
 
-      &RFC2453;
-
-      &RFC5055;
-
       &RFC3610;
-
-      &RFC3830;
-
-      &RFC4046;
 
       &RFC4732;
 
@@ -1820,57 +1809,15 @@ filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
       &RFC4593;
 
-      &RFC5197;
-
       &RFC5751;
-
-      &RFC5996;
 
       &RFC6192;
 
       &RFC6574;
 
+      <?rfc include="reference.I-D.gilger-smart-object-security-workshop" ?>
+
       &RFC6824;
-
-      <reference anchor="IEEE1149.1">
-        <front>
-          <title>IEEE Standard Test Access Port and Boundary Scan
-          Architecture</title>
-
-          <author/>
-
-          <date month="Jun. 14" year="2001"/>
-        </front>
-
-        <seriesInfo name="IEEE-SA" value="Standards Board"/>
-      </reference>
-
-      <reference anchor="Kasumi3gpp">
-        <front>
-          <title>3GPP TS 35.202 Specification of the 3GPP confidentiality and
-          integrity algorithms; Document 2: Kasumi specification</title>
-
-          <author/>
-
-          <date month="" year="2009"/>
-        </front>
-
-        <seriesInfo name="3GPP TSG" value="SA3"/>
-      </reference>
-
-      <reference anchor="FIPS197">
-        <front>
-          <title>Federal Information Processing Standards Publication 197:
-          Advanced Encryption Standard (AES)</title>
-
-          <author/>
-
-          <date month="Nov. 26" year="2001"/>
-        </front>
-
-        <seriesInfo name="US"
-                    value="National Institute of Standards and Technology"/>
-      </reference>
 
       <!--
           <reference anchor="FIPS180">
@@ -1916,38 +1863,6 @@ value="National Institute of Standards and Technology" />
         <seriesInfo name="MIT LCS Tech Report," value="429"/>
       </reference>
 
-      <reference anchor="Wander2005">
-        <front>
-          <title>Energy analysis of public-key cryptography for wireless
-          sensor networ</title>
-
-          <author initials="A.S" surname="Wander">
-            <organization/>
-          </author>
-
-          <author initials="N" surname="Gura">
-            <organization/>
-          </author>
-
-          <author initials="H" surname="Eberle">
-            <organization/>
-          </author>
-
-          <author initials="V" surname="Gupta">
-            <organization/>
-          </author>
-
-          <author initials="S.C" surname="Shantz">
-            <organization/>
-          </author>
-
-          <date month="March 8-12" year="2005"/>
-        </front>
-
-        <seriesInfo name="in the Proceedings of the Third IEEE International Conference on Pervasive Computing and Communications"
-                    value="pp. 324-328"/>
-      </reference>
-
       <reference anchor="AceCharterProposal"
                  target="http://trac.tools.ietf.org/wg/core/trac/wiki/ACE_charter">
         <front>
@@ -1987,38 +1902,6 @@ value="National Institute of Standards and Technology" />
 
           <date month="March" year="2012"/>
         </front>
-      </reference>
-
-      <reference anchor="Szcze2008"
-                 target="http://www.ic.unicamp.br/~leob/publications/ewsn/NanoECC.pdf">
-        <front>
-          <title>NanoECC: testing the limits of elliptic curve cryptography in
-          sensor networks</title>
-
-          <author initials="P." surname="Szczechowiak1">
-            <organization/>
-          </author>
-
-          <author initials="L.B." surname="Oliveira">
-            <organization/>
-          </author>
-
-          <author initials="M." surname="Scott">
-            <organization/>
-          </author>
-
-          <author initials="M." surname="Collier">
-            <organization/>
-          </author>
-
-          <author initials="R." surname="Dahab">
-            <organization/>
-          </author>
-
-          <date year="2008"/>
-        </front>
-
-        <seriesInfo name="" value="pp. 324-328"/>
       </reference>
 
       <reference anchor="Karlof2003"
@@ -2081,77 +1964,6 @@ value="National Institute of Standards and Technology" />
                     value="Paris, France"/>
 
         <seriesInfo name="pp." value="94-102"/>
-      </reference>
-
-      <reference anchor="Huang2003">
-        <front>
-          <title>Fast Authenticated Key Establishment Protocols for
-          Self-Organizing Sensor Networks</title>
-
-          <author initials="Q" surname="Huang">
-            <organization/>
-          </author>
-
-          <author initials="J" surname="Cukier">
-            <organization/>
-          </author>
-
-          <author initials="H" surname="Kobayashi">
-            <organization/>
-          </author>
-
-          <author initials="B" surname="Liu">
-            <organization/>
-          </author>
-
-          <author initials="J" surname="Zhang">
-            <organization/>
-          </author>
-
-          <date month="Sept. 19" year="2003"/>
-        </front>
-
-        <seriesInfo name="in Proceedings of the 2nd ACM International Conference on Wireless Sensor Networks and Applications,"
-                    value="San Diego, CA, USA"/>
-
-        <seriesInfo name="pp." value="141-150"/>
-      </reference>
-
-      <reference anchor="Messerges2003">
-        <front>
-          <title>Low-Power Security for Wireless Sensor Networks</title>
-
-          <author initials="T" surname="Messerges">
-            <organization/>
-          </author>
-
-          <author initials="J" surname="Cukier">
-            <organization/>
-          </author>
-
-          <author initials="T" surname="Kevenaar">
-            <organization/>
-          </author>
-
-          <author initials="L" surname="Puhl">
-            <organization/>
-          </author>
-
-          <author initials="R" surname="Struik">
-            <organization/>
-          </author>
-
-          <author initials="E" surname="Callaway">
-            <organization/>
-          </author>
-
-          <date month="Oct. 31" year="2003"/>
-        </front>
-
-        <seriesInfo name="in Proceedings of the 1st ACM Workshop on Security of Ad Hoc and Sensor Networks,"
-                    value="Fairfax, VA, USA"/>
-
-        <seriesInfo name="pp." value="1-11"/>
       </reference>
 
       <reference anchor="Wan2004">

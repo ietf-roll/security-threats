@@ -5,19 +5,19 @@
 Routing Over Low-Power and Lossy Networks                        T. Tsao
 Internet-Draft                                              R. Alexander
 Intended status: Informational                      Cooper Power Systems
-Expires: January 22, 2015                                      M. Dohler
+Expires: February 14, 2015                                     M. Dohler
                                                                     CTTC
                                                                  V. Daza
                                                                A. Lozano
                                                 Universitat Pompeu Fabra
                                                       M. Richardson, Ed.
                                                 Sandelman Software Works
-                                                           July 21, 2014
+                                                         August 13, 2014
 
 
 A Security Threat Analysis for Routing Protocol for Low-power and lossy
                              networks (RPL)
-                  draft-ietf-roll-security-threats-08
+                  draft-ietf-roll-security-threats-09
 
 Abstract
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Tsao, et al.            Expires January 22, 2015                [Page 1]
+Tsao, et al.            Expires February 14, 2015               [Page 1]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    Internet-Drafts are draft documents valid for a maximum of six months
@@ -63,7 +63,7 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 22, 2015.
+   This Internet-Draft will expire on February 14, 2015.
 
 Copyright Notice
 
@@ -84,7 +84,7 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Relationship to other documents . . . . . . . . . . . . . . .   4
-   3.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   4
+   3.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   5
    4.  Considerations on RPL Security  . . . . . . . . . . . . . . .   5
      4.1.  Routing Assets and Points of Access . . . . . . . . . . .   5
      4.2.  The ISO 7498-2 Security Reference Model . . . . . . . . .   7
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Tsao, et al.            Expires January 22, 2015                [Page 2]
+Tsao, et al.            Expires February 14, 2015               [Page 2]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
        6.4.3.  Communications Resource Disruption  . . . . . . . . .  18
@@ -146,7 +146,7 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  33
      12.1.  Normative References . . . . . . . . . . . . . . . . . .  33
      12.2.  Informative References . . . . . . . . . . . . . . . . .  33
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  37
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  36
 
 1.  Introduction
 
@@ -165,9 +165,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015                [Page 3]
+Tsao, et al.            Expires February 14, 2015               [Page 3]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    address their potential networking challenges.  Securing the
@@ -182,9 +182,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    tradeoffs are deployment specific, the specific countermeasure to be
    used is detailed in applicability statements.
 
-   This document uses [IS07498-2] model, which describes Authentication,
-   Access Control, Data Confidentiality, Data Integrity, and Non-
-   Repudiation security services and to which Availability is added.
+   This document uses [ISO.7498-2.1988]] model, which describes
+   Authentication, Access Control, Data Confidentiality, Data Integrity,
+   and Non-Repudiation security services and to which Availability is
+   added.
+
+   Many of the issues in this document were also covered in The IAB
+   Smart Object Workshop [RFC6574], and The IAB Smart Object Security
+   Workshop [I-D.gilger-smart-object-security-workshop].
 
    All of this document concerns itself with securing the control plane
    traffic.  As such it does not address authorization or authentication
@@ -214,17 +219,17 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    more light weight security solutions and specify the conditions under
    which these solutions are appropriate.
 
+
+
+Tsao, et al.            Expires February 14, 2015               [Page 4]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
+
+
 3.  Terminology
 
    This document adopts the terminology defined in [RFC6550], in
    [RFC4949], and in [RFC7102].
-
-
-
-Tsao, et al.            Expires January 22, 2015                [Page 4]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
 
    The terms control plane and forwarding plane are used consistently
    with section 1 of [RFC6192].
@@ -269,18 +274,19 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    asset is information about the network, processes used to manage and
    manipulate this data, and the physical devices on which this data is
    stored and manipulated.  The corruption or loss of these assets may
+
+
+
+Tsao, et al.            Expires February 14, 2015               [Page 5]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
+
+
    adversely impact the control plane of the network.  Within the same
    context, a point of access is an interface or protocol that
    facilitates interaction between control plane assets.  Identifying
    these assets and points of access will provide a basis for
    enumerating the attack surface of the control plane.
-
-
-
-Tsao, et al.            Expires January 22, 2015                [Page 5]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
 
    A level-0 data flow diagram [Yourdon1979] is used here to identify
    the assets and points of access within a generic routing process.
@@ -324,19 +330,20 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
    ________
    topology   A structure storing neighbor adjacency (parent/child)
+
+
+
+Tsao, et al.            Expires February 14, 2015               [Page 6]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
+
+
    --------
    ________
     routes    A structure storing the forwarding information base (FIB)
    --------
 
    |Node_n|   An external entity Node_n
-
-
-
-Tsao, et al.            Expires January 22, 2015                [Page 6]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
 
    ------->   Data flow
 
@@ -379,6 +386,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 4.2.  The ISO 7498-2 Security Reference Model
 
+
+
+
+Tsao, et al.            Expires February 14, 2015               [Page 7]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
+
+
    At the conceptual level, security within an information system in
    general and applied to RPL in particular is concerned with the
    primary issues of authentication, access control, data
@@ -386,14 +401,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    of RPL:
 
    Authentication
-
-
-
-Tsao, et al.            Expires January 22, 2015                [Page 7]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
-
          Authentication involves the mutual authentication of the
          routing peers prior to exchanging route information (i.e., peer
          authentication) as well as ensuring that the source of the
@@ -435,6 +442,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
          issue because it does not apply to routing protocols, which are
          machine-to-machine protocols.  Further, with the LLN
          application domains as described in [RFC5867] and [RFC5548],
+
+
+
+Tsao, et al.            Expires February 14, 2015               [Page 8]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
+
+
          proactive measures are much more critical than retrospective
          protections.  Finally, given the significant practical limits
          to on-going routing transaction logging and storage and
@@ -442,13 +457,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
          exchange, non-repudiation in the context of routing is an
          unsupportable burden that bears no further considered as an RPL
          security issue.
-
-
-
-Tsao, et al.            Expires January 22, 2015                [Page 8]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
 
    It is recognized that, besides those security issues captured in the
    ISO 7498-2 model, availability, is a security requirement:
@@ -490,6 +498,14 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
          configuration unlikely.  For example, an urban deployment can
          see several hundreds of thousands of nodes being installed by
          many installers with a low level of expertise.  Nodes may be
+
+
+
+Tsao, et al.            Expires February 14, 2015               [Page 9]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
+
+
          installed and not activated for many years, and additional
          nodes may be added later on, which may be from old inventory.
          The lifetime of the network is measured in decades, and this
@@ -498,14 +514,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    Autonomous operations
          Self-forming and self-organizing are commonly prescribed
          requirements of LLNs.  In other words, a routing protocol
-
-
-
-Tsao, et al.            Expires January 22, 2015                [Page 9]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
-
          designed for LLNs needs to contain elements of ad hoc
          networking and in most cases cannot rely on manual
          configuration for initialization or local filtering rules.
@@ -546,21 +554,20 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
          stored on the nodes through physical means.
 
    Support for mobility
+
+
+
+Tsao, et al.            Expires February 14, 2015              [Page 10]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
+
+
          On the one hand, only a limited number of applications require
          the support of mobile nodes, e.g., a home LLN that includes
          nodes on wearable health care devices or an industry LLN that
          includes nodes on cranes and vehicles.  On the other hand, if a
          routing protocol is indeed used in such applications, it will
          clearly need to have corresponding security mechanisms.
-
-
-
-
-
-Tsao, et al.            Expires January 22, 2015               [Page 10]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
 
          Additionally nodes may appear to move from one side of a wall
          to another without any actual motion involved, the result of
@@ -604,20 +611,19 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    o  authorized peers authenticate themselves during the routing
       neighbor discovery process;
 
+
+
+Tsao, et al.            Expires February 14, 2015              [Page 11]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
+
+
    o  the routing/topology information received is generated according
       to the protocol design.
 
    However, when trust cannot be fully vested through authentication of
    the principals alone, i.e., concerns of insider attack, assurance of
    the truthfulness and timeliness of the received routing/topology
-
-
-
-Tsao, et al.            Expires January 22, 2015               [Page 11]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
-
    information is necessary.  With regard to confidentiality, protecting
    the routing/topology information from unauthorized exposure may be
    desirable in certain cases but is in itself less pertinent in general
@@ -663,15 +669,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-
-
-
-
-
-
-Tsao, et al.            Expires January 22, 2015               [Page 12]
+Tsao, et al.            Expires February 14, 2015              [Page 12]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
 6.  Threats and Attacks
@@ -725,9 +725,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 13]
+Tsao, et al.            Expires February 14, 2015              [Page 13]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
 6.1.2.  Dummy Node
@@ -781,9 +781,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 14]
+Tsao, et al.            Expires February 14, 2015              [Page 14]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    The exposure of this information will allow attackers to gain direct
@@ -837,9 +837,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 15]
+Tsao, et al.            Expires February 14, 2015              [Page 15]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    In addition, being able to attract network traffic can make a
@@ -893,9 +893,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 16]
+Tsao, et al.            Expires February 14, 2015              [Page 16]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    Interference is the threat action and disruption is threat
@@ -949,9 +949,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 17]
+Tsao, et al.            Expires February 14, 2015              [Page 17]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
                     |Node_1|     |Node_4|
@@ -1005,9 +1005,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 18]
+Tsao, et al.            Expires February 14, 2015              [Page 18]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    periodically update and reassess the associations.  An introduced
@@ -1061,9 +1061,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 19]
+Tsao, et al.            Expires February 14, 2015              [Page 19]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    For instance, due to mis-configuration or inappropriate enabling of a
@@ -1078,12 +1078,13 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
    To mitigate the risk of deliberate exposure, the process that
    communicating nodes use to establish session keys must be peer-to-
-   peer (i.e., between the routing initiating and responding nodes).
-   This helps ensure that neither node is exchanging routing information
-   with another peer without the knowledge of both communicating peers.
-   For a deliberate exposure attack to succeed, the comprised node will
-   need to be more overt and take independent actions in order to
-   disclose the routing information to 3rd party.
+   peer (i.e., between the routing initiating and responding nodes).  As
+   is pointed out in [RFC4107], automatic key management is critical for
+   good security.  This helps ensure that neither node is exchanging
+   routing information with another peer without the knowledge of both
+   communicating peers.  For a deliberate exposure attack to succeed,
+   the comprised node will need to be more overt and take independent
+   actions in order to disclose the routing information to 3rd party.
 
    Note that the same measures which apply to securing routing/topology
    exchanges between operational nodes must also extend to field tools
@@ -1113,15 +1114,15 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
    A number of deployments, such as [ZigBeeIP] specify no layer-3/RPL
    encryption or authentication and rely upon similiar security at
-   layer-2.  These networks are immune to outside wiretapping attacks,
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 20]
+Tsao, et al.            Expires February 14, 2015              [Page 20]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
+   layer-2.  These networks are immune to outside wiretapping attacks,
    but are vulnerable to passive (and active) routing attacks through
    compromises of nodes.  (see Section 8.2).
 
@@ -1172,10 +1173,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-
-Tsao, et al.            Expires January 22, 2015               [Page 21]
+Tsao, et al.            Expires February 14, 2015              [Page 21]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    Where LLN nodes are deployed in the field, measures are introduced to
@@ -1229,9 +1229,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 22]
+Tsao, et al.            Expires February 14, 2015              [Page 22]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    o  include sequence number under integrity protection.
@@ -1285,9 +1285,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 23]
+Tsao, et al.            Expires February 14, 2015              [Page 23]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    would contain the same information as before, and it would cause no
@@ -1322,7 +1322,7 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    against internal (Byzantine) node attacks.
 
    For link state routing protocols where information is flooded with,
-   for example, areas (OSPF [RFC2328]) or levels (ISIS [RFC1142]),
+   for example, areas (OSPF [RFC2328]) or levels (ISIS [RFC7142]),
    countermeasures can be directly applied by the routing entities
    through the processing and comparison of link state information
    received from different peers.  By comparing the link information
@@ -1341,9 +1341,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 24]
+Tsao, et al.            Expires February 14, 2015              [Page 24]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    protocol security where the correctness of aggregate distance vector
@@ -1397,9 +1397,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 25]
+Tsao, et al.            Expires February 14, 2015              [Page 25]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    As discussed in section 5.1, [I-D.suhopark-hello-wsn] a receiver with
@@ -1453,9 +1453,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 26]
+Tsao, et al.            Expires February 14, 2015              [Page 26]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    nodes from the network at the network layer once it has been detected
@@ -1509,9 +1509,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 27]
+Tsao, et al.            Expires February 14, 2015              [Page 27]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    data.  Such a method is inherently suboptimal from an energy
@@ -1565,9 +1565,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 28]
+Tsao, et al.            Expires February 14, 2015              [Page 28]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
 7.3.5.  Countering Wormhole Attacks
@@ -1621,9 +1621,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 29]
+Tsao, et al.            Expires February 14, 2015              [Page 29]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    also require considerations beyond the routing protocol, as well as
@@ -1677,9 +1677,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 30]
+Tsao, et al.            Expires February 14, 2015              [Page 30]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    length and encryption algorithm required for a given application
@@ -1733,9 +1733,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 31]
+Tsao, et al.            Expires February 14, 2015              [Page 31]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    availability will be accordingly affected.  However, to specifically
@@ -1789,9 +1789,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 32]
+Tsao, et al.            Expires February 14, 2015              [Page 32]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    acknowledge the guidance and input provided by the RPL Chairs, David
@@ -1817,9 +1817,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    [RFC4107]  Bellovin, S. and R. Housley, "Guidelines for Cryptographic
               Key Management", BCP 107, RFC 4107, June 2005.
 
-   [RFC4301]  Kent, S. and K. Seo, "Security Architecture for the
-              Internet Protocol", RFC 4301, December 2005.
-
    [RFC6550]  Winter, T., Thubert, P., Brandt, A., Hui, J., Kelsey, R.,
               Levis, P., Pister, K., Struik, R., Vasseur, JP., and R.
               Alexander, "RPL: IPv6 Routing Protocol for Low-Power and
@@ -1843,31 +1840,20 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
               December 2013, <http://trac.tools.ietf.org/wg/core/trac/
               wiki/ACE_charter>.
 
+   [I-D.gilger-smart-object-security-workshop]
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 33]
+
+
+Tsao, et al.            Expires February 14, 2015              [Page 33]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
-   [FIPS197]  , "Federal Information Processing Standards Publication
-              197: Advanced Encryption Standard (AES)", US National
-              Institute of Standards and Technology, Nov. 26 2001.
-
-   [Huang2003]
-              Huang, Q., Cukier, J., Kobayashi, H., Liu, B., and J.
-              Zhang, "Fast Authenticated Key Establishment Protocols for
-              Self-Organizing Sensor Networks", in Proceedings of the
-              2nd ACM International Conference on Wireless Sensor
-              Networks and Applications, San Diego, CA, USA, pp.
-              141-150, Sept. 19 2003.
-
-   [I-D.alexander-roll-mikey-lln-key-mgmt]
-              Alexander, R. and T. Tsao, "Adapted Multimedia Internet
-              KEYing (AMIKEY): An extension of Multimedia Internet
-              KEYing (MIKEY) Methods for Generic LLN Environments",
-              draft-alexander-roll-mikey-lln-key-mgmt-04 (work in
-              progress), September 2012.
+              Gilger, J. and H. Tschofenig, "Report from the 'Smart
+              Object Security Workshop', March 23, 2012, Paris, France",
+              draft-gilger-smart-object-security-workshop-02 (work in
+              progress), October 2013.
 
    [I-D.kelsey-intarea-mesh-link-establishment]
               Kelsey, R., "Mesh Link Establishment", draft-kelsey-
@@ -1878,10 +1864,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
               Park, S., "Routing Security in Sensor Network: HELLO Flood
               Attack and Defense", draft-suhopark-hello-wsn-00 (work in
               progress), December 2005.
-
-   [IEEE1149.1]
-              , "IEEE Standard Test Access Port and Boundary Scan
-              Architecture", IEEE-SA Standards Board, Jun. 14 2001.
 
    [ISO.7498-2.1988]
               International Organization for Standardization,
@@ -1897,26 +1879,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
               <http://nest.cs.berkeley.edu/papers/sensor-route-
               security.pdf>.
 
-   [Kasumi3gpp]
-
-
-
-Tsao, et al.            Expires January 22, 2015               [Page 34]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
-
-              , "3GPP TS 35.202 Specification of the 3GPP
-              confidentiality and integrity algorithms; Document 2:
-              Kasumi specification", 3GPP TSG SA3, 2009.
-
-   [Messerges2003]
-              Messerges, T., Cukier, J., Kevenaar, T., Puhl, L., Struik,
-              R., and E. Callaway, "Low-Power Security for Wireless
-              Sensor Networks", in Proceedings of the 1st ACM Workshop
-              on Security of Ad Hoc and Sensor Networks, Fairfax, VA,
-              USA, pp. 1-11, Oct. 31 2003.
-
    [Myagmar2005]
               Myagmar, S., Lee, AJ., and W. Yurcik, "Threat Modeling as
               a Basis for Security Requirements", in Proceedings of the
@@ -1928,27 +1890,10 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
               Perlman, N., "Network Layer Protocols with Byzantine
               Robustness", MIT LCS Tech Report, 429, 1988.
 
-   [RFC1142]  Oran, D., "OSI IS-IS Intra-domain Routing Protocol", RFC
-              1142, February 1990.
-
-   [RFC2080]  Malkin, G. and R. Minnear, "RIPng for IPv6", RFC 2080,
-              January 1997.
-
    [RFC2328]  Moy, J., "OSPF Version 2", STD 54, RFC 2328, April 1998.
-
-   [RFC2453]  Malkin, G., "RIP Version 2", STD 56, RFC 2453, November
-              1998.
 
    [RFC3610]  Whiting, D., Housley, R., and N. Ferguson, "Counter with
               CBC-MAC (CCM)", RFC 3610, September 2003.
-
-   [RFC3830]  Arkko, J., Carrara, E., Lindholm, F., Naslund, M., and K.
-              Norrman, "MIKEY: Multimedia Internet KEYing", RFC 3830,
-              August 2004.
-
-   [RFC4046]  Baugher, M., Canetti, R., Dondeti, L., and F. Lindholm,
-              "Multicast Security (MSEC) Group Key Management
-              Architecture", RFC 4046, April 2005.
 
    [RFC4593]  Barbir, A., Murphy, S., and Y. Yang, "Generic Threats to
               Routing Protocols", RFC 4593, October 2006.
@@ -1956,10 +1901,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-
-Tsao, et al.            Expires January 22, 2015               [Page 35]
+Tsao, et al.            Expires February 14, 2015              [Page 34]
 
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    [RFC4732]  Handley, M., Rescorla, E., IAB, "Internet Denial-of-
@@ -1967,14 +1911,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
    [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2", RFC
               4949, August 2007.
-
-   [RFC5055]  Freeman, T., Housley, R., Malpani, A., Cooper, D., and W.
-              Polk, "Server-Based Certificate Validation Protocol
-              (SCVP)", RFC 5055, December 2007.
-
-   [RFC5197]  Fries, S. and D. Ignjatic, "On the Applicability of
-              Various Multimedia Internet KEYing (MIKEY) Modes and
-              Extensions", RFC 5197, June 2008.
 
    [RFC5548]  Dohler, M., Watteyne, T., Winter, T., and D. Barthel,
               "Routing Requirements for Urban Low-Power and Lossy
@@ -1996,10 +1932,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
               "Building Automation Routing Requirements in Low-Power and
               Lossy Networks", RFC 5867, June 2010.
 
-   [RFC5996]  Kaufman, C., Hoffman, P., Nir, Y., and P. Eronen,
-              "Internet Key Exchange Protocol Version 2 (IKEv2)", RFC
-              5996, September 2010.
-
    [RFC6192]  Dugal, D., Pignataro, C., and R. Dunn, "Protecting the
               Router Control Plane", RFC 6192, March 2011.
 
@@ -2010,13 +1942,8 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
               "TCP Extensions for Multipath Operation with Multiple
               Addresses", RFC 6824, January 2013.
 
-
-
-
-Tsao, et al.            Expires January 22, 2015               [Page 36]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
-
+   [RFC7142]  Shand, M. and L. Ginsberg, "Reclassification of RFC 1142
+              to Historic", RFC 7142, February 2014.
 
    [SmartObjectSecurityWorkshop]
               Klausen, T., Ed., "Workshop on Smart Object Security",
@@ -2028,29 +1955,22 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
               (work-in-progress)", November 2012, <http://www.ietf.org/
               mail-archive/web/solace/current/msg00015.html>.
 
+
+
+Tsao, et al.            Expires February 14, 2015              [Page 35]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
+
+
    [Sybil2002]
               Douceur, J., "The Sybil Attack", First International
               Workshop on Peer-to-Peer Systems , March 2002.
-
-   [Szcze2008]
-              Szczechowiak1, P., Oliveira, L., Scott, M., Collier, M.,
-              and R. Dahab, "NanoECC: testing the limits of elliptic
-              curve cryptography in sensor networks", pp. 324-328, 2008,
-              <http://www.ic.unicamp.br/~leob/publications/ewsn/
-              NanoECC.pdf>.
 
    [Wan2004]  Wan, T., Kranakis, E., and PC. van Oorschot, "S-RIP: A
               Secure Distance Vector Routing Protocol", in Proceedings
               of the 2nd International Conference on Applied
               Cryptography and Network Security, Yellow Mountain, China,
               pp. 103-119, Jun. 8-11 2004.
-
-   [Wander2005]
-              Wander, A., Gura, N., Eberle, H., Gupta, V., and S.
-              Shantz, "Energy analysis of public-key cryptography for
-              wireless sensor networ", in the Proceedings of the Third
-              IEEE International Conference on Pervasive Computing and
-              Communications pp. 324-328, March 8-12 2005.
 
    [Yourdon1979]
               Yourdon, E. and L. Constantine, "Structured Design",
@@ -2065,13 +1985,6 @@ Authors' Addresses
    USA
 
    Email: tzeta.tsao@cooperindustries.com
-
-
-
-
-Tsao, et al.            Expires January 22, 2015               [Page 37]
-
-Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
    Roger K. Alexander
@@ -2090,6 +2003,19 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
    Spain
 
    Email: mischa.dohler@cttc.es
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires February 14, 2015              [Page 36]
+
+Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 
    Vanesa Daza
@@ -2125,4 +2051,22 @@ Internet-Draft    Security Threat Analysis for ROLL RPL        July 2014
 
 
 
-Tsao, et al.            Expires January 22, 2015               [Page 38]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tsao, et al.            Expires February 14, 2015              [Page 37]
