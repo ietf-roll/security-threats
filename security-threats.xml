@@ -327,6 +327,16 @@ An alternate method (rfc include) is described in the references. -->
       <t>CCM mode is defined in <xref target="RFC3610"/>.</t>
       <t>The terms SSID, ESSID and PAN refer to network identifiers, defined in
       <xref target="IEEE.802.11"/> and <xref target="IEEE.802.15.4" />.</t>
+
+      <t>
+        Although this is not a protocol specification, the key words "MUST",
+        "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
+        "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in <xref target="RFC2119" /> in
+        order to clarify and emphasize the guidance and directions to
+        implementers and deployers of LLN nodes that utilize RPL.
+      </t>
+
     </section>
 
     <section anchor="cons-on-roll-sec" title="Considerations on RPL Security">
@@ -1782,6 +1792,7 @@ with a value containing a set of directories to search.  These can be either in 
 filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
     <references title="Normative References">
+      <?rfc include="reference.RFC.2119" ?>
       &RFC4107;
 
       &RFC6550;
