@@ -1831,9 +1831,6 @@ Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
 12.1.  Normative References
 
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119, March 1997.
-
    [RFC4107]  Bellovin, S. and R. Housley, "Guidelines for Cryptographic
               Key Management", BCP 107, RFC 4107, June 2005.
 
@@ -1842,6 +1839,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
               Alexander, "RPL: IPv6 Routing Protocol for Low-Power and
               Lossy Networks", RFC 6550, March 2012.
 
+   [RFC6719]  Gnawali, O. and P. Levis, "The Minimum Rank with
+              Hysteresis Objective Function", RFC 6719, September 2012.
+
 
 
 
@@ -1849,9 +1849,6 @@ Tsao, et al.            Expires February 14, 2015              [Page 33]
 
 Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
-
-   [RFC6719]  Gnawali, O. and P. Levis, "The Minimum Rank with
-              Hysteresis Objective Function", RFC 6719, September 2012.
 
    [RFC7102]  Vasseur, JP., "Terms Used in Routing for Low-Power and
               Lossy Networks", RFC 7102, January 2014.
@@ -1898,6 +1895,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
               metropolitan area networks - Specific requirements - Part
               15.4: Wireless Medium Access Control (MAC) and Physical
               Layer (PHY) Specifications for Low Rate Wireless Personal
+              Area Networks (LR-WPANs) ", IEEE Std 802.15.4-2006, June
+              2006, <http://standards.ieee.org/getieee802/802.15.html>.
+
 
 
 
@@ -1905,9 +1905,6 @@ Tsao, et al.            Expires February 14, 2015              [Page 34]
 
 Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
-
-              Area Networks (LR-WPANs) ", IEEE Std 802.15.4-2006, June
-              2006, <http://standards.ieee.org/getieee802/802.15.html>.
 
    [ISO.7498-2.1988]
               International Organization for Standardization,
@@ -1954,6 +1951,9 @@ Internet-Draft    Security Threat Analysis for ROLL RPL      August 2014
 
    [RFC5216]  Simon, D., Aboba, B., and R. Hurst, "The EAP-TLS
               Authentication Protocol", RFC 5216, March 2008.
+
+
+
 
 
 

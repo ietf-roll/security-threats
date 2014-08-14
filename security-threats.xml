@@ -5,7 +5,6 @@
 There has to be one entity for each item to be referenced.
 An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC1142 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1142.xml">
-<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2328 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2328.xml">
 <!ENTITY RFC2453 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2453.xml">
 <!ENTITY RFC3029 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3029.xml">
@@ -1783,10 +1782,6 @@ with a value containing a set of directories to search.  These can be either in 
 filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
     <references title="Normative References">
-      <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?-->
-
-      &RFC2119;
-
       &RFC4107;
 
       &RFC6550;
