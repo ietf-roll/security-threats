@@ -66,7 +66,7 @@ An alternate method (rfc include) is described in the references. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-roll-security-threats-08"
+<rfc category="info" docName="draft-ietf-roll-security-threats-10"
      ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic ipr values: full3667, noModification3667, noDerivatives3667 you can add the attributes updates="NNNN" and obsoletes="NNNN" hey will automatically be output with "(if approved)" -->
 
@@ -780,7 +780,7 @@ ________
       </section>
 
       <section anchor="confident-threat"
-               title="Threats and Attacks on Confidentiality">
+               title="Threats due to failure to keep routing information confidential">
         <t>The assessment in <xref target="iso"/> indicates that there are
         attacks against the confidentiality of routing information at
         all points of access. This threat may result in disclosure, as described
