@@ -794,7 +794,7 @@ ________
       </section>
 
       <section anchor="confident-threat"
-               title="Threats and Attacks on Confidentiality">
+               title="Threats due to failure to keep routing information confidential">
         <t>The assessment in <xref target="iso"/> indicates that there are
         attacks against the confidentiality of routing information at
         all points of access. This threat may result in disclosure, as described
