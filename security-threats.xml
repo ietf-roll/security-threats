@@ -271,8 +271,9 @@ An alternate method (rfc include) is described in the references. -->
 
       <t>This document uses <xref target="ISO.7498-2.1988"/>] model, which describes Authentication,
       Access Control, Data Confidentiality, Data Integrity, and
-      Non-Repudiation security services and to which Availability is added.</t>
-
+      Non-Repudiation security services and to which Availability is added.
+      As explained below, Non-Repudiation does not apply to routing
+      protocols. </t>
       <t>
         Many of the issues in this document were also covered in The IAB Smart Object Workshop
         <xref target="RFC6574" />, and
@@ -325,7 +326,7 @@ An alternate method (rfc include) is described in the references. -->
       <t>EAP-TLS is defined in <xref target="RFC5216"/>.</t>
       <t>PANA is defined in <xref target="RFC5191"/>.</t>
       <t>CCM mode is defined in <xref target="RFC3610"/>.</t>
-      <t><xref target="RFC7102"/> introduces the term Sleepy Node, referring to a node which may somtimes go into a low-power state, suspending protocol communications
+      <t><xref target="RFC7102"/> introduces the term Sleepy Node, referring to a node which may somtimes go into a low-power state, suspending protocol communications</t>
       <t>The terms SSID, ESSID and PAN refer to network identifiers, defined in
       <xref target="IEEE.802.11"/> and <xref target="IEEE.802.15.4" />.</t>
 
@@ -362,7 +363,8 @@ An alternate method (rfc include) is described in the references. -->
       applying the systematic approach proposed in <xref
       target="Myagmar2005"/> to the routing security, while also drawing
       references from other reviews and assessments found in the literature,
-      particularly, <xref target="RFC4593"/> and <xref target="Karlof2003"/>.
+      particularly, <xref target="RFC4593"/> and <xref target="Karlof2003"/>
+      (i.e. selective forwarding, wormhole and sinkhole attacks).
       The subsequent subsections begin with a focus on the elements of a
       generic routing process that is used to establish routing assets and
       points of access to the routing functionality. Next, the <xref
@@ -522,9 +524,9 @@ ________
             assurance that the transmission and/or reception of a message
             cannot later be denied. The service of non-repudiation applies
             after-the-fact and thus relies on the logging or other capture of
-            on-going message exchanges and signatures. Applied to routing,
-            non-repudiation is not an issue because it does not apply to
-            routing protocols, which are machine-to-machine protocols.
+            on-going message exchanges and signatures. 
+            Routing protocols typically do not have a notion of
+            repudiation, so non-repudiation services are not required.
             Further, with the LLN application domains as described in <xref
             target="RFC5867"/> and <xref target="RFC5548"/>, proactive
             measures are much more critical than retrospective protections.
@@ -607,13 +609,13 @@ ________
             majority of the traffic, routing attacks consisting of advertising
             incorrect preferred routes can cause serious damage.</t>
 
-            <t>While it might seem that nodes higher up in the cyclic graph
+            <t>While it might seem that nodes higher up in the acyclic graph
             (i.e. those with lower rank) should be secured in a stronger
             fashion, it is not in general easy to predict which nodes will
-            occupy those positions until after deployment. Issues of
+            occupy those positions until after deployment.  Issues of
             redundancy and inventory control suggests that any node might wind
-            up in such a sensitive attack position, so all nodes need to be
-            equally secure.</t>
+            up in such a sensitive attack position, so all nodes to be
+            capable of being fully secured.</t>
 
             <t>In addition, even if it were possible to predict which nodes
             will occupy positions of lower rank and provision them with
@@ -1103,9 +1105,13 @@ ________
 
           <t>A prerequisite to countering this attack is to ensure that the
           communicating nodes are authenticated prior to data encryption
-          applied in the routing exchange. Authentication ensures that the
-          nodes are who they claim to be even though it does not provide an
+          applied in the routing exchange.  The authentication ensures 
+          the LLN starts with trusted nodes, but it does not provide an
           indication of whether the node has been compromised.</t>
+
+          <t>Reputation systems could be be used to help when some nodes
+          may sleep for extended periods of times. It is also unclear
+          if resulting dataset would even fit into constrained devices.</t>
 
           <t>To mitigate the risk of deliberate exposure, the process that
           communicating nodes use to establish session keys must be
@@ -1549,6 +1555,11 @@ ________
 
               <t>allow only trusted data to be received and forwarded.</t>
             </list></t>
+
+          <t>A canary node could periodically call home (using a cryptographic 
+          process), with the home system noting if it fails to call in.  
+          This provides detection of a problem, but does not mitigate it,
+          and it may have significant energy consequences for the LLN.</t>
 
           <t>Some LLNs may provide for geolocation services, often derived
           from solving triangulation equations from radio delay calculations,
