@@ -325,6 +325,7 @@ An alternate method (rfc include) is described in the references. -->
       <t>EAP-TLS is defined in <xref target="RFC5216"/>.</t>
       <t>PANA is defined in <xref target="RFC5191"/>.</t>
       <t>CCM mode is defined in <xref target="RFC3610"/>.</t>
+      <t><xref target="RFC7102"/> introduces the term Sleepy Node, referring to a node which may somtimes go into a low-power state, suspending protocol communications
       <t>The terms SSID, ESSID and PAN refer to network identifiers, defined in
       <xref target="IEEE.802.11"/> and <xref target="IEEE.802.15.4" />.</t>
 
@@ -570,8 +571,10 @@ ________
             what level of security services are to be afforded during the
             system design process. The chosen security mechanisms also needs
             to work within these constraints. Synchronization of security
-            states with sleepy nodes is yet another issue.  A non-rechargeable battery powered
-            node may well be limited in energy for it's lifetime: once exchausted, it may well
+            states with sleepy nodes <xref target="RFC7102" />
+            is yet another issue.  A non-rechargeable battery powered
+            node may well be limited in energy for it's lifetime: once
+            exchausted, it may well
             never function again.</t>
 
 
@@ -1764,7 +1767,8 @@ ________
       Vasseur, and the Area Director Adrian Farrel.</t>
 
       <t>This document started out as a combined threat and solutions
-      document. As a result of security review, the document was split up by
+      document. As a result of a series of security reviews performed 
+      by Steve Kent, the document was split up by 
       RPL co-Chair Michael Richardson and security Area Director Sean Turner
       as it went through the IETF publication process. The solutions to the
       threats are application and layer-2 specific, and have therefore been
